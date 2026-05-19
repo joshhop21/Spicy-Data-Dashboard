@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f4f2ee;
+  --foreground: #1c1917;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* Recharts: lighter grid */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #e7e5e4;
+}

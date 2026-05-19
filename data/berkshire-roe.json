@@ -1,0 +1,27 @@
+{
+  "slug": "berkshire-roe",
+  "updatedAt": "2026-05-19T13:22:15Z",
+  "headline": {
+    "value": "22.4%",
+    "delta": "\u2014",
+    "deltaDate": "pending",
+    "deltaPositive": true
+  },
+  "series": [
+    {
+      "key": "roe",
+      "label": "Rolling 10y ROE",
+      "color": "#b8860b",
+      "type": "area"
+    }
+  ],
+  "points": [],
+  "referenceLine": {
+    "value": 20,
+    "label": "20%"
+  },
+  "thesis": "Placeholder \u2014 connect fetch script and Jared's notes.",
+  "methodology": "Placeholder \u2014 document formulas and data series when implemented.",
+  "sources": [],
+  "constituents": []
+}

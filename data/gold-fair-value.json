@@ -1,0 +1,31 @@
+{
+  "slug": "gold-fair-value",
+  "updatedAt": "2026-05-19T13:22:15Z",
+  "headline": {
+    "value": "$2,340",
+    "delta": "\u2014",
+    "deltaDate": "pending",
+    "deltaPositive": true
+  },
+  "series": [
+    {
+      "key": "actual",
+      "label": "Gold Actual",
+      "color": "#b8860b",
+      "type": "line"
+    },
+    {
+      "key": "model",
+      "label": "Model",
+      "color": "#b8860b",
+      "type": "line",
+      "strokeDasharray": "4 4"
+    }
+  ],
+  "points": [],
+  "referenceLine": null,
+  "thesis": "Placeholder \u2014 connect fetch script and Jared's notes.",
+  "methodology": "Placeholder \u2014 document formulas and data series when implemented.",
+  "sources": [],
+  "constituents": []
+}

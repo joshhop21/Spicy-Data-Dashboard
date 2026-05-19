@@ -1,0 +1,107 @@
+"use client";
+
+import { useState } from "react";
+import type { QuoteResponse } from "@/lib/types";
+
+export function TickerSearch() {
+  const [ticker, setTicker] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [quote, setQuote] = useState<QuoteResponse | null>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const symbol = ticker.trim().toUpperCase();
+    if (!symbol) return;
+
+    setLoading(true);
+    setError(null);
+    setQuote(null);
+
+    try {
+      const res = await fetch(`/api/quote?symbol=${encodeURIComponent(symbol)}`);
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error ?? "Could not fetch quote");
+      }
+      setQuote(data as QuoteResponse);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <section className="rounded-xl border border-stone-200/80 bg-card p-5 shadow-sm">
+      <h2 className="font-serif text-lg font-semibold text-ink">Ticker lookup</h2>
+      <p className="mt-1 text-sm text-muted">
+        Enter any US ticker symbol for a live price (more metrics coming later).
+      </p>
+
+      <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <input
+          type="text"
+          value={ticker}
+          onChange={(e) => setTicker(e.target.value.toUpperCase())}
+          placeholder="e.g. AAPL, BRK-B, GLD"
+          className="flex-1 rounded-lg border border-stone-300 bg-white px-4 py-2.5 text-sm outline-none ring-spice-gold/30 placeholder:text-stone-400 focus:ring-2"
+          aria-label="Ticker symbol"
+        />
+        <button
+          type="submit"
+          disabled={loading || !ticker.trim()}
+          className="rounded-lg bg-ink px-5 py-2.5 text-sm font-medium text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {loading ? "Loading…" : "Get price"}
+        </button>
+      </form>
+
+      {error && (
+        <p className="mt-3 text-sm text-spice-red" role="alert">
+          {error}
+        </p>
+      )}
+
+      {quote && (
+        <div className="mt-4 rounded-lg border border-stone-200 bg-white p-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <p className="font-serif text-xl font-semibold">{quote.symbol}</p>
+            <p className="text-2xl font-semibold tabular-nums">
+              {formatPrice(quote.price, quote.currency)}
+            </p>
+          </div>
+          <p
+            className={`mt-1 text-sm font-medium tabular-nums ${
+              quote.change >= 0 ? "text-emerald-700" : "text-spice-red"
+            }`}
+          >
+            {quote.change >= 0 ? "+" : ""}
+            {quote.change.toFixed(2)} ({quote.changePercent >= 0 ? "+" : ""}
+            {quote.changePercent.toFixed(2)}%)
+          </p>
+          <p className="mt-2 text-xs text-muted">As of {formatAsOf(quote.asOf)}</p>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function formatPrice(price: number, currency: string) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency || "USD",
+    maximumFractionDigits: 2,
+  }).format(price);
+}
+
+function formatAsOf(iso: string) {
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}

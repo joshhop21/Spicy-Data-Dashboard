@@ -1,0 +1,30 @@
+{
+  "slug": "inflation-70s",
+  "updatedAt": "2026-05-19T13:22:15Z",
+  "headline": {
+    "value": "3.2%",
+    "delta": "\u2014",
+    "deltaDate": "pending",
+    "deltaPositive": true
+  },
+  "series": [
+    {
+      "key": "cpiNow",
+      "label": "CPI Now",
+      "color": "#4a6fa5",
+      "type": "line"
+    },
+    {
+      "key": "cpi70s",
+      "label": "70s",
+      "color": "#b8860b",
+      "type": "line"
+    }
+  ],
+  "points": [],
+  "referenceLine": null,
+  "thesis": "Placeholder \u2014 connect fetch script and Jared's notes.",
+  "methodology": "Placeholder \u2014 document formulas and data series when implemented.",
+  "sources": [],
+  "constituents": []
+}

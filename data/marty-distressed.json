@@ -1,0 +1,27 @@
+{
+  "slug": "marty-distressed",
+  "updatedAt": "2026-05-19T13:22:15Z",
+  "headline": {
+    "value": "8.1%",
+    "delta": "\u2014",
+    "deltaDate": "pending",
+    "deltaPositive": true
+  },
+  "series": [
+    {
+      "key": "ratio",
+      "label": "Distressed %",
+      "color": "#c45c4a",
+      "type": "area"
+    }
+  ],
+  "points": [],
+  "referenceLine": {
+    "value": 6,
+    "label": "6%"
+  },
+  "thesis": "Placeholder \u2014 connect fetch script and Jared's notes.",
+  "methodology": "Placeholder \u2014 document formulas and data series when implemented.",
+  "sources": [],
+  "constituents": []
+}

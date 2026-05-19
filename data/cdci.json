@@ -1,0 +1,103 @@
+{
+  "slug": "cdci",
+  "updatedAt": "2026-05-19T13:22:15Z",
+  "headline": {
+    "value": "142",
+    "delta": "\u2014",
+    "deltaDate": "pending",
+    "deltaPositive": true
+  },
+  "series": [
+    {
+      "key": "cdci",
+      "label": "CDCI",
+      "color": "#c45c4a",
+      "type": "line",
+      "yAxisId": "left"
+    },
+    {
+      "key": "gold",
+      "label": "Gold",
+      "color": "#b8860b",
+      "type": "line",
+      "yAxisId": "right"
+    }
+  ],
+  "points": [],
+  "referenceLine": null,
+  "thesis": "Placeholder \u2014 connect fetch script and Jared's notes.",
+  "methodology": "Placeholder \u2014 document formulas and data series when implemented.",
+  "sources": [],
+  "constituents": [
+    {
+      "ticker": "COF",
+      "weight": "10%",
+      "category": "Consumer credit",
+      "status": "Active",
+      "role": "Issuer"
+    },
+    {
+      "ticker": "SYF",
+      "weight": "10%",
+      "category": "Consumer credit",
+      "status": "Active",
+      "role": "Issuer"
+    },
+    {
+      "ticker": "AXP",
+      "weight": "10%",
+      "category": "Consumer credit",
+      "status": "Active",
+      "role": "Issuer"
+    },
+    {
+      "ticker": "ALLY",
+      "weight": "10%",
+      "category": "Consumer credit",
+      "status": "Active",
+      "role": "Issuer"
+    },
+    {
+      "ticker": "BAC",
+      "weight": "10%",
+      "category": "Bank",
+      "status": "Active",
+      "role": "Exposure"
+    },
+    {
+      "ticker": "JPM",
+      "weight": "10%",
+      "category": "Bank",
+      "status": "Active",
+      "role": "Exposure"
+    },
+    {
+      "ticker": "C",
+      "weight": "10%",
+      "category": "Bank",
+      "status": "Active",
+      "role": "Exposure"
+    },
+    {
+      "ticker": "WFC",
+      "weight": "10%",
+      "category": "Bank",
+      "status": "Active",
+      "role": "Exposure"
+    },
+    {
+      "ticker": "USB",
+      "weight": "10%",
+      "category": "Bank",
+      "status": "Active",
+      "role": "Exposure"
+    },
+    {
+      "ticker": "PNC",
+      "weight": "10%",
+      "category": "Bank",
+      "status": "Active",
+      "role": "Exposure"
+    }
+  ]
+}
