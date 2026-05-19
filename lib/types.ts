@@ -31,7 +31,7 @@ export type ChartDataFile = {
   };
   series: ChartSeries[];
   points: ChartPoint[];
-  referenceLine?: { value: number; label?: string };
+  referenceLine?: { value: number; label?: string } | null;
   thesis?: string;
   methodology?: string;
   sources?: string[];

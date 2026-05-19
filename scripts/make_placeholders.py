@@ -63,7 +63,7 @@ def empty_points():
 
 
 def base_payload(item: dict) -> dict:
-    return {
+    payload = {
         "slug": item["slug"],
         "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "headline": {
@@ -74,12 +74,14 @@ def base_payload(item: dict) -> dict:
         },
         "series": item["series"],
         "points": empty_points(),
-        "referenceLine": item.get("referenceLine"),
         "thesis": "Placeholder — connect fetch script and Jared's notes.",
         "methodology": "Placeholder — document formulas and data series when implemented.",
         "sources": [],
         "constituents": item.get("constituents", []),
     }
+    if item.get("referenceLine") is not None:
+        payload["referenceLine"] = item["referenceLine"]
+    return payload
 
 
 def main() -> None:
