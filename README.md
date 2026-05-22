@@ -187,7 +187,7 @@ scripts/                ← Python fetchers for GitHub Actions
 | Marty’s Distressed | — | Placeholder tile |
 | CDCI | `fetch_cdci.py` | Live on GitHub Actions; sample fallback locally if Yahoo rate-limits |
 | Berkshire ROE | — | Placeholder |
-| Inflation vs 70s | — | Placeholder (needs FRED) |
+| Inflation vs 70s | `fetch_inflation_70s.py` | FRED CPI YoY overlay |
 | Gold Fair Value | — | Placeholder |
 
 ---
