@@ -27,7 +27,8 @@ jobs:
       - name: Fetch latest data
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-        run: python scripts/fetch_all.py
+        run: |
+          python scripts/fetch_all.py
 
       - name: Commit and push if data changed
         run: |

@@ -7,7 +7,7 @@ from pathlib import Path
 
 SCRIPTS = [
     "fetch_btc_hash_rate.py",
-    # "fetch_cdci.py",
+    "fetch_cdci.py",
     # "fetch_inflation_70s.py",
 ]
 
@@ -20,9 +20,14 @@ def main() -> None:
         try:
             subprocess.check_call([sys.executable, str(path)])
         except subprocess.CalledProcessError:
-            if name == "fetch_btc_hash_rate.py":
-                print("Falling back to sample BTC data...")
-                subprocess.check_call([sys.executable, str(root / "generate_sample_btc.py")])
+            fallbacks = {
+                "fetch_btc_hash_rate.py": "generate_sample_btc.py",
+                "fetch_cdci.py": "generate_sample_cdci.py",
+            }
+            fallback = fallbacks.get(name)
+            if fallback:
+                print(f"Falling back to sample data ({fallback})...")
+                subprocess.check_call([sys.executable, str(root / fallback)])
             else:
                 raise
 
