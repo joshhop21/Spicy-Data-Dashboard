@@ -10,6 +10,8 @@ SCRIPTS = [
     "fetch_cdci.py",
     "fetch_inflation_70s.py",
     "fetch_berkshire_roe.py",
+    "fetch_marty_distressed.py",
+    "fetch_gold_fair_value.py",
 ]
 
 
@@ -26,6 +28,8 @@ def main() -> None:
                 "fetch_cdci.py": "generate_sample_cdci.py",
                 "fetch_inflation_70s.py": "generate_sample_inflation_70s.py",
                 "fetch_berkshire_roe.py": "generate_sample_berkshire_roe.py",
+                "fetch_marty_distressed.py": "generate_sample_marty_distressed.py",
+                "fetch_gold_fair_value.py": "generate_sample_gold_fair_value.py",
             }
             fallback = fallbacks.get(name)
             if fallback:
