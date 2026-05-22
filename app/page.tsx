@@ -3,7 +3,36 @@ import { Header } from "@/components/Header";
 import { Legend } from "@/components/Legend";
 import { TickerSearch } from "@/components/TickerSearch";
 import { getAllChartData } from "@/lib/loadChartData";
-import { TILES } from "@/lib/tiles";
+import { PHASE_1_TILES, PHASE_2_TILES } from "@/lib/tiles";
+import type { TileConfig } from "@/lib/types";
+
+function ChartSection({
+  title,
+  phase,
+  tiles,
+  chartData,
+}: {
+  title: string;
+  phase: string;
+  tiles: TileConfig[];
+  chartData: ReturnType<typeof getAllChartData>;
+}) {
+  return (
+    <section className="mt-10" aria-labelledby={`${phase}-heading`}>
+      <div className="mb-5 border-b border-stone-200/80 pb-3">
+        <p className="text-xs font-semibold uppercase tracking-widest text-muted">{phase}</p>
+        <h2 id={`${phase}-heading`} className="font-serif text-2xl font-semibold text-ink">
+          {title}
+        </h2>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {tiles.map((tile) => (
+          <ChartTile key={tile.slug} tile={tile} data={chartData[tile.slug]} />
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function HomePage() {
   const chartData = getAllChartData();
@@ -22,13 +51,19 @@ export default function HomePage() {
         <TickerSearch />
       </div>
 
-      <section className="mt-10" aria-label="Research charts">
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {TILES.map((tile) => (
-            <ChartTile key={tile.slug} tile={tile} data={chartData[tile.slug]} />
-          ))}
-        </div>
-      </section>
+      <ChartSection
+        phase="Phase 1"
+        title="Flagship signals"
+        tiles={PHASE_1_TILES}
+        chartData={chartData}
+      />
+
+      <ChartSection
+        phase="Phase 2"
+        title="Extended index"
+        tiles={PHASE_2_TILES}
+        chartData={chartData}
+      />
 
       <Legend />
     </main>
