@@ -186,7 +186,7 @@ scripts/                ← Python fetchers for GitHub Actions
 | BTC Price vs. Hash Rate | `fetch_btc_hash_rate.py` | Working (live or sample fallback) |
 | Marty’s Distressed | — | Placeholder tile |
 | CDCI | `fetch_cdci.py` | Live on GitHub Actions; sample fallback locally if Yahoo rate-limits |
-| Berkshire ROE | — | Placeholder |
+| Berkshire ROE | `fetch_berkshire_roe.py` | Rolling 10y BVPS % change (BRK-B) |
 | Inflation vs 70s | `fetch_inflation_70s.py` | FRED CPI YoY overlay |
 | Gold Fair Value | — | Placeholder |
 

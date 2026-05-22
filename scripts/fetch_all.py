@@ -9,6 +9,7 @@ SCRIPTS = [
     "fetch_btc_hash_rate.py",
     "fetch_cdci.py",
     "fetch_inflation_70s.py",
+    "fetch_berkshire_roe.py",
 ]
 
 
@@ -24,6 +25,7 @@ def main() -> None:
                 "fetch_btc_hash_rate.py": "generate_sample_btc.py",
                 "fetch_cdci.py": "generate_sample_cdci.py",
                 "fetch_inflation_70s.py": "generate_sample_inflation_70s.py",
+                "fetch_berkshire_roe.py": "generate_sample_berkshire_roe.py",
             }
             fallback = fallbacks.get(name)
             if fallback:
