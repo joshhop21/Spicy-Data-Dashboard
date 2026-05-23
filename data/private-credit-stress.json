@@ -1,11 +1,11 @@
 {
   "slug": "private-credit-stress",
-  "updatedAt": "2026-05-22T17:07:51Z",
+  "updatedAt": "2026-05-23T08:31:29Z",
   "headline": {
-    "value": "9.2%",
-    "delta": "-0.3%",
-    "deltaDate": "Mar 26",
-    "deltaPositive": true
+    "value": "5.6%",
+    "delta": "+0.2%",
+    "deltaDate": "May 26",
+    "deltaPositive": false
   },
   "series": [
     {
@@ -25,1010 +25,2011 @@
   ],
   "points": [
     {
-      "date": "2020-01-01",
-      "bdcDiscount": 8.0,
-      "hyOas": 5.5
-    },
-    {
-      "date": "2020-01-08",
-      "bdcDiscount": 8.37,
-      "hyOas": 5.49
-    },
-    {
-      "date": "2020-01-15",
-      "bdcDiscount": 8.74,
-      "hyOas": 5.47
-    },
-    {
-      "date": "2020-01-22",
-      "bdcDiscount": 9.1,
-      "hyOas": 5.43
-    },
-    {
-      "date": "2020-01-29",
-      "bdcDiscount": 9.44,
-      "hyOas": 5.38
-    },
-    {
-      "date": "2020-02-05",
-      "bdcDiscount": 9.76,
-      "hyOas": 5.32
-    },
-    {
-      "date": "2020-02-12",
-      "bdcDiscount": 10.04,
-      "hyOas": 5.24
-    },
-    {
-      "date": "2020-02-19",
-      "bdcDiscount": 10.3,
-      "hyOas": 5.15
-    },
-    {
-      "date": "2020-02-26",
-      "bdcDiscount": 10.52,
-      "hyOas": 5.05
-    },
-    {
-      "date": "2020-03-04",
-      "bdcDiscount": 10.71,
-      "hyOas": 4.93
-    },
-    {
-      "date": "2020-03-11",
-      "bdcDiscount": 10.85,
-      "hyOas": 4.81
-    },
-    {
-      "date": "2020-03-18",
-      "bdcDiscount": 10.94,
-      "hyOas": 4.68
-    },
-    {
-      "date": "2020-03-25",
-      "bdcDiscount": 10.99,
-      "hyOas": 4.54
-    },
-    {
-      "date": "2020-04-01",
-      "bdcDiscount": 11.0,
-      "hyOas": 4.4
-    },
-    {
-      "date": "2020-04-08",
-      "bdcDiscount": 10.95,
-      "hyOas": 4.25
-    },
-    {
-      "date": "2020-04-15",
-      "bdcDiscount": 10.86,
-      "hyOas": 4.11
-    },
-    {
-      "date": "2020-04-22",
-      "bdcDiscount": 10.73,
-      "hyOas": 3.96
-    },
-    {
-      "date": "2020-04-29",
-      "bdcDiscount": 10.55,
-      "hyOas": 3.81
-    },
-    {
-      "date": "2020-05-06",
-      "bdcDiscount": 10.33,
-      "hyOas": 3.66
-    },
-    {
-      "date": "2020-05-13",
-      "bdcDiscount": 10.08,
-      "hyOas": 3.52
-    },
-    {
-      "date": "2020-05-20",
-      "bdcDiscount": 9.8,
-      "hyOas": 3.38
-    },
-    {
-      "date": "2020-05-27",
-      "bdcDiscount": 9.48,
-      "hyOas": 3.24
-    },
-    {
-      "date": "2020-06-03",
-      "bdcDiscount": 9.14,
-      "hyOas": 3.12
-    },
-    {
-      "date": "2020-06-10",
-      "bdcDiscount": 8.79,
-      "hyOas": 3.0
-    },
-    {
-      "date": "2020-06-17",
-      "bdcDiscount": 8.42,
+      "date": "2024-10-17",
+      "bdcDiscount": 4.3,
       "hyOas": 2.89
     },
     {
-      "date": "2020-06-24",
-      "bdcDiscount": 8.05,
+      "date": "2024-10-18",
+      "bdcDiscount": 4.23,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2024-10-21",
+      "bdcDiscount": 4.13,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2024-10-22",
+      "bdcDiscount": 4.24,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2024-10-23",
+      "bdcDiscount": 4.29,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2024-10-24",
+      "bdcDiscount": 4.15,
+      "hyOas": 2.93
+    },
+    {
+      "date": "2024-10-25",
+      "bdcDiscount": 4.25,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2024-10-28",
+      "bdcDiscount": 4.16,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2024-10-29",
+      "bdcDiscount": 4.34,
+      "hyOas": 2.85
+    },
+    {
+      "date": "2024-10-30",
+      "bdcDiscount": 4.38,
       "hyOas": 2.8
     },
     {
-      "date": "2020-07-01",
-      "bdcDiscount": 7.68,
-      "hyOas": 2.71
+      "date": "2024-10-31",
+      "bdcDiscount": 4.44,
+      "hyOas": 2.88
     },
     {
-      "date": "2020-07-08",
-      "bdcDiscount": 7.31,
-      "hyOas": 2.64
+      "date": "2024-11-01",
+      "bdcDiscount": 4.6,
+      "hyOas": 2.83
     },
     {
-      "date": "2020-07-15",
-      "bdcDiscount": 6.95,
-      "hyOas": 2.59
+      "date": "2024-11-04",
+      "bdcDiscount": 4.74,
+      "hyOas": 2.87
     },
     {
-      "date": "2020-07-22",
-      "bdcDiscount": 6.61,
-      "hyOas": 2.54
+      "date": "2024-11-05",
+      "bdcDiscount": 4.61,
+      "hyOas": 2.86
     },
     {
-      "date": "2020-07-29",
-      "bdcDiscount": 6.29,
-      "hyOas": 2.52
+      "date": "2024-11-06",
+      "bdcDiscount": 4.3,
+      "hyOas": 2.74
     },
     {
-      "date": "2020-08-05",
-      "bdcDiscount": 5.99,
-      "hyOas": 2.5
-    },
-    {
-      "date": "2020-08-12",
-      "bdcDiscount": 5.73,
-      "hyOas": 2.5
-    },
-    {
-      "date": "2020-08-19",
-      "bdcDiscount": 5.5,
-      "hyOas": 2.52
-    },
-    {
-      "date": "2020-08-26",
-      "bdcDiscount": 5.32,
-      "hyOas": 2.55
-    },
-    {
-      "date": "2020-09-02",
-      "bdcDiscount": 5.17,
-      "hyOas": 2.6
-    },
-    {
-      "date": "2020-09-09",
-      "bdcDiscount": 5.07,
-      "hyOas": 2.65
-    },
-    {
-      "date": "2020-09-16",
-      "bdcDiscount": 5.01,
+      "date": "2024-11-07",
+      "bdcDiscount": 4.37,
       "hyOas": 2.73
     },
     {
-      "date": "2020-09-23",
-      "bdcDiscount": 5.0,
-      "hyOas": 2.81
+      "date": "2024-11-08",
+      "bdcDiscount": 4.26,
+      "hyOas": 2.63
     },
     {
-      "date": "2020-09-30",
-      "bdcDiscount": 5.04,
+      "date": "2024-11-11",
+      "bdcDiscount": 4.22,
+      "hyOas": 2.63
+    },
+    {
+      "date": "2024-11-12",
+      "bdcDiscount": 4.29,
+      "hyOas": 2.61
+    },
+    {
+      "date": "2024-11-13",
+      "bdcDiscount": 4.25,
+      "hyOas": 2.64
+    },
+    {
+      "date": "2024-11-14",
+      "bdcDiscount": 4.27,
+      "hyOas": 2.6
+    },
+    {
+      "date": "2024-11-15",
+      "bdcDiscount": 4.26,
+      "hyOas": 2.72
+    },
+    {
+      "date": "2024-11-18",
+      "bdcDiscount": 4.15,
+      "hyOas": 2.72
+    },
+    {
+      "date": "2024-11-19",
+      "bdcDiscount": 4.03,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2024-11-20",
+      "bdcDiscount": 4.09,
+      "hyOas": 2.67
+    },
+    {
+      "date": "2024-11-21",
+      "bdcDiscount": 4.09,
+      "hyOas": 2.61
+    },
+    {
+      "date": "2024-11-22",
+      "bdcDiscount": 3.9,
+      "hyOas": 2.61
+    },
+    {
+      "date": "2024-11-25",
+      "bdcDiscount": 3.81,
+      "hyOas": 2.64
+    },
+    {
+      "date": "2024-11-26",
+      "bdcDiscount": 3.82,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2024-11-27",
+      "bdcDiscount": 3.73,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2024-11-29",
+      "bdcDiscount": 3.56,
+      "hyOas": 2.72
+    },
+    {
+      "date": "2024-12-02",
+      "bdcDiscount": 3.65,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2024-12-03",
+      "bdcDiscount": 3.62,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2024-12-04",
+      "bdcDiscount": 3.62,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2024-12-05",
+      "bdcDiscount": 3.63,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2024-12-06",
+      "bdcDiscount": 3.58,
+      "hyOas": 2.67
+    },
+    {
+      "date": "2024-12-09",
+      "bdcDiscount": 3.61,
+      "hyOas": 2.67
+    },
+    {
+      "date": "2024-12-10",
+      "bdcDiscount": 3.61,
+      "hyOas": 2.67
+    },
+    {
+      "date": "2024-12-11",
+      "bdcDiscount": 3.63,
+      "hyOas": 2.64
+    },
+    {
+      "date": "2024-12-12",
+      "bdcDiscount": 3.65,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2024-12-13",
+      "bdcDiscount": 3.62,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2024-12-16",
+      "bdcDiscount": 3.73,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2024-12-17",
+      "bdcDiscount": 3.76,
+      "hyOas": 2.75
+    },
+    {
+      "date": "2024-12-18",
+      "bdcDiscount": 3.99,
+      "hyOas": 2.73
+    },
+    {
+      "date": "2024-12-19",
+      "bdcDiscount": 3.76,
       "hyOas": 2.91
     },
     {
-      "date": "2020-10-07",
-      "bdcDiscount": 5.12,
-      "hyOas": 3.02
+      "date": "2024-12-20",
+      "bdcDiscount": 3.6,
+      "hyOas": 2.86
     },
     {
-      "date": "2020-10-14",
-      "bdcDiscount": 5.25,
-      "hyOas": 3.14
+      "date": "2024-12-23",
+      "bdcDiscount": 3.54,
+      "hyOas": 2.85
     },
     {
-      "date": "2020-10-21",
-      "bdcDiscount": 5.42,
-      "hyOas": 3.26
+      "date": "2024-12-24",
+      "bdcDiscount": 3.35,
+      "hyOas": 2.86
     },
     {
-      "date": "2020-10-28",
-      "bdcDiscount": 5.63,
+      "date": "2024-12-26",
+      "bdcDiscount": 3.28,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2024-12-27",
+      "bdcDiscount": 3.26,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2024-12-30",
+      "bdcDiscount": 3.28,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2024-12-31",
+      "bdcDiscount": 3.25,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2025-01-02",
+      "bdcDiscount": 3.1,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-01-03",
+      "bdcDiscount": 3.09,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2025-01-06",
+      "bdcDiscount": 3.3,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2025-01-07",
+      "bdcDiscount": 3.37,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2025-01-08",
+      "bdcDiscount": 3.4,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-01-10",
+      "bdcDiscount": 3.54,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2025-01-13",
+      "bdcDiscount": 3.38,
+      "hyOas": 2.85
+    },
+    {
+      "date": "2025-01-14",
+      "bdcDiscount": 3.16,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2025-01-15",
+      "bdcDiscount": 3.12,
+      "hyOas": 2.72
+    },
+    {
+      "date": "2025-01-16",
+      "bdcDiscount": 2.92,
+      "hyOas": 2.73
+    },
+    {
+      "date": "2025-01-17",
+      "bdcDiscount": 2.91,
+      "hyOas": 2.64
+    },
+    {
+      "date": "2025-01-21",
+      "bdcDiscount": 2.77,
+      "hyOas": 2.61
+    },
+    {
+      "date": "2025-01-22",
+      "bdcDiscount": 2.84,
+      "hyOas": 2.59
+    },
+    {
+      "date": "2025-01-23",
+      "bdcDiscount": 2.77,
+      "hyOas": 2.61
+    },
+    {
+      "date": "2025-01-24",
+      "bdcDiscount": 2.7,
+      "hyOas": 2.6
+    },
+    {
+      "date": "2025-01-27",
+      "bdcDiscount": 2.7,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2025-01-28",
+      "bdcDiscount": 2.56,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2025-01-29",
+      "bdcDiscount": 2.76,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2025-01-30",
+      "bdcDiscount": 2.55,
+      "hyOas": 2.67
+    },
+    {
+      "date": "2025-01-31",
+      "bdcDiscount": 2.39,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2025-02-03",
+      "bdcDiscount": 2.4,
+      "hyOas": 2.73
+    },
+    {
+      "date": "2025-02-04",
+      "bdcDiscount": 2.41,
+      "hyOas": 2.71
+    },
+    {
+      "date": "2025-02-05",
+      "bdcDiscount": 2.61,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2025-02-06",
+      "bdcDiscount": 2.65,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2025-02-07",
+      "bdcDiscount": 2.64,
+      "hyOas": 2.67
+    },
+    {
+      "date": "2025-02-10",
+      "bdcDiscount": 2.64,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2025-02-11",
+      "bdcDiscount": 2.65,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2025-02-12",
+      "bdcDiscount": 2.5,
+      "hyOas": 2.65
+    },
+    {
+      "date": "2025-02-13",
+      "bdcDiscount": 2.41,
+      "hyOas": 2.65
+    },
+    {
+      "date": "2025-02-14",
+      "bdcDiscount": 2.25,
+      "hyOas": 2.62
+    },
+    {
+      "date": "2025-02-18",
+      "bdcDiscount": 2.11,
+      "hyOas": 2.62
+    },
+    {
+      "date": "2025-02-19",
+      "bdcDiscount": 2.02,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2025-02-20",
+      "bdcDiscount": 2.11,
+      "hyOas": 2.66
+    },
+    {
+      "date": "2025-02-21",
+      "bdcDiscount": 2.14,
+      "hyOas": 2.78
+    },
+    {
+      "date": "2025-02-24",
+      "bdcDiscount": 2.28,
+      "hyOas": 2.78
+    },
+    {
+      "date": "2025-02-25",
+      "bdcDiscount": 2.38,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-02-26",
+      "bdcDiscount": 2.61,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2025-02-27",
+      "bdcDiscount": 2.62,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2025-02-28",
+      "bdcDiscount": 2.27,
+      "hyOas": 2.87
+    },
+    {
+      "date": "2025-03-03",
+      "bdcDiscount": 2.41,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-03-04",
+      "bdcDiscount": 2.74,
+      "hyOas": 2.99
+    },
+    {
+      "date": "2025-03-05",
+      "bdcDiscount": 2.89,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-03-06",
+      "bdcDiscount": 3.13,
+      "hyOas": 2.99
+    },
+    {
+      "date": "2025-03-07",
+      "bdcDiscount": 2.7,
+      "hyOas": 2.97
+    },
+    {
+      "date": "2025-03-10",
+      "bdcDiscount": 2.91,
+      "hyOas": 3.16
+    },
+    {
+      "date": "2025-03-11",
+      "bdcDiscount": 3.37,
+      "hyOas": 3.22
+    },
+    {
+      "date": "2025-03-12",
+      "bdcDiscount": 3.43,
+      "hyOas": 3.2
+    },
+    {
+      "date": "2025-03-13",
+      "bdcDiscount": 3.72,
       "hyOas": 3.4
     },
     {
-      "date": "2020-11-04",
-      "bdcDiscount": 5.88,
-      "hyOas": 3.54
+      "date": "2025-03-14",
+      "bdcDiscount": 3.4,
+      "hyOas": 3.25
     },
     {
-      "date": "2020-11-11",
-      "bdcDiscount": 6.16,
-      "hyOas": 3.68
+      "date": "2025-03-17",
+      "bdcDiscount": 3.15,
+      "hyOas": 3.18
     },
     {
-      "date": "2020-11-18",
-      "bdcDiscount": 6.48,
-      "hyOas": 3.83
+      "date": "2025-03-18",
+      "bdcDiscount": 3.05,
+      "hyOas": 3.23
     },
     {
-      "date": "2020-11-25",
-      "bdcDiscount": 6.81,
-      "hyOas": 3.98
+      "date": "2025-03-19",
+      "bdcDiscount": 3.03,
+      "hyOas": 3.19
     },
     {
-      "date": "2020-12-02",
-      "bdcDiscount": 7.16,
-      "hyOas": 4.13
+      "date": "2025-03-20",
+      "bdcDiscount": 3.0,
+      "hyOas": 3.17
     },
     {
-      "date": "2020-12-09",
-      "bdcDiscount": 7.53,
-      "hyOas": 4.28
+      "date": "2025-03-21",
+      "bdcDiscount": 2.97,
+      "hyOas": 3.21
     },
     {
-      "date": "2020-12-16",
-      "bdcDiscount": 7.9,
-      "hyOas": 4.43
+      "date": "2025-03-24",
+      "bdcDiscount": 2.78,
+      "hyOas": 3.05
     },
     {
-      "date": "2020-12-23",
-      "bdcDiscount": 8.28,
+      "date": "2025-03-25",
+      "bdcDiscount": 2.66,
+      "hyOas": 3.09
+    },
+    {
+      "date": "2025-03-26",
+      "bdcDiscount": 2.74,
+      "hyOas": 3.19
+    },
+    {
+      "date": "2025-03-27",
+      "bdcDiscount": 2.75,
+      "hyOas": 3.27
+    },
+    {
+      "date": "2025-03-28",
+      "bdcDiscount": 2.93,
+      "hyOas": 3.47
+    },
+    {
+      "date": "2025-03-31",
+      "bdcDiscount": 2.93,
+      "hyOas": 3.55
+    },
+    {
+      "date": "2025-04-01",
+      "bdcDiscount": 2.75,
+      "hyOas": 3.5
+    },
+    {
+      "date": "2025-04-02",
+      "bdcDiscount": 2.8,
+      "hyOas": 3.42
+    },
+    {
+      "date": "2025-04-03",
+      "bdcDiscount": 3.26,
+      "hyOas": 4.01
+    },
+    {
+      "date": "2025-04-04",
+      "bdcDiscount": 4.46,
+      "hyOas": 4.45
+    },
+    {
+      "date": "2025-04-07",
+      "bdcDiscount": 5.02,
+      "hyOas": 4.61
+    },
+    {
+      "date": "2025-04-08",
+      "bdcDiscount": 5.41,
       "hyOas": 4.57
     },
     {
-      "date": "2020-12-30",
-      "bdcDiscount": 8.65,
-      "hyOas": 4.7
+      "date": "2025-04-09",
+      "bdcDiscount": 4.19,
+      "hyOas": 4.37
     },
     {
-      "date": "2021-01-06",
-      "bdcDiscount": 9.01,
-      "hyOas": 4.83
+      "date": "2025-04-10",
+      "bdcDiscount": 4.82,
+      "hyOas": 4.42
     },
     {
-      "date": "2021-01-13",
-      "bdcDiscount": 9.35,
-      "hyOas": 4.95
+      "date": "2025-04-11",
+      "bdcDiscount": 4.73,
+      "hyOas": 4.26
     },
     {
-      "date": "2021-01-20",
-      "bdcDiscount": 9.67,
-      "hyOas": 5.06
+      "date": "2025-04-14",
+      "bdcDiscount": 4.56,
+      "hyOas": 4.14
     },
     {
-      "date": "2021-01-27",
-      "bdcDiscount": 9.97,
-      "hyOas": 5.16
+      "date": "2025-04-15",
+      "bdcDiscount": 4.34,
+      "hyOas": 4.09
     },
     {
-      "date": "2021-02-03",
-      "bdcDiscount": 10.24,
-      "hyOas": 5.25
+      "date": "2025-04-16",
+      "bdcDiscount": 4.48,
+      "hyOas": 4.16
     },
     {
-      "date": "2021-02-10",
-      "bdcDiscount": 10.47,
-      "hyOas": 5.33
+      "date": "2025-04-17",
+      "bdcDiscount": 4.19,
+      "hyOas": 4.02
     },
     {
-      "date": "2021-02-17",
-      "bdcDiscount": 10.66,
-      "hyOas": 5.39
+      "date": "2025-04-21",
+      "bdcDiscount": 4.56,
+      "hyOas": 4.16
     },
     {
-      "date": "2021-02-24",
-      "bdcDiscount": 10.81,
-      "hyOas": 5.44
+      "date": "2025-04-22",
+      "bdcDiscount": 4.27,
+      "hyOas": 3.99
     },
     {
-      "date": "2021-03-03",
-      "bdcDiscount": 10.92,
-      "hyOas": 5.47
+      "date": "2025-04-23",
+      "bdcDiscount": 4.01,
+      "hyOas": 3.75
     },
     {
-      "date": "2021-03-10",
-      "bdcDiscount": 10.98,
-      "hyOas": 5.49
+      "date": "2025-04-24",
+      "bdcDiscount": 3.8,
+      "hyOas": 3.73
     },
     {
-      "date": "2021-03-17",
-      "bdcDiscount": 11.0,
-      "hyOas": 5.5
+      "date": "2025-04-25",
+      "bdcDiscount": 3.78,
+      "hyOas": 3.67
     },
     {
-      "date": "2021-03-24",
-      "bdcDiscount": 10.97,
-      "hyOas": 5.49
+      "date": "2025-04-28",
+      "bdcDiscount": 3.68,
+      "hyOas": 3.73
     },
     {
-      "date": "2021-03-31",
-      "bdcDiscount": 10.89,
-      "hyOas": 5.46
+      "date": "2025-04-29",
+      "bdcDiscount": 3.86,
+      "hyOas": 3.74
     },
     {
-      "date": "2021-04-07",
-      "bdcDiscount": 10.77,
-      "hyOas": 5.43
+      "date": "2025-04-30",
+      "bdcDiscount": 3.99,
+      "hyOas": 3.94
     },
     {
-      "date": "2021-04-14",
-      "bdcDiscount": 10.6,
-      "hyOas": 5.37
-    },
-    {
-      "date": "2021-04-21",
-      "bdcDiscount": 10.4,
-      "hyOas": 5.3
-    },
-    {
-      "date": "2021-04-28",
-      "bdcDiscount": 10.15,
-      "hyOas": 5.22
-    },
-    {
-      "date": "2021-05-05",
-      "bdcDiscount": 9.87,
-      "hyOas": 5.13
-    },
-    {
-      "date": "2021-05-12",
-      "bdcDiscount": 9.57,
-      "hyOas": 5.03
-    },
-    {
-      "date": "2021-05-19",
-      "bdcDiscount": 9.24,
-      "hyOas": 4.91
-    },
-    {
-      "date": "2021-05-26",
-      "bdcDiscount": 8.89,
-      "hyOas": 4.79
-    },
-    {
-      "date": "2021-06-02",
-      "bdcDiscount": 8.52,
-      "hyOas": 4.66
-    },
-    {
-      "date": "2021-06-09",
-      "bdcDiscount": 8.15,
-      "hyOas": 4.52
-    },
-    {
-      "date": "2021-06-16",
-      "bdcDiscount": 7.77,
-      "hyOas": 4.38
-    },
-    {
-      "date": "2021-06-23",
-      "bdcDiscount": 7.4,
-      "hyOas": 4.23
-    },
-    {
-      "date": "2021-06-30",
-      "bdcDiscount": 7.04,
-      "hyOas": 4.08
-    },
-    {
-      "date": "2021-07-07",
-      "bdcDiscount": 6.69,
-      "hyOas": 3.93
-    },
-    {
-      "date": "2021-07-14",
-      "bdcDiscount": 6.37,
+      "date": "2025-05-01",
+      "bdcDiscount": 4.21,
       "hyOas": 3.78
     },
     {
-      "date": "2021-07-21",
-      "bdcDiscount": 6.07,
-      "hyOas": 3.63
+      "date": "2025-05-02",
+      "bdcDiscount": 3.9,
+      "hyOas": 3.6
     },
     {
-      "date": "2021-07-28",
-      "bdcDiscount": 5.8,
-      "hyOas": 3.49
+      "date": "2025-05-05",
+      "bdcDiscount": 4.12,
+      "hyOas": 3.6
     },
     {
-      "date": "2021-08-04",
-      "bdcDiscount": 5.56,
-      "hyOas": 3.35
+      "date": "2025-05-06",
+      "bdcDiscount": 4.1,
+      "hyOas": 3.66
     },
     {
-      "date": "2021-08-11",
+      "date": "2025-05-07",
+      "bdcDiscount": 4.06,
+      "hyOas": 3.67
+    },
+    {
+      "date": "2025-05-08",
+      "bdcDiscount": 3.88,
+      "hyOas": 3.51
+    },
+    {
+      "date": "2025-05-09",
+      "bdcDiscount": 3.87,
+      "hyOas": 3.53
+    },
+    {
+      "date": "2025-05-12",
+      "bdcDiscount": 3.44,
+      "hyOas": 3.15
+    },
+    {
+      "date": "2025-05-13",
+      "bdcDiscount": 3.25,
+      "hyOas": 3.09
+    },
+    {
+      "date": "2025-05-14",
+      "bdcDiscount": 3.27,
+      "hyOas": 3.1
+    },
+    {
+      "date": "2025-05-15",
+      "bdcDiscount": 3.21,
+      "hyOas": 3.2
+    },
+    {
+      "date": "2025-05-16",
+      "bdcDiscount": 3.0,
+      "hyOas": 3.16
+    },
+    {
+      "date": "2025-05-19",
+      "bdcDiscount": 2.9,
+      "hyOas": 3.21
+    },
+    {
+      "date": "2025-05-20",
+      "bdcDiscount": 2.81,
+      "hyOas": 3.2
+    },
+    {
+      "date": "2025-05-21",
+      "bdcDiscount": 3.21,
+      "hyOas": 3.25
+    },
+    {
+      "date": "2025-05-22",
+      "bdcDiscount": 3.24,
+      "hyOas": 3.32
+    },
+    {
+      "date": "2025-05-23",
+      "bdcDiscount": 3.16,
+      "hyOas": 3.4
+    },
+    {
+      "date": "2025-05-27",
+      "bdcDiscount": 2.85,
+      "hyOas": 3.24
+    },
+    {
+      "date": "2025-05-28",
+      "bdcDiscount": 2.82,
+      "hyOas": 3.23
+    },
+    {
+      "date": "2025-05-29",
+      "bdcDiscount": 2.8,
+      "hyOas": 3.22
+    },
+    {
+      "date": "2025-05-30",
+      "bdcDiscount": 2.79,
+      "hyOas": 3.31
+    },
+    {
+      "date": "2025-06-02",
+      "bdcDiscount": 2.92,
+      "hyOas": 3.27
+    },
+    {
+      "date": "2025-06-03",
+      "bdcDiscount": 2.89,
+      "hyOas": 3.19
+    },
+    {
+      "date": "2025-06-04",
+      "bdcDiscount": 2.9,
+      "hyOas": 3.23
+    },
+    {
+      "date": "2025-06-05",
+      "bdcDiscount": 2.88,
+      "hyOas": 3.18
+    },
+    {
+      "date": "2025-06-06",
+      "bdcDiscount": 2.73,
+      "hyOas": 3.09
+    },
+    {
+      "date": "2025-06-09",
+      "bdcDiscount": 2.63,
+      "hyOas": 3.12
+    },
+    {
+      "date": "2025-06-10",
+      "bdcDiscount": 2.6,
+      "hyOas": 3.12
+    },
+    {
+      "date": "2025-06-11",
+      "bdcDiscount": 2.62,
+      "hyOas": 3.12
+    },
+    {
+      "date": "2025-06-12",
+      "bdcDiscount": 2.63,
+      "hyOas": 3.17
+    },
+    {
+      "date": "2025-06-13",
+      "bdcDiscount": 2.79,
+      "hyOas": 3.18
+    },
+    {
+      "date": "2025-06-16",
+      "bdcDiscount": 2.98,
+      "hyOas": 3.1
+    },
+    {
+      "date": "2025-06-17",
+      "bdcDiscount": 2.91,
+      "hyOas": 3.17
+    },
+    {
+      "date": "2025-06-18",
+      "bdcDiscount": 2.73,
+      "hyOas": 3.16
+    },
+    {
+      "date": "2025-06-20",
+      "bdcDiscount": 2.77,
+      "hyOas": 3.13
+    },
+    {
+      "date": "2025-06-23",
+      "bdcDiscount": 2.96,
+      "hyOas": 3.12
+    },
+    {
+      "date": "2025-06-24",
+      "bdcDiscount": 2.81,
+      "hyOas": 3.06
+    },
+    {
+      "date": "2025-06-25",
+      "bdcDiscount": 2.8,
+      "hyOas": 3.04
+    },
+    {
+      "date": "2025-06-26",
+      "bdcDiscount": 2.62,
+      "hyOas": 3.04
+    },
+    {
+      "date": "2025-06-27",
+      "bdcDiscount": 2.61,
+      "hyOas": 3.02
+    },
+    {
+      "date": "2025-06-30",
+      "bdcDiscount": 2.51,
+      "hyOas": 2.96
+    },
+    {
+      "date": "2025-07-01",
+      "bdcDiscount": 2.47,
+      "hyOas": 2.91
+    },
+    {
+      "date": "2025-07-02",
+      "bdcDiscount": 2.31,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-07-03",
+      "bdcDiscount": 2.12,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2025-07-07",
+      "bdcDiscount": 2.27,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2025-07-08",
+      "bdcDiscount": 2.2,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2025-07-09",
+      "bdcDiscount": 2.14,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-07-10",
+      "bdcDiscount": 1.92,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2025-07-11",
+      "bdcDiscount": 1.82,
+      "hyOas": 2.97
+    },
+    {
+      "date": "2025-07-14",
+      "bdcDiscount": 1.73,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-07-15",
+      "bdcDiscount": 1.75,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-07-16",
+      "bdcDiscount": 1.5,
+      "hyOas": 3.0
+    },
+    {
+      "date": "2025-07-17",
+      "bdcDiscount": 1.33,
+      "hyOas": 2.91
+    },
+    {
+      "date": "2025-07-18",
+      "bdcDiscount": 1.42,
+      "hyOas": 2.93
+    },
+    {
+      "date": "2025-07-21",
+      "bdcDiscount": 1.7,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2025-07-22",
+      "bdcDiscount": 1.57,
+      "hyOas": 2.9
+    },
+    {
+      "date": "2025-07-23",
+      "bdcDiscount": 1.42,
+      "hyOas": 2.83
+    },
+    {
+      "date": "2025-07-24",
+      "bdcDiscount": 1.48,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2025-07-25",
+      "bdcDiscount": 1.46,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-07-28",
+      "bdcDiscount": 1.76,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2025-07-29",
+      "bdcDiscount": 1.86,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2025-07-30",
+      "bdcDiscount": 1.97,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2025-07-31",
+      "bdcDiscount": 1.98,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2025-08-01",
+      "bdcDiscount": 2.23,
+      "hyOas": 3.13
+    },
+    {
+      "date": "2025-08-04",
+      "bdcDiscount": 2.29,
+      "hyOas": 3.02
+    },
+    {
+      "date": "2025-08-05",
+      "bdcDiscount": 2.27,
+      "hyOas": 2.98
+    },
+    {
+      "date": "2025-08-06",
+      "bdcDiscount": 2.3,
+      "hyOas": 2.98
+    },
+    {
+      "date": "2025-08-07",
+      "bdcDiscount": 2.6,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-08-08",
+      "bdcDiscount": 2.45,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-08-11",
+      "bdcDiscount": 2.54,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-08-12",
+      "bdcDiscount": 2.43,
+      "hyOas": 2.93
+    },
+    {
+      "date": "2025-08-13",
+      "bdcDiscount": 2.3,
+      "hyOas": 2.9
+    },
+    {
+      "date": "2025-08-14",
+      "bdcDiscount": 2.41,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2025-08-15",
+      "bdcDiscount": 2.59,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-08-18",
+      "bdcDiscount": 2.6,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-08-19",
+      "bdcDiscount": 2.56,
+      "hyOas": 2.9
+    },
+    {
+      "date": "2025-08-20",
+      "bdcDiscount": 2.55,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-08-21",
+      "bdcDiscount": 2.57,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-08-22",
+      "bdcDiscount": 2.52,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-08-25",
+      "bdcDiscount": 2.7,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2025-08-26",
+      "bdcDiscount": 2.58,
+      "hyOas": 2.78
+    },
+    {
+      "date": "2025-08-27",
+      "bdcDiscount": 2.55,
+      "hyOas": 2.78
+    },
+    {
+      "date": "2025-08-28",
+      "bdcDiscount": 2.5,
+      "hyOas": 2.75
+    },
+    {
+      "date": "2025-08-29",
+      "bdcDiscount": 2.35,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2025-09-02",
+      "bdcDiscount": 2.46,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2025-09-03",
+      "bdcDiscount": 2.5,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-09-04",
+      "bdcDiscount": 2.38,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-09-05",
+      "bdcDiscount": 2.41,
+      "hyOas": 2.83
+    },
+    {
+      "date": "2025-09-08",
+      "bdcDiscount": 2.41,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-09-09",
+      "bdcDiscount": 2.55,
+      "hyOas": 2.87
+    },
+    {
+      "date": "2025-09-10",
+      "bdcDiscount": 2.53,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-09-11",
+      "bdcDiscount": 2.44,
+      "hyOas": 2.78
+    },
+    {
+      "date": "2025-09-12",
+      "bdcDiscount": 2.54,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2025-09-15",
+      "bdcDiscount": 3.03,
+      "hyOas": 2.75
+    },
+    {
+      "date": "2025-09-16",
+      "bdcDiscount": 3.09,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2025-09-17",
+      "bdcDiscount": 3.06,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2025-09-18",
+      "bdcDiscount": 2.95,
+      "hyOas": 2.71
+    },
+    {
+      "date": "2025-09-19",
+      "bdcDiscount": 2.9,
+      "hyOas": 2.72
+    },
+    {
+      "date": "2025-09-22",
+      "bdcDiscount": 3.31,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2025-09-23",
+      "bdcDiscount": 3.36,
+      "hyOas": 2.71
+    },
+    {
+      "date": "2025-09-24",
+      "bdcDiscount": 3.63,
+      "hyOas": 2.7
+    },
+    {
+      "date": "2025-09-25",
+      "bdcDiscount": 3.51,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2025-09-26",
+      "bdcDiscount": 3.57,
+      "hyOas": 2.75
+    },
+    {
+      "date": "2025-09-29",
+      "bdcDiscount": 3.65,
+      "hyOas": 2.74
+    },
+    {
+      "date": "2025-09-30",
+      "bdcDiscount": 3.65,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2025-10-01",
+      "bdcDiscount": 3.89,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2025-10-02",
+      "bdcDiscount": 3.59,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2025-10-03",
+      "bdcDiscount": 3.74,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2025-10-06",
+      "bdcDiscount": 3.88,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2025-10-07",
+      "bdcDiscount": 4.06,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2025-10-08",
+      "bdcDiscount": 4.17,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-10-09",
+      "bdcDiscount": 4.58,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-10-10",
+      "bdcDiscount": 4.81,
+      "hyOas": 3.18
+    },
+    {
+      "date": "2025-10-13",
+      "bdcDiscount": 4.29,
+      "hyOas": 3.18
+    },
+    {
+      "date": "2025-10-14",
+      "bdcDiscount": 3.94,
+      "hyOas": 3.11
+    },
+    {
+      "date": "2025-10-15",
+      "bdcDiscount": 3.97,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-10-16",
+      "bdcDiscount": 4.31,
+      "hyOas": 3.04
+    },
+    {
+      "date": "2025-10-17",
+      "bdcDiscount": 4.19,
+      "hyOas": 3.04
+    },
+    {
+      "date": "2025-10-20",
+      "bdcDiscount": 4.15,
+      "hyOas": 2.99
+    },
+    {
+      "date": "2025-10-21",
+      "bdcDiscount": 3.95,
+      "hyOas": 2.97
+    },
+    {
+      "date": "2025-10-22",
+      "bdcDiscount": 3.97,
+      "hyOas": 3.01
+    },
+    {
+      "date": "2025-10-23",
+      "bdcDiscount": 3.91,
+      "hyOas": 2.96
+    },
+    {
+      "date": "2025-10-24",
+      "bdcDiscount": 3.81,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-10-27",
+      "bdcDiscount": 3.6,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2025-10-28",
+      "bdcDiscount": 3.58,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2025-10-29",
+      "bdcDiscount": 3.7,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2025-10-30",
+      "bdcDiscount": 3.99,
+      "hyOas": 2.85
+    },
+    {
+      "date": "2025-10-31",
+      "bdcDiscount": 3.86,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-11-03",
+      "bdcDiscount": 3.83,
+      "hyOas": 3.04
+    },
+    {
+      "date": "2025-11-04",
+      "bdcDiscount": 3.95,
+      "hyOas": 3.13
+    },
+    {
+      "date": "2025-11-05",
+      "bdcDiscount": 4.03,
+      "hyOas": 3.05
+    },
+    {
+      "date": "2025-11-06",
+      "bdcDiscount": 4.27,
+      "hyOas": 3.13
+    },
+    {
+      "date": "2025-11-07",
+      "bdcDiscount": 4.08,
+      "hyOas": 3.15
+    },
+    {
+      "date": "2025-11-10",
+      "bdcDiscount": 4.07,
+      "hyOas": 3.02
+    },
+    {
+      "date": "2025-11-11",
+      "bdcDiscount": 3.98,
+      "hyOas": 3.02
+    },
+    {
+      "date": "2025-11-12",
+      "bdcDiscount": 3.91,
+      "hyOas": 3.02
+    },
+    {
+      "date": "2025-11-13",
+      "bdcDiscount": 4.02,
+      "hyOas": 3.09
+    },
+    {
+      "date": "2025-11-14",
+      "bdcDiscount": 4.07,
+      "hyOas": 3.07
+    },
+    {
+      "date": "2025-11-17",
+      "bdcDiscount": 4.37,
+      "hyOas": 3.13
+    },
+    {
+      "date": "2025-11-18",
+      "bdcDiscount": 4.4,
+      "hyOas": 3.2
+    },
+    {
+      "date": "2025-11-19",
+      "bdcDiscount": 4.41,
+      "hyOas": 3.17
+    },
+    {
+      "date": "2025-11-20",
+      "bdcDiscount": 4.47,
+      "hyOas": 3.17
+    },
+    {
+      "date": "2025-11-21",
+      "bdcDiscount": 4.21,
+      "hyOas": 3.19
+    },
+    {
+      "date": "2025-11-24",
+      "bdcDiscount": 4.02,
+      "hyOas": 3.15
+    },
+    {
+      "date": "2025-11-25",
+      "bdcDiscount": 3.82,
+      "hyOas": 3.1
+    },
+    {
+      "date": "2025-11-26",
+      "bdcDiscount": 3.67,
+      "hyOas": 3.0
+    },
+    {
+      "date": "2025-11-28",
+      "bdcDiscount": 3.59,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-12-01",
+      "bdcDiscount": 3.66,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2025-12-02",
+      "bdcDiscount": 3.64,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2025-12-03",
+      "bdcDiscount": 3.37,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2025-12-04",
+      "bdcDiscount": 3.27,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-12-05",
+      "bdcDiscount": 3.21,
+      "hyOas": 2.85
+    },
+    {
+      "date": "2025-12-08",
+      "bdcDiscount": 3.15,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2025-12-09",
+      "bdcDiscount": 3.08,
+      "hyOas": 2.89
+    },
+    {
+      "date": "2025-12-10",
+      "bdcDiscount": 2.99,
+      "hyOas": 2.91
+    },
+    {
+      "date": "2025-12-11",
+      "bdcDiscount": 3.19,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-12-12",
+      "bdcDiscount": 3.22,
+      "hyOas": 2.91
+    },
+    {
+      "date": "2025-12-15",
+      "bdcDiscount": 3.39,
+      "hyOas": 2.91
+    },
+    {
+      "date": "2025-12-16",
+      "bdcDiscount": 3.45,
+      "hyOas": 2.98
+    },
+    {
+      "date": "2025-12-17",
+      "bdcDiscount": 3.51,
+      "hyOas": 2.99
+    },
+    {
+      "date": "2025-12-18",
+      "bdcDiscount": 3.6,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2025-12-19",
+      "bdcDiscount": 3.71,
+      "hyOas": 2.9
+    },
+    {
+      "date": "2025-12-22",
+      "bdcDiscount": 3.78,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2025-12-23",
+      "bdcDiscount": 3.9,
+      "hyOas": 2.83
+    },
+    {
+      "date": "2025-12-24",
+      "bdcDiscount": 3.78,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-12-26",
+      "bdcDiscount": 3.6,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2025-12-29",
+      "bdcDiscount": 3.69,
+      "hyOas": 2.87
+    },
+    {
+      "date": "2025-12-30",
+      "bdcDiscount": 3.6,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2025-12-31",
+      "bdcDiscount": 3.6,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2026-01-02",
+      "bdcDiscount": 3.45,
+      "hyOas": 2.83
+    },
+    {
+      "date": "2026-01-05",
+      "bdcDiscount": 3.27,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2026-01-06",
+      "bdcDiscount": 3.4,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2026-01-07",
+      "bdcDiscount": 3.84,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2026-01-08",
+      "bdcDiscount": 3.36,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2026-01-09",
+      "bdcDiscount": 3.48,
+      "hyOas": 2.74
+    },
+    {
+      "date": "2026-01-12",
+      "bdcDiscount": 3.54,
+      "hyOas": 2.74
+    },
+    {
+      "date": "2026-01-13",
+      "bdcDiscount": 3.65,
+      "hyOas": 2.75
+    },
+    {
+      "date": "2026-01-14",
+      "bdcDiscount": 3.34,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2026-01-15",
+      "bdcDiscount": 3.13,
+      "hyOas": 2.71
+    },
+    {
+      "date": "2026-01-16",
+      "bdcDiscount": 3.21,
+      "hyOas": 2.65
+    },
+    {
+      "date": "2026-01-20",
+      "bdcDiscount": 3.42,
+      "hyOas": 2.73
+    },
+    {
+      "date": "2026-01-21",
+      "bdcDiscount": 3.18,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2026-01-22",
+      "bdcDiscount": 3.22,
+      "hyOas": 2.64
+    },
+    {
+      "date": "2026-01-23",
+      "bdcDiscount": 3.32,
+      "hyOas": 2.68
+    },
+    {
+      "date": "2026-01-26",
+      "bdcDiscount": 3.48,
+      "hyOas": 2.69
+    },
+    {
+      "date": "2026-01-27",
+      "bdcDiscount": 3.39,
+      "hyOas": 2.71
+    },
+    {
+      "date": "2026-01-28",
+      "bdcDiscount": 3.56,
+      "hyOas": 2.72
+    },
+    {
+      "date": "2026-01-29",
+      "bdcDiscount": 3.55,
+      "hyOas": 2.77
+    },
+    {
+      "date": "2026-01-30",
+      "bdcDiscount": 3.72,
+      "hyOas": 2.8
+    },
+    {
+      "date": "2026-02-02",
+      "bdcDiscount": 4.07,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2026-02-03",
+      "bdcDiscount": 4.46,
+      "hyOas": 2.85
+    },
+    {
+      "date": "2026-02-04",
+      "bdcDiscount": 4.31,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2026-02-05",
+      "bdcDiscount": 4.8,
+      "hyOas": 2.97
+    },
+    {
+      "date": "2026-02-06",
+      "bdcDiscount": 4.57,
+      "hyOas": 2.87
+    },
+    {
+      "date": "2026-02-09",
+      "bdcDiscount": 4.41,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2026-02-10",
+      "bdcDiscount": 4.11,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2026-02-11",
+      "bdcDiscount": 4.22,
+      "hyOas": 2.84
+    },
+    {
+      "date": "2026-02-12",
+      "bdcDiscount": 4.34,
+      "hyOas": 2.92
+    },
+    {
+      "date": "2026-02-13",
+      "bdcDiscount": 4.67,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2026-02-17",
+      "bdcDiscount": 4.84,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2026-02-18",
+      "bdcDiscount": 4.67,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2026-02-19",
+      "bdcDiscount": 5.01,
+      "hyOas": 2.88
+    },
+    {
+      "date": "2026-02-20",
+      "bdcDiscount": 5.09,
+      "hyOas": 2.86
+    },
+    {
+      "date": "2026-02-23",
+      "bdcDiscount": 5.21,
+      "hyOas": 2.95
+    },
+    {
+      "date": "2026-02-24",
+      "bdcDiscount": 5.05,
+      "hyOas": 2.97
+    },
+    {
+      "date": "2026-02-25",
+      "bdcDiscount": 4.75,
+      "hyOas": 2.94
+    },
+    {
+      "date": "2026-02-26",
+      "bdcDiscount": 5.18,
+      "hyOas": 2.98
+    },
+    {
+      "date": "2026-02-27",
+      "bdcDiscount": 5.66,
+      "hyOas": 3.1
+    },
+    {
+      "date": "2026-03-02",
+      "bdcDiscount": 5.42,
+      "hyOas": 3.03
+    },
+    {
+      "date": "2026-03-03",
+      "bdcDiscount": 5.42,
+      "hyOas": 3.08
+    },
+    {
+      "date": "2026-03-04",
+      "bdcDiscount": 5.16,
+      "hyOas": 2.97
+    },
+    {
+      "date": "2026-03-05",
+      "bdcDiscount": 5.27,
+      "hyOas": 3.0
+    },
+    {
+      "date": "2026-03-06",
+      "bdcDiscount": 5.45,
+      "hyOas": 3.13
+    },
+    {
+      "date": "2026-03-09",
+      "bdcDiscount": 5.44,
+      "hyOas": 3.19
+    },
+    {
+      "date": "2026-03-10",
+      "bdcDiscount": 5.51,
+      "hyOas": 3.06
+    },
+    {
+      "date": "2026-03-11",
+      "bdcDiscount": 5.58,
+      "hyOas": 3.09
+    },
+    {
+      "date": "2026-03-12",
+      "bdcDiscount": 5.85,
+      "hyOas": 3.17
+    },
+    {
+      "date": "2026-03-13",
+      "bdcDiscount": 5.84,
+      "hyOas": 3.28
+    },
+    {
+      "date": "2026-03-16",
+      "bdcDiscount": 5.74,
+      "hyOas": 3.27
+    },
+    {
+      "date": "2026-03-17",
       "bdcDiscount": 5.36,
       "hyOas": 3.22
     },
     {
-      "date": "2021-08-18",
-      "bdcDiscount": 5.2,
-      "hyOas": 3.1
-    },
-    {
-      "date": "2021-08-25",
-      "bdcDiscount": 5.09,
-      "hyOas": 2.98
-    },
-    {
-      "date": "2021-09-01",
-      "bdcDiscount": 5.02,
-      "hyOas": 2.88
-    },
-    {
-      "date": "2021-09-08",
-      "bdcDiscount": 5.0,
-      "hyOas": 2.78
-    },
-    {
-      "date": "2021-09-15",
-      "bdcDiscount": 5.03,
-      "hyOas": 2.7
-    },
-    {
-      "date": "2021-09-22",
-      "bdcDiscount": 5.1,
-      "hyOas": 2.63
-    },
-    {
-      "date": "2021-09-29",
-      "bdcDiscount": 5.21,
-      "hyOas": 2.58
-    },
-    {
-      "date": "2021-10-06",
-      "bdcDiscount": 5.37,
-      "hyOas": 2.54
-    },
-    {
-      "date": "2021-10-13",
-      "bdcDiscount": 5.57,
-      "hyOas": 2.51
-    },
-    {
-      "date": "2021-10-20",
-      "bdcDiscount": 5.81,
-      "hyOas": 2.5
-    },
-    {
-      "date": "2021-10-27",
-      "bdcDiscount": 6.09,
-      "hyOas": 2.5
-    },
-    {
-      "date": "2021-11-03",
-      "bdcDiscount": 6.39,
-      "hyOas": 2.52
-    },
-    {
-      "date": "2021-11-10",
-      "bdcDiscount": 6.72,
-      "hyOas": 2.56
-    },
-    {
-      "date": "2021-11-17",
-      "bdcDiscount": 7.07,
-      "hyOas": 2.6
-    },
-    {
-      "date": "2021-11-24",
-      "bdcDiscount": 7.43,
-      "hyOas": 2.67
-    },
-    {
-      "date": "2021-12-01",
-      "bdcDiscount": 7.8,
-      "hyOas": 2.74
-    },
-    {
-      "date": "2021-12-08",
-      "bdcDiscount": 8.18,
-      "hyOas": 2.83
-    },
-    {
-      "date": "2021-12-15",
-      "bdcDiscount": 8.55,
-      "hyOas": 2.93
-    },
-    {
-      "date": "2021-12-22",
-      "bdcDiscount": 8.91,
-      "hyOas": 3.04
-    },
-    {
-      "date": "2021-12-29",
-      "bdcDiscount": 9.26,
-      "hyOas": 3.16
-    },
-    {
-      "date": "2022-01-05",
-      "bdcDiscount": 9.59,
-      "hyOas": 3.29
-    },
-    {
-      "date": "2022-01-12",
-      "bdcDiscount": 9.89,
-      "hyOas": 3.42
-    },
-    {
-      "date": "2022-01-19",
-      "bdcDiscount": 10.17,
-      "hyOas": 3.56
-    },
-    {
-      "date": "2022-01-26",
-      "bdcDiscount": 10.41,
-      "hyOas": 3.71
-    },
-    {
-      "date": "2022-02-02",
-      "bdcDiscount": 10.62,
-      "hyOas": 3.86
-    },
-    {
-      "date": "2022-02-09",
-      "bdcDiscount": 10.78,
-      "hyOas": 4.01
-    },
-    {
-      "date": "2022-02-16",
-      "bdcDiscount": 10.9,
-      "hyOas": 4.16
-    },
-    {
-      "date": "2022-02-23",
-      "bdcDiscount": 10.97,
-      "hyOas": 4.3
-    },
-    {
-      "date": "2022-03-02",
-      "bdcDiscount": 11.0,
-      "hyOas": 4.45
-    },
-    {
-      "date": "2022-03-09",
-      "bdcDiscount": 10.98,
-      "hyOas": 4.59
-    },
-    {
-      "date": "2022-03-16",
-      "bdcDiscount": 10.92,
-      "hyOas": 4.72
-    },
-    {
-      "date": "2022-03-23",
-      "bdcDiscount": 10.8,
-      "hyOas": 4.85
-    },
-    {
-      "date": "2022-03-30",
-      "bdcDiscount": 10.65,
-      "hyOas": 4.97
-    },
-    {
-      "date": "2022-04-06",
-      "bdcDiscount": 10.45,
-      "hyOas": 5.08
-    },
-    {
-      "date": "2022-04-13",
-      "bdcDiscount": 10.22,
-      "hyOas": 5.18
-    },
-    {
-      "date": "2022-04-20",
-      "bdcDiscount": 9.95,
-      "hyOas": 5.27
-    },
-    {
-      "date": "2022-04-27",
-      "bdcDiscount": 9.65,
-      "hyOas": 5.34
-    },
-    {
-      "date": "2022-05-04",
-      "bdcDiscount": 9.33,
-      "hyOas": 5.4
-    },
-    {
-      "date": "2022-05-11",
-      "bdcDiscount": 8.98,
-      "hyOas": 5.45
-    },
-    {
-      "date": "2022-05-18",
-      "bdcDiscount": 8.62,
-      "hyOas": 5.48
-    },
-    {
-      "date": "2022-05-25",
-      "bdcDiscount": 8.25,
-      "hyOas": 5.5
-    },
-    {
-      "date": "2022-06-01",
-      "bdcDiscount": 7.87,
-      "hyOas": 5.5
-    },
-    {
-      "date": "2022-06-08",
-      "bdcDiscount": 7.5,
-      "hyOas": 5.49
-    },
-    {
-      "date": "2022-06-15",
-      "bdcDiscount": 7.14,
-      "hyOas": 5.46
-    },
-    {
-      "date": "2022-06-22",
-      "bdcDiscount": 6.78,
-      "hyOas": 5.42
-    },
-    {
-      "date": "2022-06-29",
-      "bdcDiscount": 6.45,
-      "hyOas": 5.36
-    },
-    {
-      "date": "2022-07-06",
-      "bdcDiscount": 6.14,
-      "hyOas": 5.29
-    },
-    {
-      "date": "2022-07-13",
-      "bdcDiscount": 5.86,
-      "hyOas": 5.21
-    },
-    {
-      "date": "2022-07-20",
-      "bdcDiscount": 5.62,
-      "hyOas": 5.11
-    },
-    {
-      "date": "2022-07-27",
-      "bdcDiscount": 5.41,
-      "hyOas": 5.01
-    },
-    {
-      "date": "2022-08-03",
-      "bdcDiscount": 5.24,
-      "hyOas": 4.89
-    },
-    {
-      "date": "2022-08-10",
-      "bdcDiscount": 5.12,
-      "hyOas": 4.77
-    },
-    {
-      "date": "2022-08-17",
-      "bdcDiscount": 5.04,
-      "hyOas": 4.64
-    },
-    {
-      "date": "2022-08-24",
-      "bdcDiscount": 5.0,
-      "hyOas": 4.5
-    },
-    {
-      "date": "2022-08-31",
-      "bdcDiscount": 5.01,
-      "hyOas": 4.35
-    },
-    {
-      "date": "2022-09-07",
-      "bdcDiscount": 5.07,
-      "hyOas": 4.21
-    },
-    {
-      "date": "2022-09-14",
-      "bdcDiscount": 5.18,
-      "hyOas": 4.06
-    },
-    {
-      "date": "2022-09-21",
-      "bdcDiscount": 5.33,
-      "hyOas": 3.91
-    },
-    {
-      "date": "2022-09-28",
-      "bdcDiscount": 5.52,
-      "hyOas": 3.76
-    },
-    {
-      "date": "2022-10-05",
-      "bdcDiscount": 5.75,
-      "hyOas": 3.61
-    },
-    {
-      "date": "2022-10-12",
-      "bdcDiscount": 6.01,
-      "hyOas": 3.47
-    },
-    {
-      "date": "2022-10-19",
-      "bdcDiscount": 6.31,
-      "hyOas": 3.33
-    },
-    {
-      "date": "2022-10-26",
-      "bdcDiscount": 6.63,
+      "date": "2026-03-18",
+      "bdcDiscount": 5.39,
       "hyOas": 3.2
     },
     {
-      "date": "2022-11-02",
-      "bdcDiscount": 6.97,
-      "hyOas": 3.08
+      "date": "2026-03-19",
+      "bdcDiscount": 5.35,
+      "hyOas": 3.27
     },
     {
-      "date": "2022-11-09",
-      "bdcDiscount": 7.33,
-      "hyOas": 2.96
+      "date": "2026-03-20",
+      "bdcDiscount": 5.6,
+      "hyOas": 3.24
     },
     {
-      "date": "2022-11-16",
-      "bdcDiscount": 7.7,
-      "hyOas": 2.86
+      "date": "2026-03-23",
+      "bdcDiscount": 5.32,
+      "hyOas": 3.19
     },
     {
-      "date": "2022-11-23",
-      "bdcDiscount": 8.08,
-      "hyOas": 2.77
+      "date": "2026-03-24",
+      "bdcDiscount": 5.55,
+      "hyOas": 3.19
     },
     {
-      "date": "2022-11-30",
-      "bdcDiscount": 8.45,
-      "hyOas": 2.69
+      "date": "2026-03-25",
+      "bdcDiscount": 5.47,
+      "hyOas": 3.17
     },
     {
-      "date": "2022-12-07",
-      "bdcDiscount": 8.82,
-      "hyOas": 2.62
+      "date": "2026-03-26",
+      "bdcDiscount": 5.64,
+      "hyOas": 3.21
     },
     {
-      "date": "2022-12-14",
-      "bdcDiscount": 9.17,
-      "hyOas": 2.57
+      "date": "2026-03-27",
+      "bdcDiscount": 5.97,
+      "hyOas": 3.42
     },
     {
-      "date": "2022-12-21",
-      "bdcDiscount": 9.5,
-      "hyOas": 2.53
+      "date": "2026-03-30",
+      "bdcDiscount": 5.78,
+      "hyOas": 3.46
     },
     {
-      "date": "2022-12-28",
-      "bdcDiscount": 9.82,
-      "hyOas": 2.51
+      "date": "2026-03-31",
+      "bdcDiscount": 5.44,
+      "hyOas": 3.28
     },
     {
-      "date": "2023-01-04",
-      "bdcDiscount": 10.1,
-      "hyOas": 2.5
+      "date": "2026-04-01",
+      "bdcDiscount": 5.67,
+      "hyOas": 3.16
     },
     {
-      "date": "2023-01-11",
-      "bdcDiscount": 10.35,
-      "hyOas": 2.51
+      "date": "2026-04-02",
+      "bdcDiscount": 5.41,
+      "hyOas": 3.17
     },
     {
-      "date": "2023-01-18",
-      "bdcDiscount": 10.56,
-      "hyOas": 2.53
+      "date": "2026-04-06",
+      "bdcDiscount": 5.18,
+      "hyOas": 3.05
     },
     {
-      "date": "2023-01-25",
-      "bdcDiscount": 10.74,
-      "hyOas": 2.56
+      "date": "2026-04-07",
+      "bdcDiscount": 5.36,
+      "hyOas": 3.12
     },
     {
-      "date": "2023-02-01",
-      "bdcDiscount": 10.87,
-      "hyOas": 2.61
+      "date": "2026-04-08",
+      "bdcDiscount": 5.49,
+      "hyOas": 2.94
     },
     {
-      "date": "2023-02-08",
-      "bdcDiscount": 10.96,
-      "hyOas": 2.68
+      "date": "2026-04-09",
+      "bdcDiscount": 5.59,
+      "hyOas": 2.9
     },
     {
-      "date": "2023-02-15",
-      "bdcDiscount": 11.0,
-      "hyOas": 2.76
+      "date": "2026-04-10",
+      "bdcDiscount": 5.53,
+      "hyOas": 2.94
     },
     {
-      "date": "2023-02-22",
-      "bdcDiscount": 10.99,
-      "hyOas": 2.85
-    },
-    {
-      "date": "2023-03-01",
-      "bdcDiscount": 10.94,
+      "date": "2026-04-13",
+      "bdcDiscount": 5.35,
       "hyOas": 2.95
     },
     {
-      "date": "2023-03-08",
-      "bdcDiscount": 10.84,
-      "hyOas": 3.06
+      "date": "2026-04-14",
+      "bdcDiscount": 4.89,
+      "hyOas": 2.84
     },
     {
-      "date": "2023-03-15",
-      "bdcDiscount": 10.7,
-      "hyOas": 3.18
+      "date": "2026-04-15",
+      "bdcDiscount": 4.51,
+      "hyOas": 2.85
     },
     {
-      "date": "2023-03-22",
-      "bdcDiscount": 10.51,
-      "hyOas": 3.31
+      "date": "2026-04-16",
+      "bdcDiscount": 4.82,
+      "hyOas": 2.86
     },
     {
-      "date": "2023-03-29",
-      "bdcDiscount": 10.29,
-      "hyOas": 3.45
+      "date": "2026-04-17",
+      "bdcDiscount": 4.53,
+      "hyOas": 2.83
     },
     {
-      "date": "2023-04-05",
-      "bdcDiscount": 10.03,
-      "hyOas": 3.59
+      "date": "2026-04-20",
+      "bdcDiscount": 4.55,
+      "hyOas": 2.87
     },
     {
-      "date": "2023-04-12",
-      "bdcDiscount": 9.73,
-      "hyOas": 3.73
+      "date": "2026-04-21",
+      "bdcDiscount": 4.84,
+      "hyOas": 2.85
     },
     {
-      "date": "2023-04-19",
-      "bdcDiscount": 9.41,
-      "hyOas": 3.88
+      "date": "2026-04-22",
+      "bdcDiscount": 4.78,
+      "hyOas": 2.84
     },
     {
-      "date": "2023-04-26",
-      "bdcDiscount": 9.07,
-      "hyOas": 4.03
+      "date": "2026-04-23",
+      "bdcDiscount": 5.1,
+      "hyOas": 2.86
     },
     {
-      "date": "2023-05-03",
-      "bdcDiscount": 8.72,
-      "hyOas": 4.18
+      "date": "2026-04-24",
+      "bdcDiscount": 5.09,
+      "hyOas": 2.86
     },
     {
-      "date": "2023-05-10",
-      "bdcDiscount": 8.35,
-      "hyOas": 4.33
-    },
-    {
-      "date": "2023-05-17",
-      "bdcDiscount": 7.97,
-      "hyOas": 4.47
-    },
-    {
-      "date": "2023-05-24",
-      "bdcDiscount": 7.6,
-      "hyOas": 4.61
-    },
-    {
-      "date": "2023-05-31",
-      "bdcDiscount": 7.23,
-      "hyOas": 4.75
-    },
-    {
-      "date": "2023-06-07",
-      "bdcDiscount": 6.88,
-      "hyOas": 4.87
-    },
-    {
-      "date": "2023-06-14",
-      "bdcDiscount": 6.54,
-      "hyOas": 4.99
-    },
-    {
-      "date": "2023-06-21",
-      "bdcDiscount": 6.22,
-      "hyOas": 5.1
-    },
-    {
-      "date": "2023-06-28",
-      "bdcDiscount": 5.94,
-      "hyOas": 5.19
-    },
-    {
-      "date": "2023-07-05",
-      "bdcDiscount": 5.68,
-      "hyOas": 5.28
-    },
-    {
-      "date": "2023-07-12",
-      "bdcDiscount": 5.46,
-      "hyOas": 5.35
-    },
-    {
-      "date": "2023-07-19",
-      "bdcDiscount": 5.28,
-      "hyOas": 5.41
-    },
-    {
-      "date": "2023-07-26",
-      "bdcDiscount": 5.14,
-      "hyOas": 5.45
-    },
-    {
-      "date": "2023-08-02",
+      "date": "2026-04-27",
       "bdcDiscount": 5.05,
-      "hyOas": 5.48
+      "hyOas": 2.84
     },
     {
-      "date": "2023-08-09",
-      "bdcDiscount": 5.01,
-      "hyOas": 5.5
+      "date": "2026-04-28",
+      "bdcDiscount": 4.86,
+      "hyOas": 2.85
     },
     {
-      "date": "2023-08-16",
-      "bdcDiscount": 5.01,
-      "hyOas": 5.5
+      "date": "2026-04-29",
+      "bdcDiscount": 4.99,
+      "hyOas": 2.82
     },
     {
-      "date": "2023-08-23",
-      "bdcDiscount": 5.05,
-      "hyOas": 5.48
+      "date": "2026-04-30",
+      "bdcDiscount": 4.46,
+      "hyOas": 2.83
     },
     {
-      "date": "2023-08-30",
-      "bdcDiscount": 5.15,
-      "hyOas": 5.45
+      "date": "2026-05-01",
+      "bdcDiscount": 4.33,
+      "hyOas": 2.77
     },
     {
-      "date": "2023-09-06",
+      "date": "2026-05-04",
+      "bdcDiscount": 4.38,
+      "hyOas": 2.78
+    },
+    {
+      "date": "2026-05-05",
+      "bdcDiscount": 4.32,
+      "hyOas": 2.77
+    },
+    {
+      "date": "2026-05-06",
+      "bdcDiscount": 4.64,
+      "hyOas": 2.75
+    },
+    {
+      "date": "2026-05-07",
+      "bdcDiscount": 4.87,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2026-05-08",
+      "bdcDiscount": 5.02,
+      "hyOas": 2.81
+    },
+    {
+      "date": "2026-05-11",
+      "bdcDiscount": 5.35,
+      "hyOas": 2.79
+    },
+    {
+      "date": "2026-05-12",
+      "bdcDiscount": 5.22,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2026-05-13",
+      "bdcDiscount": 5.37,
+      "hyOas": 2.82
+    },
+    {
+      "date": "2026-05-14",
+      "bdcDiscount": 5.23,
+      "hyOas": 2.76
+    },
+    {
+      "date": "2026-05-15",
       "bdcDiscount": 5.28,
-      "hyOas": 5.41
+      "hyOas": 2.8
     },
     {
-      "date": "2023-09-13",
-      "bdcDiscount": 5.46,
-      "hyOas": 5.35
+      "date": "2026-05-18",
+      "bdcDiscount": 5.39,
+      "hyOas": 2.83
     },
     {
-      "date": "2023-09-20",
-      "bdcDiscount": 5.68,
-      "hyOas": 5.28
+      "date": "2026-05-19",
+      "bdcDiscount": 5.5,
+      "hyOas": 2.86
     },
     {
-      "date": "2023-09-27",
-      "bdcDiscount": 5.94,
-      "hyOas": 5.19
+      "date": "2026-05-20",
+      "bdcDiscount": 5.34,
+      "hyOas": 2.8
     },
     {
-      "date": "2023-10-04",
-      "bdcDiscount": 6.23,
-      "hyOas": 5.1
+      "date": "2026-05-21",
+      "bdcDiscount": 5.38,
+      "hyOas": 2.78
     },
     {
-      "date": "2023-10-11",
-      "bdcDiscount": 6.54,
-      "hyOas": 4.99
-    },
-    {
-      "date": "2023-10-18",
-      "bdcDiscount": 6.88,
-      "hyOas": 4.87
-    },
-    {
-      "date": "2023-10-25",
-      "bdcDiscount": 7.24,
-      "hyOas": 4.75
+      "date": "2026-05-22",
+      "bdcDiscount": 5.57,
+      "hyOas": 2.78
     }
   ],
-  "thesis": "Sample private credit stress.",
-  "methodology": "Sample \u2014 run fetch_private_credit_stress.py",
+  "thesis": "Private credit stress rises when BDC valuations slide relative to NAV while public HY spreads widen \u2014 a combined read on direct-lending and traded credit risk.",
+  "methodology": "Equal-weight BDC basket (OBDC, ARCC, BXSL, GBDC, FSK, TSLX, MAIN): discount proxy from normalized price index vs. HY OAS (FRED BAMLH0A0HYM2). Replace with true discount-to-NAV when full PTB history is wired.",
   "sources": [
-    "Sample"
+    "Yahoo Finance (OBDC, ARCC, BXSL, GBDC, FSK, TSLX, MAIN)",
+    "FRED BAMLH0A0HYM2"
   ],
   "constituents": [
     {
