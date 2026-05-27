@@ -1,11 +1,11 @@
 {
   "slug": "m2-yoy",
-  "updatedAt": "2026-05-26T10:18:16Z",
+  "updatedAt": "2026-05-27T10:20:04Z",
   "headline": {
-    "value": "4.6%",
-    "delta": "-0.1%",
-    "deltaDate": "Mar 26",
-    "deltaPositive": false
+    "value": "4.7%",
+    "delta": "+0.1%",
+    "deltaDate": "Apr 26",
+    "deltaPositive": true
   },
   "series": [
     {
@@ -1226,7 +1226,11 @@
     },
     {
       "date": "2026-03-01",
-      "m2yoy": 4.57
+      "m2yoy": 4.58
+    },
+    {
+      "date": "2026-04-01",
+      "m2yoy": 4.72
     }
   ],
   "thesis": "M2 growth tracks liquidity entering the financial system \u2014 a monetary plumbing signal.",
