@@ -1,6 +1,6 @@
 {
   "slug": "btc-liquidity-model",
-  "updatedAt": "2026-05-28T22:03:16Z",
+  "updatedAt": "2026-05-28T22:13:34Z",
   "headline": {
     "btcActual": 58505,
     "fairValue": 107277,
@@ -13,10 +13,10 @@
     "zScore": -1.64
   },
   "cards": {
-    "fedNetLiqT": 5.9,
-    "globalM2Yoy": 8.19,
-    "stableSupplyB": 266.1,
-    "stable30dPct": -0.05
+    "fedNetLiqT": 5.8,
+    "globalM2Yoy": 3.23,
+    "stableSupplyB": 252.1,
+    "stable30dPct": 0.72
   },
   "modelStats": {
     "r2": 0.891,

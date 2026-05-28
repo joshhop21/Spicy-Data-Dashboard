@@ -1,24 +1,43 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   Area,
   CartesianGrid,
   ComposedChart,
-  Line,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import {
+  AreaTimeSeriesChart,
+  CHART_COLORS,
+  formatAxisDate,
+} from "@/components/AreaTimeSeriesChart";
 import type { BtcLiquidityModelData } from "@/lib/btc-liquidity-types";
 
 type Props = { data: BtcLiquidityModelData };
+
+type FairValuePoint = BtcLiquidityModelData["points"][number] & {
+  band1Range: [number, number];
+  band2Range: [number, number];
+};
 
 export function BtcLiquidityDashboard({ data }: Props) {
   const { headline, cards, points, modelStats, methodology, sources, updatedAt } = data;
   const signalColor =
     headline.zScore <= -1.5 ? "text-emerald-700" : headline.zScore >= 1.5 ? "text-red-600" : "text-ink";
+
+  const fairValuePoints = useMemo<FairValuePoint[]>(
+    () =>
+      points.map((p) => ({
+        ...p,
+        band1Range: [p.band1Low, p.band1High],
+        band2Range: [p.band2Low, p.band2High],
+      })),
+    [points],
+  );
 
   return (
     <div className="space-y-6">
@@ -36,7 +55,6 @@ export function BtcLiquidityDashboard({ data }: Props) {
         </p>
       </div>
 
-      {/* Metric cards */}
       <div className="grid gap-3 lg:grid-cols-4">
         <div className="rounded-xl border border-emerald-200/80 bg-emerald-50/60 p-4 lg:col-span-1">
           <p className="text-[10px] font-semibold uppercase tracking-widest text-muted">Current Reading</p>
@@ -76,7 +94,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
         <MetricCard
           label="Global M2 (USD) YoY"
           value={`${cards.globalM2Yoy >= 0 ? "+" : ""}${cards.globalM2Yoy.toFixed(2)}%`}
-          sub="US + EA + JP + CN + UK"
+          sub="US M2 proxy (M2SL)"
           hint={cards.globalM2Yoy > 0 ? "Expansionary" : "Contracting"}
         />
         <MetricCard
@@ -87,76 +105,82 @@ export function BtcLiquidityDashboard({ data }: Props) {
         />
       </div>
 
-      {/* Main fair value chart */}
       <ChartPanel
         title="Bitcoin vs. Liquidity-Model Fair Value"
         subtitle="Log scale · ±1σ shaded as the likely range, ±2σ as the extreme range"
       >
         <div className="h-80 w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={points} margin={{ top: 8, right: 8, left: 4, bottom: 0 }}>
+            <ComposedChart data={fairValuePoints} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis
                 dataKey="date"
                 tick={{ fontSize: 10, fill: "#78716c" }}
                 tickFormatter={formatAxisDate}
-                minTickGap={48}
+                minTickGap={40}
+                axisLine={false}
+                tickLine={false}
               />
               <YAxis
                 scale="log"
                 domain={["auto", "auto"]}
                 tick={{ fontSize: 10, fill: "#78716c" }}
-                tickFormatter={(v) => formatLogUsd(Number(v))}
+                tickFormatter={formatLogUsd}
                 width={48}
+                axisLine={false}
+                tickLine={false}
               />
               <Tooltip
-                formatter={(v: number) => `$${v.toLocaleString()}`}
+                contentStyle={{
+                  fontSize: 12,
+                  borderRadius: 8,
+                  border: "1px solid #e7e5e4",
+                }}
                 labelFormatter={(l) => String(l)}
+                formatter={(v: number, name: string) => {
+                  const labels: Record<string, string> = {
+                    band2Range: "±2σ range",
+                    band1Range: "±1σ range",
+                    modelFair: "Model fair value",
+                    btcActual: "BTC actual",
+                  };
+                  return [`$${Number(v).toLocaleString()}`, labels[name] ?? name];
+                }}
               />
               <Area
                 type="monotone"
-                dataKey="band2High"
+                dataKey="band2Range"
+                isRange
                 stroke="none"
-                fill="#fde68a"
+                fill={CHART_COLORS.bandOuter}
                 fillOpacity={0.35}
                 isAnimationActive={false}
               />
               <Area
                 type="monotone"
-                dataKey="band2Low"
+                dataKey="band1Range"
+                isRange
                 stroke="none"
-                fill="#faf9f7"
-                fillOpacity={1}
+                fill={CHART_COLORS.bandInner}
+                fillOpacity={0.5}
                 isAnimationActive={false}
               />
               <Area
-                type="monotone"
-                dataKey="band1High"
-                stroke="none"
-                fill="#fcd34d"
-                fillOpacity={0.4}
-                isAnimationActive={false}
-              />
-              <Area
-                type="monotone"
-                dataKey="band1Low"
-                stroke="none"
-                fill="#faf9f7"
-                fillOpacity={1}
-                isAnimationActive={false}
-              />
-              <Line
                 type="monotone"
                 dataKey="modelFair"
-                stroke="#d97706"
+                stroke={CHART_COLORS.amber}
+                fill={CHART_COLORS.amber}
+                fillOpacity={0.2}
                 strokeWidth={2}
                 dot={false}
                 isAnimationActive={false}
               />
-              <Line
+              <Area
                 type="monotone"
                 dataKey="btcActual"
-                stroke="#0d9488"
+                stroke={CHART_COLORS.teal}
+                fill={CHART_COLORS.teal}
+                fillOpacity={0.2}
                 strokeWidth={2}
                 dot={false}
                 isAnimationActive={false}
@@ -165,59 +189,58 @@ export function BtcLiquidityDashboard({ data }: Props) {
           </ResponsiveContainer>
         </div>
         <div className="mt-2 flex flex-wrap gap-4 text-xs text-muted">
-          <LegendDot color="#0d9488" label="BTC actual" />
-          <LegendDot color="#d97706" label="Model fair value" />
-          <LegendDot color="#fcd34d" label="±1σ range" />
-          <LegendDot color="#fde68a" label="±2σ range" />
+          <LegendDot color={CHART_COLORS.teal} label="BTC actual" />
+          <LegendDot color={CHART_COLORS.amber} label="Model fair value" />
+          <LegendDot color={CHART_COLORS.bandInner} label="±1σ range" />
+          <LegendDot color={CHART_COLORS.bandOuter} label="±2σ range" />
         </div>
       </ChartPanel>
 
-      {/* Z-score */}
       <ChartPanel
         title="Cheap / Dear Indicator"
         subtitle="Z-score of the regression residual · below -1.5 = Strong Cheap, above +1.5 = Strong Dear"
         right={`Current z = ${headline.zScore.toFixed(2)}`}
       >
-        <AreaChartSimple
+        <AreaTimeSeriesChart
           data={points}
           dataKey="zScore"
-          color="#0d9488"
-          fill="#99f6e4"
-          refLines={[
+          color={CHART_COLORS.teal}
+          referenceLines={[
             { y: 1.5, label: "+1.5" },
             { y: -1.5, label: "-1.5" },
-            { y: 0, label: "0" },
+            { y: 0 },
           ]}
           yFormatter={(v) => v.toFixed(1)}
         />
       </ChartPanel>
 
-      {/* Bottom trio */}
       <div className="grid gap-4 lg:grid-cols-3">
         <ChartPanel title="Fed Net Liquidity" subtitle="WALCL - TGA - RRP, $T">
-          <AreaChartSimple data={points} dataKey="fedNetLiqT" color="#0d9488" fill="#ccfbf1" yFormatter={(v) => `$${v.toFixed(2)}T`} />
+          <AreaTimeSeriesChart
+            data={points}
+            dataKey="fedNetLiqT"
+            color={CHART_COLORS.teal}
+            yFormatter={(v) => `$${v.toFixed(2)}T`}
+          />
         </ChartPanel>
-        <ChartPanel title="Global M2 YoY" subtitle="USD-converted, %">
-          <AreaChartSimple
+        <ChartPanel title="Global M2 YoY" subtitle="US M2SL, % (USD proxy)">
+          <AreaTimeSeriesChart
             data={points}
             dataKey="globalM2Yoy"
-            color="#d97706"
-            fill="#fde68a"
+            color={CHART_COLORS.coral}
             yFormatter={(v) => `${v.toFixed(1)}%`}
           />
         </ChartPanel>
         <ChartPanel title="Stablecoin Supply" subtitle="USDT + USDC, $B">
-          <AreaChartSimple
+          <AreaTimeSeriesChart
             data={points}
             dataKey="stableSupplyB"
-            color="#c45c4a"
-            fill="#fecaca"
+            color={CHART_COLORS.coral}
             yFormatter={(v) => `$${v.toFixed(0)}B`}
           />
         </ChartPanel>
       </div>
 
-      {/* Methodology */}
       <div className="rounded-xl border border-stone-200/80 bg-card p-5 text-sm leading-relaxed text-stone-700">
         <h4 className="font-serif text-lg font-semibold text-ink">Methodology</h4>
         <p className="mt-2">{methodology}</p>
@@ -281,58 +304,6 @@ function ChartPanel({
   );
 }
 
-function AreaChartSimple({
-  data,
-  dataKey,
-  color,
-  fill,
-  refLines,
-  yFormatter,
-}: {
-  data: BtcLiquidityModelData["points"];
-  dataKey: keyof BtcLiquidityModelData["points"][number];
-  color: string;
-  fill: string;
-  refLines?: { y: number; label: string }[];
-  yFormatter?: (v: number) => string;
-}) {
-  return (
-    <div className="h-48 w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="date" tick={{ fontSize: 9, fill: "#78716c" }} tickFormatter={formatAxisDate} minTickGap={40} />
-          <YAxis
-            tick={{ fontSize: 9, fill: "#78716c" }}
-            width={44}
-            tickFormatter={(v) => (yFormatter ? yFormatter(Number(v)) : String(v))}
-          />
-          <Tooltip />
-          {refLines?.map((r) => (
-            <ReferenceLine
-              key={r.y}
-              y={r.y}
-              stroke="#a8a29e"
-              strokeDasharray="4 4"
-              label={{ value: r.label, fontSize: 10, fill: "#78716c" }}
-            />
-          ))}
-          <Area
-            type="monotone"
-            dataKey={dataKey as string}
-            stroke={color}
-            fill={fill}
-            fillOpacity={0.5}
-            strokeWidth={2}
-            dot={false}
-            isAnimationActive={false}
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-  );
-}
-
 function LegendDot({ color, label }: { color: string; label: string }) {
   return (
     <span className="inline-flex items-center gap-1.5">
@@ -342,15 +313,10 @@ function LegendDot({ color, label }: { color: string; label: string }) {
   );
 }
 
-function formatAxisDate(value: string) {
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return value.slice(0, 7);
-  return d.toLocaleDateString("en-US", { month: "short", year: "2-digit" });
-}
-
 function formatLogUsd(v: number) {
-  if (v >= 1000) return `$${Math.round(v / 1000)}k`;
-  return `$${v}`;
+  if (v >= 100_000) return `$${Math.round(v / 1000)}k`;
+  if (v >= 1000) return `$${(v / 1000).toFixed(0)}k`;
+  return `$${Math.round(v)}`;
 }
 
 function formatDisplayDate(iso: string) {

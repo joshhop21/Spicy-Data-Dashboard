@@ -33,6 +33,18 @@ def main() -> None:
         )
 
     latest = points[-1]
+    z = latest["zScore"]
+    if z <= -1.5:
+        signal = "Strong Cheap"
+    elif z >= 1.5:
+        signal = "Strong Dear"
+    elif z < -0.5:
+        signal = "Cheap"
+    elif z > 0.5:
+        signal = "Dear"
+    else:
+        signal = "Fair"
+
     payload = {
         "slug": "btc-liquidity-model",
         "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -43,15 +55,20 @@ def main() -> None:
             "rangeHigh": round(latest["band1High"]),
             "extremeLow": round(latest["band2Low"]),
             "extremeHigh": round(latest["band2High"]),
-            "signal": "Strong Cheap",
+            "signal": signal,
             "vsFairPct": round((latest["btcActual"] / latest["modelFair"] - 1) * 100, 2),
             "zScore": latest["zScore"],
         },
         "cards": {
-            "fedNetLiqT": 5.9,
-            "globalM2Yoy": 8.19,
-            "stableSupplyB": 266.1,
-            "stable30dPct": -0.05,
+            "fedNetLiqT": round(latest["fedNetLiqT"], 1),
+            "globalM2Yoy": round(latest["globalM2Yoy"], 2),
+            "stableSupplyB": round(latest["stableSupplyB"], 1),
+            "stable30dPct": round(
+                (latest["stableSupplyB"] / points[-5]["stableSupplyB"] - 1) * 100
+                if len(points) >= 5
+                else 0,
+                2,
+            ),
         },
         "modelStats": {"r2": 0.891, "observations": 478, "residualSigma": 0.369},
         "coefficients": [],

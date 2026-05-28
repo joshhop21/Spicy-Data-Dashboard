@@ -94,7 +94,8 @@ def build_weekly_panel(api_key: str) -> pd.DataFrame:
     m2_w = m2.reindex(idx, method="ffill")
     stables_w = stables.reindex(idx, method="ffill")
 
-    fed_net_t = (walcl_w - tga_w - rrp_w) / 1e6  # trillions
+    # WALCL & WTREGEN are millions USD; RRPONTSYD is billions USD
+    fed_net_t = (walcl_w - tga_w - rrp_w * 1000) / 1e6  # trillions
     m2_yoy = (m2_w / m2_w.shift(52) - 1.0) * 100.0
     stable_30d = stables_w.pct_change(4) * 100.0  # ~4 weeks
 
@@ -238,7 +239,7 @@ def build_payload(df: pd.DataFrame, beta: np.ndarray, sigma: float, r2: float, n
         ],
         "methodology": METHODOLOGY,
         "sources": [
-            "FRED WALCL, WTREGEN, RRPONTSYD, M2SL",
+            "FRED WALCL, WTREGEN (millions USD), RRPONTSYD (billions USD), M2SL",
             "Defillama USDT + USDC",
             "Yahoo Finance BTC-USD",
         ],
