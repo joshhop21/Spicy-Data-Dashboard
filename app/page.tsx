@@ -1,8 +1,10 @@
+import { BtcLiquidityDashboard } from "@/components/additional/BtcLiquidityDashboard";
 import { ChartTile } from "@/components/ChartTile";
 import { Header } from "@/components/Header";
 import { Legend } from "@/components/Legend";
 import { TickerSearch } from "@/components/TickerSearch";
 import { getAllChartData } from "@/lib/loadChartData";
+import { getBtcLiquidityModel } from "@/lib/loadAdditionalData";
 import { PHASE_1_TILES, PHASE_2_TILES } from "@/lib/tiles";
 import type { TileConfig } from "@/lib/types";
 
@@ -36,6 +38,7 @@ function ChartSection({
 
 export default function HomePage() {
   const chartData = getAllChartData();
+  const btcLiquidity = getBtcLiquidityModel();
 
   const latestUpdate = Object.values(chartData)
     .map((d) => d.updatedAt)
@@ -64,6 +67,19 @@ export default function HomePage() {
         tiles={PHASE_2_TILES}
         chartData={chartData}
       />
+
+      <section className="mt-12" aria-labelledby="additional-heading">
+        <div className="mb-6 border-b border-stone-200/80 pb-3">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted">Additional Requests</p>
+          <h2 id="additional-heading" className="font-serif text-2xl font-semibold text-ink">
+            Extra research modules
+          </h2>
+          <p className="mt-1 text-sm text-muted">
+            Temporary section — phase headers will be reorganized later.
+          </p>
+        </div>
+        <BtcLiquidityDashboard data={btcLiquidity} />
+      </section>
 
       <Legend />
     </main>

@@ -16,6 +16,7 @@ SCRIPTS = [
     "fetch_m2_yoy.py",
     "fetch_yield_2s10s.py",
     "fetch_private_credit_stress.py",
+    "fetch_btc_liquidity_model.py",
 ]
 
 PHASE2_SCRIPTS = {
@@ -32,6 +33,7 @@ FALLBACKS = {
     "fetch_berkshire_roe.py": "generate_sample_berkshire_roe.py",
     "fetch_marty_distressed.py": "generate_sample_marty_distressed.py",
     "fetch_gold_fair_value.py": "generate_sample_gold_fair_value.py",
+    "fetch_btc_liquidity_model.py": "generate_sample_btc_liquidity.py",
 }
 
 
