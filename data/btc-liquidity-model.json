@@ -1,6 +1,6 @@
 {
   "slug": "btc-liquidity-model",
-  "updatedAt": "2026-05-28T22:26:17Z",
+  "updatedAt": "2026-05-28T22:37:52Z",
   "headline": {
     "btcActual": 58007,
     "fairValue": 126806,
@@ -14,7 +14,7 @@
   },
   "cards": {
     "fedNetLiqT": 5.5,
-    "globalM2Yoy": 1.04,
+    "globalM2Yoy": 4.7,
     "stableSupplyB": 316.9,
     "stable30dPct": 0.66
   },
@@ -24,7 +24,7 @@
     "residualSigma": 0.369
   },
   "coefficients": [],
-  "methodology": "Sample data \u2014 run fetch_btc_liquidity_model.py with FRED_API_KEY.",
+  "methodology": "M2 YoY synced to Phase 2 m2-yoy.json (FRED M2SL, 12-month). Other series from last successful build \u2014 run fetch_btc_liquidity_model.py on GitHub Actions for full refresh.",
   "sources": [
     "Sample generator"
   ],
@@ -39,7 +39,7 @@
       "band2High": 14000.0,
       "zScore": -0.43,
       "fedNetLiqT": 2.8,
-      "globalM2Yoy": 4.5,
+      "globalM2Yoy": 6.06,
       "stableSupplyB": 8.0
     },
     {
@@ -52,7 +52,7 @@
       "band2High": 15434.56,
       "zScore": -0.39,
       "fedNetLiqT": 2.8,
-      "globalM2Yoy": 4.67,
+      "globalM2Yoy": 6.06,
       "stableSupplyB": 8.52
     },
     {
@@ -65,7 +65,7 @@
       "band2High": 16866.5,
       "zScore": -0.35,
       "fedNetLiqT": 2.81,
-      "globalM2Yoy": 4.85,
+      "globalM2Yoy": 6.06,
       "stableSupplyB": 9.04
     },
     {
@@ -78,7 +78,7 @@
       "band2High": 18293.2,
       "zScore": -0.32,
       "fedNetLiqT": 2.81,
-      "globalM2Yoy": 5.02,
+      "globalM2Yoy": 6.06,
       "stableSupplyB": 9.56
     },
     {
@@ -91,7 +91,7 @@
       "band2High": 19712.06,
       "zScore": -0.28,
       "fedNetLiqT": 2.82,
-      "globalM2Yoy": 5.2,
+      "globalM2Yoy": 6.06,
       "stableSupplyB": 10.08
     },
     {
@@ -104,7 +104,7 @@
       "band2High": 21120.48,
       "zScore": -0.25,
       "fedNetLiqT": 2.82,
-      "globalM2Yoy": 5.37,
+      "globalM2Yoy": 6.48,
       "stableSupplyB": 10.6
     },
     {
@@ -117,7 +117,7 @@
       "band2High": 22515.92,
       "zScore": -0.22,
       "fedNetLiqT": 2.83,
-      "globalM2Yoy": 5.53,
+      "globalM2Yoy": 6.48,
       "stableSupplyB": 11.12
     },
     {
@@ -130,7 +130,7 @@
       "band2High": 23895.85,
       "zScore": -0.2,
       "fedNetLiqT": 2.83,
-      "globalM2Yoy": 5.7,
+      "globalM2Yoy": 6.48,
       "stableSupplyB": 11.64
     },
     {
@@ -143,7 +143,7 @@
       "band2High": 25257.79,
       "zScore": -0.17,
       "fedNetLiqT": 2.84,
-      "globalM2Yoy": 5.86,
+      "globalM2Yoy": 6.48,
       "stableSupplyB": 12.16
     },
     {
@@ -156,7 +156,7 @@
       "band2High": 26599.28,
       "zScore": -0.15,
       "fedNetLiqT": 2.84,
-      "globalM2Yoy": 6.02,
+      "globalM2Yoy": 6.12,
       "stableSupplyB": 12.68
     },
     {
@@ -169,7 +169,7 @@
       "band2High": 27917.94,
       "zScore": -0.12,
       "fedNetLiqT": 2.84,
-      "globalM2Yoy": 6.18,
+      "globalM2Yoy": 6.12,
       "stableSupplyB": 13.2
     },
     {
@@ -182,7 +182,7 @@
       "band2High": 29211.43,
       "zScore": -0.1,
       "fedNetLiqT": 2.85,
-      "globalM2Yoy": 6.33,
+      "globalM2Yoy": 6.12,
       "stableSupplyB": 13.72
     },
     {
@@ -195,7 +195,7 @@
       "band2High": 30477.49,
       "zScore": -0.08,
       "fedNetLiqT": 2.85,
-      "globalM2Yoy": 6.48,
+      "globalM2Yoy": 6.12,
       "stableSupplyB": 14.24
     },
     {
@@ -208,7 +208,7 @@
       "band2High": 31713.91,
       "zScore": -0.07,
       "fedNetLiqT": 2.86,
-      "globalM2Yoy": 6.62,
+      "globalM2Yoy": 6.0,
       "stableSupplyB": 14.76
     },
     {
@@ -221,7 +221,7 @@
       "band2High": 32918.57,
       "zScore": -0.05,
       "fedNetLiqT": 2.86,
-      "globalM2Yoy": 6.75,
+      "globalM2Yoy": 6.0,
       "stableSupplyB": 15.28
     },
     {
@@ -234,7 +234,7 @@
       "band2High": 34089.41,
       "zScore": -0.04,
       "fedNetLiqT": 2.87,
-      "globalM2Yoy": 6.89,
+      "globalM2Yoy": 6.0,
       "stableSupplyB": 15.8
     },
     {
@@ -247,7 +247,7 @@
       "band2High": 35224.48,
       "zScore": -0.03,
       "fedNetLiqT": 2.87,
-      "globalM2Yoy": 7.01,
+      "globalM2Yoy": 6.0,
       "stableSupplyB": 16.32
     },
     {
@@ -260,7 +260,7 @@
       "band2High": 36321.89,
       "zScore": -0.02,
       "fedNetLiqT": 2.88,
-      "globalM2Yoy": 7.13,
+      "globalM2Yoy": 5.64,
       "stableSupplyB": 16.84
     },
     {
@@ -273,7 +273,7 @@
       "band2High": 37379.87,
       "zScore": -0.01,
       "fedNetLiqT": 2.88,
-      "globalM2Yoy": 7.24,
+      "globalM2Yoy": 5.64,
       "stableSupplyB": 17.36
     },
     {
@@ -286,7 +286,7 @@
       "band2High": 38396.73,
       "zScore": -0.01,
       "fedNetLiqT": 2.89,
-      "globalM2Yoy": 7.35,
+      "globalM2Yoy": 5.64,
       "stableSupplyB": 17.88
     },
     {
@@ -299,7 +299,7 @@
       "band2High": 39370.89,
       "zScore": -0.0,
       "fedNetLiqT": 2.89,
-      "globalM2Yoy": 7.45,
+      "globalM2Yoy": 5.64,
       "stableSupplyB": 18.4
     },
     {
@@ -312,7 +312,7 @@
       "band2High": 40300.89,
       "zScore": -0.0,
       "fedNetLiqT": 2.89,
-      "globalM2Yoy": 7.54,
+      "globalM2Yoy": 5.64,
       "stableSupplyB": 18.92
     },
     {
@@ -325,7 +325,7 @@
       "band2High": 41185.35,
       "zScore": -0.0,
       "fedNetLiqT": 2.9,
-      "globalM2Yoy": 7.62,
+      "globalM2Yoy": 5.48,
       "stableSupplyB": 19.44
     },
     {
@@ -338,7 +338,7 @@
       "band2High": 42023.04,
       "zScore": -0.0,
       "fedNetLiqT": 2.9,
-      "globalM2Yoy": 7.69,
+      "globalM2Yoy": 5.48,
       "stableSupplyB": 19.96
     },
     {
@@ -351,7 +351,7 @@
       "band2High": 42812.82,
       "zScore": -0.01,
       "fedNetLiqT": 2.91,
-      "globalM2Yoy": 7.76,
+      "globalM2Yoy": 5.48,
       "stableSupplyB": 20.48
     },
     {
@@ -364,7 +364,7 @@
       "band2High": 43553.68,
       "zScore": -0.01,
       "fedNetLiqT": 2.91,
-      "globalM2Yoy": 7.82,
+      "globalM2Yoy": 5.48,
       "stableSupplyB": 21.0
     },
     {
@@ -377,7 +377,7 @@
       "band2High": 44244.72,
       "zScore": -0.02,
       "fedNetLiqT": 2.92,
-      "globalM2Yoy": 7.87,
+      "globalM2Yoy": 5.36,
       "stableSupplyB": 21.52
     },
     {
@@ -390,7 +390,7 @@
       "band2High": 44885.19,
       "zScore": -0.03,
       "fedNetLiqT": 2.92,
-      "globalM2Yoy": 7.92,
+      "globalM2Yoy": 5.36,
       "stableSupplyB": 22.04
     },
     {
@@ -403,7 +403,7 @@
       "band2High": 45474.44,
       "zScore": -0.04,
       "fedNetLiqT": 2.93,
-      "globalM2Yoy": 7.95,
+      "globalM2Yoy": 5.36,
       "stableSupplyB": 22.56
     },
     {
@@ -416,7 +416,7 @@
       "band2High": 46011.97,
       "zScore": -0.05,
       "fedNetLiqT": 2.93,
-      "globalM2Yoy": 7.97,
+      "globalM2Yoy": 5.36,
       "stableSupplyB": 23.08
     },
     {
@@ -429,7 +429,7 @@
       "band2High": 46497.39,
       "zScore": -0.07,
       "fedNetLiqT": 2.93,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 5.36,
       "stableSupplyB": 23.6
     },
     {
@@ -442,7 +442,7 @@
       "band2High": 46930.46,
       "zScore": -0.09,
       "fedNetLiqT": 2.94,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 5.53,
       "stableSupplyB": 24.12
     },
     {
@@ -455,7 +455,7 @@
       "band2High": 47311.05,
       "zScore": -0.11,
       "fedNetLiqT": 2.94,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 5.53,
       "stableSupplyB": 24.64
     },
     {
@@ -468,7 +468,7 @@
       "band2High": 47639.17,
       "zScore": -0.13,
       "fedNetLiqT": 2.95,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 5.53,
       "stableSupplyB": 25.16
     },
     {
@@ -481,7 +481,7 @@
       "band2High": 47914.96,
       "zScore": -0.15,
       "fedNetLiqT": 2.95,
-      "globalM2Yoy": 7.97,
+      "globalM2Yoy": 5.53,
       "stableSupplyB": 25.68
     },
     {
@@ -494,7 +494,7 @@
       "band2High": 48138.7,
       "zScore": -0.17,
       "fedNetLiqT": 2.96,
-      "globalM2Yoy": 7.94,
+      "globalM2Yoy": 5.68,
       "stableSupplyB": 26.2
     },
     {
@@ -507,7 +507,7 @@
       "band2High": 48310.8,
       "zScore": -0.2,
       "fedNetLiqT": 2.96,
-      "globalM2Yoy": 7.91,
+      "globalM2Yoy": 5.68,
       "stableSupplyB": 26.72
     },
     {
@@ -520,7 +520,7 @@
       "band2High": 48431.78,
       "zScore": -0.23,
       "fedNetLiqT": 2.97,
-      "globalM2Yoy": 7.86,
+      "globalM2Yoy": 5.68,
       "stableSupplyB": 27.24
     },
     {
@@ -533,7 +533,7 @@
       "band2High": 48502.3,
       "zScore": -0.26,
       "fedNetLiqT": 2.97,
-      "globalM2Yoy": 7.81,
+      "globalM2Yoy": 5.68,
       "stableSupplyB": 27.76
     },
     {
@@ -546,7 +546,7 @@
       "band2High": 48523.15,
       "zScore": -0.29,
       "fedNetLiqT": 2.98,
-      "globalM2Yoy": 7.75,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 28.28
     },
     {
@@ -559,7 +559,7 @@
       "band2High": 48495.25,
       "zScore": -0.32,
       "fedNetLiqT": 2.98,
-      "globalM2Yoy": 7.68,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 28.8
     },
     {
@@ -572,7 +572,7 @@
       "band2High": 48419.61,
       "zScore": -0.36,
       "fedNetLiqT": 2.98,
-      "globalM2Yoy": 7.61,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 29.32
     },
     {
@@ -585,7 +585,7 @@
       "band2High": 48297.4,
       "zScore": -0.39,
       "fedNetLiqT": 2.99,
-      "globalM2Yoy": 7.52,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 29.84
     },
     {
@@ -598,7 +598,7 @@
       "band2High": 48129.87,
       "zScore": -0.43,
       "fedNetLiqT": 2.99,
-      "globalM2Yoy": 7.43,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 30.36
     },
     {
@@ -611,7 +611,7 @@
       "band2High": 47918.42,
       "zScore": -0.47,
       "fedNetLiqT": 3.0,
-      "globalM2Yoy": 7.33,
+      "globalM2Yoy": 5.87,
       "stableSupplyB": 30.88
     },
     {
@@ -624,7 +624,7 @@
       "band2High": 47664.54,
       "zScore": -0.51,
       "fedNetLiqT": 3.0,
-      "globalM2Yoy": 7.22,
+      "globalM2Yoy": 5.87,
       "stableSupplyB": 31.4
     },
     {
@@ -637,7 +637,7 @@
       "band2High": 47369.81,
       "zScore": -0.56,
       "fedNetLiqT": 3.01,
-      "globalM2Yoy": 7.11,
+      "globalM2Yoy": 5.87,
       "stableSupplyB": 31.92
     },
     {
@@ -650,7 +650,7 @@
       "band2High": 47035.94,
       "zScore": -0.6,
       "fedNetLiqT": 3.01,
-      "globalM2Yoy": 6.99,
+      "globalM2Yoy": 5.87,
       "stableSupplyB": 32.44
     },
     {
@@ -663,7 +663,7 @@
       "band2High": 46664.73,
       "zScore": -0.65,
       "fedNetLiqT": 3.02,
-      "globalM2Yoy": 6.86,
+      "globalM2Yoy": 5.72,
       "stableSupplyB": 32.96
     },
     {
@@ -676,7 +676,7 @@
       "band2High": 46258.06,
       "zScore": -0.69,
       "fedNetLiqT": 3.02,
-      "globalM2Yoy": 6.73,
+      "globalM2Yoy": 5.72,
       "stableSupplyB": 33.48
     },
     {
@@ -689,7 +689,7 @@
       "band2High": 45817.92,
       "zScore": -0.74,
       "fedNetLiqT": 3.02,
-      "globalM2Yoy": 6.59,
+      "globalM2Yoy": 5.72,
       "stableSupplyB": 34.0
     },
     {
@@ -702,7 +702,7 @@
       "band2High": 45346.36,
       "zScore": -0.79,
       "fedNetLiqT": 3.03,
-      "globalM2Yoy": 6.45,
+      "globalM2Yoy": 5.72,
       "stableSupplyB": 34.52
     },
     {
@@ -715,7 +715,7 @@
       "band2High": 44845.53,
       "zScore": -0.84,
       "fedNetLiqT": 3.03,
-      "globalM2Yoy": 6.3,
+      "globalM2Yoy": 6.04,
       "stableSupplyB": 35.04
     },
     {
@@ -728,7 +728,7 @@
       "band2High": 44317.64,
       "zScore": -0.9,
       "fedNetLiqT": 3.04,
-      "globalM2Yoy": 6.15,
+      "globalM2Yoy": 6.04,
       "stableSupplyB": 35.56
     },
     {
@@ -741,7 +741,7 @@
       "band2High": 43764.98,
       "zScore": -0.95,
       "fedNetLiqT": 3.04,
-      "globalM2Yoy": 6.0,
+      "globalM2Yoy": 6.04,
       "stableSupplyB": 36.08
     },
     {
@@ -754,7 +754,7 @@
       "band2High": 43189.88,
       "zScore": -1.0,
       "fedNetLiqT": 3.05,
-      "globalM2Yoy": 5.84,
+      "globalM2Yoy": 6.04,
       "stableSupplyB": 36.6
     },
     {
@@ -767,7 +767,7 @@
       "band2High": 42594.75,
       "zScore": -1.06,
       "fedNetLiqT": 3.05,
-      "globalM2Yoy": 5.67,
+      "globalM2Yoy": 6.04,
       "stableSupplyB": 37.12
     },
     {
@@ -780,7 +780,7 @@
       "band2High": 41982.04,
       "zScore": -1.11,
       "fedNetLiqT": 3.06,
-      "globalM2Yoy": 5.51,
+      "globalM2Yoy": 5.71,
       "stableSupplyB": 37.64
     },
     {
@@ -793,7 +793,7 @@
       "band2High": 41354.24,
       "zScore": -1.17,
       "fedNetLiqT": 3.06,
-      "globalM2Yoy": 5.34,
+      "globalM2Yoy": 5.71,
       "stableSupplyB": 38.16
     },
     {
@@ -806,7 +806,7 @@
       "band2High": 40713.88,
       "zScore": -1.23,
       "fedNetLiqT": 3.07,
-      "globalM2Yoy": 5.17,
+      "globalM2Yoy": 5.71,
       "stableSupplyB": 38.68
     },
     {
@@ -819,7 +819,7 @@
       "band2High": 40063.52,
       "zScore": -1.28,
       "fedNetLiqT": 3.07,
-      "globalM2Yoy": 4.99,
+      "globalM2Yoy": 5.71,
       "stableSupplyB": 39.2
     },
     {
@@ -832,7 +832,7 @@
       "band2High": 39405.76,
       "zScore": -1.34,
       "fedNetLiqT": 3.07,
-      "globalM2Yoy": 4.82,
+      "globalM2Yoy": 6.22,
       "stableSupplyB": 39.72
     },
     {
@@ -845,7 +845,7 @@
       "band2High": 38743.19,
       "zScore": -1.4,
       "fedNetLiqT": 3.08,
-      "globalM2Yoy": 4.65,
+      "globalM2Yoy": 6.22,
       "stableSupplyB": 40.24
     },
     {
@@ -858,7 +858,7 @@
       "band2High": 38078.45,
       "zScore": -1.46,
       "fedNetLiqT": 3.08,
-      "globalM2Yoy": 4.47,
+      "globalM2Yoy": 6.22,
       "stableSupplyB": 40.76
     },
     {
@@ -871,7 +871,7 @@
       "band2High": 37414.14,
       "zScore": -1.51,
       "fedNetLiqT": 3.09,
-      "globalM2Yoy": 4.3,
+      "globalM2Yoy": 6.22,
       "stableSupplyB": 41.28
     },
     {
@@ -884,7 +884,7 @@
       "band2High": 36752.9,
       "zScore": -1.57,
       "fedNetLiqT": 3.09,
-      "globalM2Yoy": 4.12,
+      "globalM2Yoy": 6.6,
       "stableSupplyB": 41.8
     },
     {
@@ -897,7 +897,7 @@
       "band2High": 36097.34,
       "zScore": -1.62,
       "fedNetLiqT": 3.1,
-      "globalM2Yoy": 3.95,
+      "globalM2Yoy": 6.6,
       "stableSupplyB": 42.32
     },
     {
@@ -910,7 +910,7 @@
       "band2High": 35450.06,
       "zScore": -1.68,
       "fedNetLiqT": 3.1,
-      "globalM2Yoy": 3.78,
+      "globalM2Yoy": 6.6,
       "stableSupplyB": 42.84
     },
     {
@@ -923,7 +923,7 @@
       "band2High": 34813.64,
       "zScore": -1.73,
       "fedNetLiqT": 3.11,
-      "globalM2Yoy": 3.61,
+      "globalM2Yoy": 6.6,
       "stableSupplyB": 43.36
     },
     {
@@ -936,7 +936,7 @@
       "band2High": 34190.63,
       "zScore": -1.78,
       "fedNetLiqT": 3.11,
-      "globalM2Yoy": 3.44,
+      "globalM2Yoy": 6.6,
       "stableSupplyB": 43.88
     },
     {
@@ -949,7 +949,7 @@
       "band2High": 33583.55,
       "zScore": -1.83,
       "fedNetLiqT": 3.11,
-      "globalM2Yoy": 3.27,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 44.4
     },
     {
@@ -962,7 +962,7 @@
       "band2High": 32994.89,
       "zScore": -1.88,
       "fedNetLiqT": 3.12,
-      "globalM2Yoy": 3.11,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 44.92
     },
     {
@@ -975,7 +975,7 @@
       "band2High": 32427.07,
       "zScore": -1.92,
       "fedNetLiqT": 3.12,
-      "globalM2Yoy": 2.95,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 45.44
     },
     {
@@ -988,7 +988,7 @@
       "band2High": 31882.48,
       "zScore": -1.97,
       "fedNetLiqT": 3.13,
-      "globalM2Yoy": 2.8,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 45.96
     },
     {
@@ -1001,7 +1001,7 @@
       "band2High": 31363.44,
       "zScore": -2.01,
       "fedNetLiqT": 3.13,
-      "globalM2Yoy": 2.65,
+      "globalM2Yoy": 6.9,
       "stableSupplyB": 46.48
     },
     {
@@ -1014,7 +1014,7 @@
       "band2High": 30872.21,
       "zScore": -2.04,
       "fedNetLiqT": 3.14,
-      "globalM2Yoy": 2.5,
+      "globalM2Yoy": 6.9,
       "stableSupplyB": 47.0
     },
     {
@@ -1027,7 +1027,7 @@
       "band2High": 30410.98,
       "zScore": -2.08,
       "fedNetLiqT": 3.14,
-      "globalM2Yoy": 2.36,
+      "globalM2Yoy": 6.9,
       "stableSupplyB": 47.52
     },
     {
@@ -1040,7 +1040,7 @@
       "band2High": 29981.87,
       "zScore": -2.11,
       "fedNetLiqT": 3.15,
-      "globalM2Yoy": 2.22,
+      "globalM2Yoy": 6.9,
       "stableSupplyB": 48.04
     },
     {
@@ -1053,7 +1053,7 @@
       "band2High": 29586.91,
       "zScore": -2.14,
       "fedNetLiqT": 3.15,
-      "globalM2Yoy": 2.09,
+      "globalM2Yoy": 7.0,
       "stableSupplyB": 48.56
     },
     {
@@ -1066,7 +1066,7 @@
       "band2High": 29228.05,
       "zScore": -2.16,
       "fedNetLiqT": 3.16,
-      "globalM2Yoy": 1.97,
+      "globalM2Yoy": 7.0,
       "stableSupplyB": 49.08
     },
     {
@@ -1079,7 +1079,7 @@
       "band2High": 28907.15,
       "zScore": -2.18,
       "fedNetLiqT": 3.16,
-      "globalM2Yoy": 1.85,
+      "globalM2Yoy": 7.0,
       "stableSupplyB": 49.6
     },
     {
@@ -1092,7 +1092,7 @@
       "band2High": 28625.97,
       "zScore": -2.2,
       "fedNetLiqT": 3.16,
-      "globalM2Yoy": 1.74,
+      "globalM2Yoy": 7.0,
       "stableSupplyB": 50.12
     },
     {
@@ -1105,7 +1105,7 @@
       "band2High": 28386.18,
       "zScore": -2.21,
       "fedNetLiqT": 3.17,
-      "globalM2Yoy": 1.64,
+      "globalM2Yoy": 7.0,
       "stableSupplyB": 50.64
     },
     {
@@ -1118,7 +1118,7 @@
       "band2High": 28189.34,
       "zScore": -2.22,
       "fedNetLiqT": 3.17,
-      "globalM2Yoy": 1.54,
+      "globalM2Yoy": 7.25,
       "stableSupplyB": 51.16
     },
     {
@@ -1131,7 +1131,7 @@
       "band2High": 28036.91,
       "zScore": -2.22,
       "fedNetLiqT": 3.18,
-      "globalM2Yoy": 1.45,
+      "globalM2Yoy": 7.25,
       "stableSupplyB": 51.68
     },
     {
@@ -1144,7 +1144,7 @@
       "band2High": 27930.22,
       "zScore": -2.22,
       "fedNetLiqT": 3.18,
-      "globalM2Yoy": 1.37,
+      "globalM2Yoy": 7.25,
       "stableSupplyB": 52.2
     },
     {
@@ -1157,7 +1157,7 @@
       "band2High": 27870.52,
       "zScore": -2.21,
       "fedNetLiqT": 3.19,
-      "globalM2Yoy": 1.29,
+      "globalM2Yoy": 7.25,
       "stableSupplyB": 52.72
     },
     {
@@ -1170,7 +1170,7 @@
       "band2High": 27858.9,
       "zScore": -2.2,
       "fedNetLiqT": 3.19,
-      "globalM2Yoy": 1.23,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 53.24
     },
     {
@@ -1183,7 +1183,7 @@
       "band2High": 27896.36,
       "zScore": -2.19,
       "fedNetLiqT": 3.2,
-      "globalM2Yoy": 1.17,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 53.76
     },
     {
@@ -1196,7 +1196,7 @@
       "band2High": 27983.77,
       "zScore": -2.17,
       "fedNetLiqT": 3.2,
-      "globalM2Yoy": 1.12,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 54.28
     },
     {
@@ -1209,7 +1209,7 @@
       "band2High": 28121.87,
       "zScore": -2.15,
       "fedNetLiqT": 3.2,
-      "globalM2Yoy": 1.08,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 54.8
     },
     {
@@ -1222,7 +1222,7 @@
       "band2High": 28311.28,
       "zScore": -2.12,
       "fedNetLiqT": 3.21,
-      "globalM2Yoy": 1.05,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 55.32
     },
     {
@@ -1235,7 +1235,7 @@
       "band2High": 28552.49,
       "zScore": -2.09,
       "fedNetLiqT": 3.21,
-      "globalM2Yoy": 1.02,
+      "globalM2Yoy": 7.34,
       "stableSupplyB": 55.84
     },
     {
@@ -1248,7 +1248,7 @@
       "band2High": 28845.86,
       "zScore": -2.06,
       "fedNetLiqT": 3.22,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": 7.34,
       "stableSupplyB": 56.36
     },
     {
@@ -1261,7 +1261,7 @@
       "band2High": 29191.61,
       "zScore": -2.03,
       "fedNetLiqT": 3.22,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": 7.34,
       "stableSupplyB": 56.88
     },
     {
@@ -1274,7 +1274,7 @@
       "band2High": 29589.85,
       "zScore": -1.99,
       "fedNetLiqT": 3.23,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": 7.34,
       "stableSupplyB": 57.4
     },
     {
@@ -1287,7 +1287,7 @@
       "band2High": 30040.54,
       "zScore": -1.94,
       "fedNetLiqT": 3.23,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 57.92
     },
     {
@@ -1300,7 +1300,7 @@
       "band2High": 30543.52,
       "zScore": -1.9,
       "fedNetLiqT": 3.24,
-      "globalM2Yoy": 1.03,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 58.44
     },
     {
@@ -1313,7 +1313,7 @@
       "band2High": 31098.5,
       "zScore": -1.85,
       "fedNetLiqT": 3.24,
-      "globalM2Yoy": 1.06,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 58.96
     },
     {
@@ -1326,7 +1326,7 @@
       "band2High": 31705.04,
       "zScore": -1.81,
       "fedNetLiqT": 3.25,
-      "globalM2Yoy": 1.1,
+      "globalM2Yoy": 7.24,
       "stableSupplyB": 59.48
     },
     {
@@ -1339,7 +1339,7 @@
       "band2High": 32362.59,
       "zScore": -1.75,
       "fedNetLiqT": 3.25,
-      "globalM2Yoy": 1.14,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 60.0
     },
     {
@@ -1352,7 +1352,7 @@
       "band2High": 33070.48,
       "zScore": -1.7,
       "fedNetLiqT": 3.25,
-      "globalM2Yoy": 1.2,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 60.52
     },
     {
@@ -1365,7 +1365,7 @@
       "band2High": 33827.89,
       "zScore": -1.65,
       "fedNetLiqT": 3.26,
-      "globalM2Yoy": 1.26,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 61.04
     },
     {
@@ -1378,7 +1378,7 @@
       "band2High": 34633.9,
       "zScore": -1.59,
       "fedNetLiqT": 3.26,
-      "globalM2Yoy": 1.33,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 61.56
     },
     {
@@ -1391,7 +1391,7 @@
       "band2High": 35487.45,
       "zScore": -1.54,
       "fedNetLiqT": 3.27,
-      "globalM2Yoy": 1.41,
+      "globalM2Yoy": 6.84,
       "stableSupplyB": 62.08
     },
     {
@@ -1404,7 +1404,7 @@
       "band2High": 36387.38,
       "zScore": -1.48,
       "fedNetLiqT": 3.27,
-      "globalM2Yoy": 1.49,
+      "globalM2Yoy": 6.37,
       "stableSupplyB": 62.6
     },
     {
@@ -1417,7 +1417,7 @@
       "band2High": 37332.38,
       "zScore": -1.43,
       "fedNetLiqT": 3.28,
-      "globalM2Yoy": 1.59,
+      "globalM2Yoy": 6.37,
       "stableSupplyB": 63.12
     },
     {
@@ -1430,7 +1430,7 @@
       "band2High": 38321.08,
       "zScore": -1.37,
       "fedNetLiqT": 3.28,
-      "globalM2Yoy": 1.69,
+      "globalM2Yoy": 6.37,
       "stableSupplyB": 63.64
     },
     {
@@ -1443,7 +1443,7 @@
       "band2High": 39351.95,
       "zScore": -1.31,
       "fedNetLiqT": 3.29,
-      "globalM2Yoy": 1.8,
+      "globalM2Yoy": 6.37,
       "stableSupplyB": 64.16
     },
     {
@@ -1456,7 +1456,7 @@
       "band2High": 40423.38,
       "zScore": -1.26,
       "fedNetLiqT": 3.29,
-      "globalM2Yoy": 1.91,
+      "globalM2Yoy": 6.28,
       "stableSupplyB": 64.68
     },
     {
@@ -1469,7 +1469,7 @@
       "band2High": 41533.65,
       "zScore": -1.2,
       "fedNetLiqT": 3.29,
-      "globalM2Yoy": 2.03,
+      "globalM2Yoy": 6.28,
       "stableSupplyB": 65.2
     },
     {
@@ -1482,7 +1482,7 @@
       "band2High": 42680.96,
       "zScore": -1.14,
       "fedNetLiqT": 3.3,
-      "globalM2Yoy": 2.16,
+      "globalM2Yoy": 6.28,
       "stableSupplyB": 65.72
     },
     {
@@ -1495,7 +1495,7 @@
       "band2High": 43863.4,
       "zScore": -1.09,
       "fedNetLiqT": 3.3,
-      "globalM2Yoy": 2.29,
+      "globalM2Yoy": 6.28,
       "stableSupplyB": 66.24
     },
     {
@@ -1508,7 +1508,7 @@
       "band2High": 45078.97,
       "zScore": -1.03,
       "fedNetLiqT": 3.31,
-      "globalM2Yoy": 2.43,
+      "globalM2Yoy": 6.33,
       "stableSupplyB": 66.76
     },
     {
@@ -1521,7 +1521,7 @@
       "band2High": 46325.6,
       "zScore": -0.98,
       "fedNetLiqT": 3.31,
-      "globalM2Yoy": 2.57,
+      "globalM2Yoy": 6.33,
       "stableSupplyB": 67.28
     },
     {
@@ -1534,7 +1534,7 @@
       "band2High": 47601.14,
       "zScore": -0.92,
       "fedNetLiqT": 3.32,
-      "globalM2Yoy": 2.72,
+      "globalM2Yoy": 6.33,
       "stableSupplyB": 67.8
     },
     {
@@ -1547,7 +1547,7 @@
       "band2High": 48903.35,
       "zScore": -0.87,
       "fedNetLiqT": 3.32,
-      "globalM2Yoy": 2.87,
+      "globalM2Yoy": 6.33,
       "stableSupplyB": 68.32
     },
     {
@@ -1560,7 +1560,7 @@
       "band2High": 50229.96,
       "zScore": -0.82,
       "fedNetLiqT": 3.33,
-      "globalM2Yoy": 3.03,
+      "globalM2Yoy": 6.33,
       "stableSupplyB": 68.84
     },
     {
@@ -1573,7 +1573,7 @@
       "band2High": 51578.59,
       "zScore": -0.77,
       "fedNetLiqT": 3.33,
-      "globalM2Yoy": 3.19,
+      "globalM2Yoy": 6.11,
       "stableSupplyB": 69.36
     },
     {
@@ -1586,7 +1586,7 @@
       "band2High": 52946.85,
       "zScore": -0.72,
       "fedNetLiqT": 3.34,
-      "globalM2Yoy": 3.36,
+      "globalM2Yoy": 6.11,
       "stableSupplyB": 69.88
     },
     {
@@ -1599,7 +1599,7 @@
       "band2High": 54332.27,
       "zScore": -0.67,
       "fedNetLiqT": 3.34,
-      "globalM2Yoy": 3.52,
+      "globalM2Yoy": 6.11,
       "stableSupplyB": 70.4
     },
     {
@@ -1612,7 +1612,7 @@
       "band2High": 55732.37,
       "zScore": -0.62,
       "fedNetLiqT": 3.34,
-      "globalM2Yoy": 3.69,
+      "globalM2Yoy": 6.11,
       "stableSupplyB": 70.92
     },
     {
@@ -1625,7 +1625,7 @@
       "band2High": 57144.59,
       "zScore": -0.58,
       "fedNetLiqT": 3.35,
-      "globalM2Yoy": 3.86,
+      "globalM2Yoy": 5.99,
       "stableSupplyB": 71.44
     },
     {
@@ -1638,7 +1638,7 @@
       "band2High": 58566.37,
       "zScore": -0.53,
       "fedNetLiqT": 3.35,
-      "globalM2Yoy": 4.04,
+      "globalM2Yoy": 5.99,
       "stableSupplyB": 71.96
     },
     {
@@ -1651,7 +1651,7 @@
       "band2High": 59995.12,
       "zScore": -0.49,
       "fedNetLiqT": 3.36,
-      "globalM2Yoy": 4.21,
+      "globalM2Yoy": 5.99,
       "stableSupplyB": 72.48
     },
     {
@@ -1664,7 +1664,7 @@
       "band2High": 61428.24,
       "zScore": -0.45,
       "fedNetLiqT": 3.36,
-      "globalM2Yoy": 4.38,
+      "globalM2Yoy": 5.99,
       "stableSupplyB": 73.0
     },
     {
@@ -1677,7 +1677,7 @@
       "band2High": 62863.09,
       "zScore": -0.41,
       "fedNetLiqT": 3.37,
-      "globalM2Yoy": 4.56,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 73.52
     },
     {
@@ -1690,7 +1690,7 @@
       "band2High": 64297.06,
       "zScore": -0.38,
       "fedNetLiqT": 3.37,
-      "globalM2Yoy": 4.73,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 74.04
     },
     {
@@ -1703,7 +1703,7 @@
       "band2High": 65727.53,
       "zScore": -0.34,
       "fedNetLiqT": 3.38,
-      "globalM2Yoy": 4.91,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 74.56
     },
     {
@@ -1716,7 +1716,7 @@
       "band2High": 67151.88,
       "zScore": -0.31,
       "fedNetLiqT": 3.38,
-      "globalM2Yoy": 5.08,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 75.08
     },
     {
@@ -1729,7 +1729,7 @@
       "band2High": 68567.52,
       "zScore": -0.27,
       "fedNetLiqT": 3.38,
-      "globalM2Yoy": 5.25,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 75.6
     },
     {
@@ -1742,7 +1742,7 @@
       "band2High": 69971.86,
       "zScore": -0.24,
       "fedNetLiqT": 3.39,
-      "globalM2Yoy": 5.42,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 76.12
     },
     {
@@ -1755,7 +1755,7 @@
       "band2High": 71362.37,
       "zScore": -0.21,
       "fedNetLiqT": 3.39,
-      "globalM2Yoy": 5.59,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 76.64
     },
     {
@@ -1768,7 +1768,7 @@
       "band2High": 72736.52,
       "zScore": -0.19,
       "fedNetLiqT": 3.4,
-      "globalM2Yoy": 5.76,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 77.16
     },
     {
@@ -1781,7 +1781,7 @@
       "band2High": 74091.85,
       "zScore": -0.16,
       "fedNetLiqT": 3.4,
-      "globalM2Yoy": 5.92,
+      "globalM2Yoy": 5.66,
       "stableSupplyB": 77.68
     },
     {
@@ -1794,7 +1794,7 @@
       "band2High": 75425.93,
       "zScore": -0.14,
       "fedNetLiqT": 3.41,
-      "globalM2Yoy": 6.08,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 78.2
     },
     {
@@ -1807,7 +1807,7 @@
       "band2High": 76736.38,
       "zScore": -0.12,
       "fedNetLiqT": 3.41,
-      "globalM2Yoy": 6.23,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 78.72
     },
     {
@@ -1820,7 +1820,7 @@
       "band2High": 78020.9,
       "zScore": -0.1,
       "fedNetLiqT": 3.42,
-      "globalM2Yoy": 6.38,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 79.24
     },
     {
@@ -1833,7 +1833,7 @@
       "band2High": 79277.24,
       "zScore": -0.08,
       "fedNetLiqT": 3.42,
-      "globalM2Yoy": 6.52,
+      "globalM2Yoy": 5.45,
       "stableSupplyB": 79.76
     },
     {
@@ -1846,7 +1846,7 @@
       "band2High": 80503.21,
       "zScore": -0.06,
       "fedNetLiqT": 3.43,
-      "globalM2Yoy": 6.66,
+      "globalM2Yoy": 5.29,
       "stableSupplyB": 80.28
     },
     {
@@ -1859,7 +1859,7 @@
       "band2High": 81696.72,
       "zScore": -0.05,
       "fedNetLiqT": 3.43,
-      "globalM2Yoy": 6.8,
+      "globalM2Yoy": 5.29,
       "stableSupplyB": 80.8
     },
     {
@@ -1872,7 +1872,7 @@
       "band2High": 82855.74,
       "zScore": -0.03,
       "fedNetLiqT": 3.43,
-      "globalM2Yoy": 6.93,
+      "globalM2Yoy": 5.29,
       "stableSupplyB": 81.32
     },
     {
@@ -1885,7 +1885,7 @@
       "band2High": 83978.35,
       "zScore": -0.02,
       "fedNetLiqT": 3.44,
-      "globalM2Yoy": 7.05,
+      "globalM2Yoy": 5.29,
       "stableSupplyB": 81.84
     },
     {
@@ -1898,7 +1898,7 @@
       "band2High": 85062.69,
       "zScore": -0.02,
       "fedNetLiqT": 3.44,
-      "globalM2Yoy": 7.17,
+      "globalM2Yoy": 5.29,
       "stableSupplyB": 82.36
     },
     {
@@ -1911,7 +1911,7 @@
       "band2High": 86107.03,
       "zScore": -0.01,
       "fedNetLiqT": 3.45,
-      "globalM2Yoy": 7.28,
+      "globalM2Yoy": 5.16,
       "stableSupplyB": 82.88
     },
     {
@@ -1924,7 +1924,7 @@
       "band2High": 87109.7,
       "zScore": -0.0,
       "fedNetLiqT": 3.45,
-      "globalM2Yoy": 7.38,
+      "globalM2Yoy": 5.16,
       "stableSupplyB": 83.4
     },
     {
@@ -1937,7 +1937,7 @@
       "band2High": 88069.17,
       "zScore": -0.0,
       "fedNetLiqT": 3.46,
-      "globalM2Yoy": 7.48,
+      "globalM2Yoy": 5.16,
       "stableSupplyB": 83.92
     },
     {
@@ -1950,7 +1950,7 @@
       "band2High": 88984.0,
       "zScore": -0.0,
       "fedNetLiqT": 3.46,
-      "globalM2Yoy": 7.56,
+      "globalM2Yoy": 5.16,
       "stableSupplyB": 84.44
     },
     {
@@ -1963,7 +1963,7 @@
       "band2High": 89852.87,
       "zScore": -0.0,
       "fedNetLiqT": 3.47,
-      "globalM2Yoy": 7.65,
+      "globalM2Yoy": 4.81,
       "stableSupplyB": 84.96
     },
     {
@@ -1976,7 +1976,7 @@
       "band2High": 90674.57,
       "zScore": -0.0,
       "fedNetLiqT": 3.47,
-      "globalM2Yoy": 7.72,
+      "globalM2Yoy": 4.81,
       "stableSupplyB": 85.48
     },
     {
@@ -1989,7 +1989,7 @@
       "band2High": 91448.0,
       "zScore": -0.01,
       "fedNetLiqT": 3.47,
-      "globalM2Yoy": 7.78,
+      "globalM2Yoy": 4.81,
       "stableSupplyB": 86.0
     },
     {
@@ -2002,7 +2002,7 @@
       "band2High": 92172.2,
       "zScore": -0.01,
       "fedNetLiqT": 3.48,
-      "globalM2Yoy": 7.84,
+      "globalM2Yoy": 4.81,
       "stableSupplyB": 86.52
     },
     {
@@ -2015,7 +2015,7 @@
       "band2High": 92846.31,
       "zScore": -0.02,
       "fedNetLiqT": 3.48,
-      "globalM2Yoy": 7.89,
+      "globalM2Yoy": 4.89,
       "stableSupplyB": 87.04
     },
     {
@@ -2028,7 +2028,7 @@
       "band2High": 93469.62,
       "zScore": -0.03,
       "fedNetLiqT": 3.49,
-      "globalM2Yoy": 7.93,
+      "globalM2Yoy": 4.89,
       "stableSupplyB": 87.56
     },
     {
@@ -2041,7 +2041,7 @@
       "band2High": 94041.53,
       "zScore": -0.05,
       "fedNetLiqT": 3.49,
-      "globalM2Yoy": 7.96,
+      "globalM2Yoy": 4.89,
       "stableSupplyB": 88.08
     },
     {
@@ -2054,7 +2054,7 @@
       "band2High": 94561.57,
       "zScore": -0.06,
       "fedNetLiqT": 3.5,
-      "globalM2Yoy": 7.98,
+      "globalM2Yoy": 4.89,
       "stableSupplyB": 88.6
     },
     {
@@ -2067,7 +2067,7 @@
       "band2High": 95029.41,
       "zScore": -0.08,
       "fedNetLiqT": 3.5,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 4.89,
       "stableSupplyB": 89.12
     },
     {
@@ -2080,7 +2080,7 @@
       "band2High": 95444.83,
       "zScore": -0.09,
       "fedNetLiqT": 3.51,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 4.39,
       "stableSupplyB": 89.64
     },
     {
@@ -2093,7 +2093,7 @@
       "band2High": 95807.77,
       "zScore": -0.11,
       "fedNetLiqT": 3.51,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 4.39,
       "stableSupplyB": 90.16
     },
     {
@@ -2106,7 +2106,7 @@
       "band2High": 96118.27,
       "zScore": -0.13,
       "fedNetLiqT": 3.52,
-      "globalM2Yoy": 7.98,
+      "globalM2Yoy": 4.39,
       "stableSupplyB": 90.68
     },
     {
@@ -2119,7 +2119,7 @@
       "band2High": 96376.52,
       "zScore": -0.16,
       "fedNetLiqT": 3.52,
-      "globalM2Yoy": 7.96,
+      "globalM2Yoy": 4.39,
       "stableSupplyB": 91.2
     },
     {
@@ -2132,7 +2132,7 @@
       "band2High": 96582.85,
       "zScore": -0.18,
       "fedNetLiqT": 3.52,
-      "globalM2Yoy": 7.93,
+      "globalM2Yoy": 4.14,
       "stableSupplyB": 91.72
     },
     {
@@ -2145,7 +2145,7 @@
       "band2High": 96737.69,
       "zScore": -0.21,
       "fedNetLiqT": 3.53,
-      "globalM2Yoy": 7.89,
+      "globalM2Yoy": 4.14,
       "stableSupplyB": 92.24
     },
     {
@@ -2158,7 +2158,7 @@
       "band2High": 96841.62,
       "zScore": -0.24,
       "fedNetLiqT": 3.53,
-      "globalM2Yoy": 7.85,
+      "globalM2Yoy": 4.14,
       "stableSupplyB": 92.76
     },
     {
@@ -2171,7 +2171,7 @@
       "band2High": 96895.34,
       "zScore": -0.27,
       "fedNetLiqT": 3.54,
-      "globalM2Yoy": 7.79,
+      "globalM2Yoy": 4.14,
       "stableSupplyB": 93.28
     },
     {
@@ -2184,7 +2184,7 @@
       "band2High": 96899.69,
       "zScore": -0.3,
       "fedNetLiqT": 3.54,
-      "globalM2Yoy": 7.73,
+      "globalM2Yoy": 4.08,
       "stableSupplyB": 93.8
     },
     {
@@ -2197,7 +2197,7 @@
       "band2High": 96855.61,
       "zScore": -0.33,
       "fedNetLiqT": 3.55,
-      "globalM2Yoy": 7.66,
+      "globalM2Yoy": 4.08,
       "stableSupplyB": 94.32
     },
     {
@@ -2210,7 +2210,7 @@
       "band2High": 96764.17,
       "zScore": -0.37,
       "fedNetLiqT": 3.55,
-      "globalM2Yoy": 7.58,
+      "globalM2Yoy": 4.08,
       "stableSupplyB": 94.84
     },
     {
@@ -2223,7 +2223,7 @@
       "band2High": 96626.58,
       "zScore": -0.41,
       "fedNetLiqT": 3.56,
-      "globalM2Yoy": 7.49,
+      "globalM2Yoy": 4.08,
       "stableSupplyB": 95.36
     },
     {
@@ -2236,7 +2236,7 @@
       "band2High": 96444.12,
       "zScore": -0.45,
       "fedNetLiqT": 3.56,
-      "globalM2Yoy": 7.4,
+      "globalM2Yoy": 4.08,
       "stableSupplyB": 95.88
     },
     {
@@ -2249,7 +2249,7 @@
       "band2High": 96218.23,
       "zScore": -0.49,
       "fedNetLiqT": 3.56,
-      "globalM2Yoy": 7.29,
+      "globalM2Yoy": 3.8,
       "stableSupplyB": 96.4
     },
     {
@@ -2262,7 +2262,7 @@
       "band2High": 95950.42,
       "zScore": -0.53,
       "fedNetLiqT": 3.57,
-      "globalM2Yoy": 7.19,
+      "globalM2Yoy": 3.8,
       "stableSupplyB": 96.92
     },
     {
@@ -2275,7 +2275,7 @@
       "band2High": 95642.34,
       "zScore": -0.57,
       "fedNetLiqT": 3.57,
-      "globalM2Yoy": 7.07,
+      "globalM2Yoy": 3.8,
       "stableSupplyB": 97.44
     },
     {
@@ -2288,7 +2288,7 @@
       "band2High": 95295.71,
       "zScore": -0.62,
       "fedNetLiqT": 3.58,
-      "globalM2Yoy": 6.95,
+      "globalM2Yoy": 3.8,
       "stableSupplyB": 97.96
     },
     {
@@ -2301,7 +2301,7 @@
       "band2High": 94912.35,
       "zScore": -0.66,
       "fedNetLiqT": 3.58,
-      "globalM2Yoy": 6.82,
+      "globalM2Yoy": 3.86,
       "stableSupplyB": 98.48
     },
     {
@@ -2314,7 +2314,7 @@
       "band2High": 94494.2,
       "zScore": -0.71,
       "fedNetLiqT": 3.59,
-      "globalM2Yoy": 6.69,
+      "globalM2Yoy": 3.86,
       "stableSupplyB": 99.0
     },
     {
@@ -2327,7 +2327,7 @@
       "band2High": 94043.26,
       "zScore": -0.76,
       "fedNetLiqT": 3.59,
-      "globalM2Yoy": 6.55,
+      "globalM2Yoy": 3.86,
       "stableSupplyB": 99.52
     },
     {
@@ -2340,7 +2340,7 @@
       "band2High": 93561.62,
       "zScore": -0.81,
       "fedNetLiqT": 3.6,
-      "globalM2Yoy": 6.4,
+      "globalM2Yoy": 3.86,
       "stableSupplyB": 100.04
     },
     {
@@ -2353,7 +2353,7 @@
       "band2High": 93051.44,
       "zScore": -0.86,
       "fedNetLiqT": 3.6,
-      "globalM2Yoy": 6.25,
+      "globalM2Yoy": 4.1,
       "stableSupplyB": 100.56
     },
     {
@@ -2366,7 +2366,7 @@
       "band2High": 92514.96,
       "zScore": -0.91,
       "fedNetLiqT": 3.61,
-      "globalM2Yoy": 6.1,
+      "globalM2Yoy": 4.1,
       "stableSupplyB": 101.08
     },
     {
@@ -2379,7 +2379,7 @@
       "band2High": 91954.49,
       "zScore": -0.97,
       "fedNetLiqT": 3.61,
-      "globalM2Yoy": 5.94,
+      "globalM2Yoy": 4.1,
       "stableSupplyB": 101.6
     },
     {
@@ -2392,7 +2392,7 @@
       "band2High": 91372.38,
       "zScore": -1.02,
       "fedNetLiqT": 3.61,
-      "globalM2Yoy": 5.78,
+      "globalM2Yoy": 4.1,
       "stableSupplyB": 102.12
     },
     {
@@ -2405,7 +2405,7 @@
       "band2High": 90771.07,
       "zScore": -1.08,
       "fedNetLiqT": 3.62,
-      "globalM2Yoy": 5.62,
+      "globalM2Yoy": 4.1,
       "stableSupplyB": 102.64
     },
     {
@@ -2418,7 +2418,7 @@
       "band2High": 90153.0,
       "zScore": -1.13,
       "fedNetLiqT": 3.62,
-      "globalM2Yoy": 5.45,
+      "globalM2Yoy": 3.9,
       "stableSupplyB": 103.16
     },
     {
@@ -2431,7 +2431,7 @@
       "band2High": 89520.69,
       "zScore": -1.19,
       "fedNetLiqT": 3.63,
-      "globalM2Yoy": 5.28,
+      "globalM2Yoy": 3.9,
       "stableSupplyB": 103.68
     },
     {
@@ -2444,7 +2444,7 @@
       "band2High": 88876.68,
       "zScore": -1.25,
       "fedNetLiqT": 3.63,
-      "globalM2Yoy": 5.11,
+      "globalM2Yoy": 3.9,
       "stableSupplyB": 104.2
     },
     {
@@ -2457,7 +2457,7 @@
       "band2High": 88223.54,
       "zScore": -1.3,
       "fedNetLiqT": 3.64,
-      "globalM2Yoy": 4.94,
+      "globalM2Yoy": 3.9,
       "stableSupplyB": 104.72
     },
     {
@@ -2470,7 +2470,7 @@
       "band2High": 87563.87,
       "zScore": -1.36,
       "fedNetLiqT": 3.64,
-      "globalM2Yoy": 4.76,
+      "globalM2Yoy": 3.84,
       "stableSupplyB": 105.24
     },
     {
@@ -2483,7 +2483,7 @@
       "band2High": 86900.28,
       "zScore": -1.42,
       "fedNetLiqT": 3.65,
-      "globalM2Yoy": 4.59,
+      "globalM2Yoy": 3.84,
       "stableSupplyB": 105.76
     },
     {
@@ -2496,7 +2496,7 @@
       "band2High": 86235.39,
       "zScore": -1.47,
       "fedNetLiqT": 3.65,
-      "globalM2Yoy": 4.41,
+      "globalM2Yoy": 3.84,
       "stableSupplyB": 106.28
     },
     {
@@ -2509,7 +2509,7 @@
       "band2High": 85571.83,
       "zScore": -1.53,
       "fedNetLiqT": 3.65,
-      "globalM2Yoy": 4.24,
+      "globalM2Yoy": 3.84,
       "stableSupplyB": 106.8
     },
     {
@@ -2522,7 +2522,7 @@
       "band2High": 84912.2,
       "zScore": -1.59,
       "fedNetLiqT": 3.66,
-      "globalM2Yoy": 4.06,
+      "globalM2Yoy": 3.84,
       "stableSupplyB": 107.32
     },
     {
@@ -2535,7 +2535,7 @@
       "band2High": 84259.14,
       "zScore": -1.64,
       "fedNetLiqT": 3.66,
-      "globalM2Yoy": 3.89,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 107.84
     },
     {
@@ -2548,7 +2548,7 @@
       "band2High": 83615.22,
       "zScore": -1.69,
       "fedNetLiqT": 3.67,
-      "globalM2Yoy": 3.72,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 108.36
     },
     {
@@ -2561,7 +2561,7 @@
       "band2High": 82983.03,
       "zScore": -1.75,
       "fedNetLiqT": 3.67,
-      "globalM2Yoy": 3.55,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 108.88
     },
     {
@@ -2574,7 +2574,7 @@
       "band2High": 82365.1,
       "zScore": -1.8,
       "fedNetLiqT": 3.68,
-      "globalM2Yoy": 3.38,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 109.4
     },
     {
@@ -2587,7 +2587,7 @@
       "band2High": 81763.94,
       "zScore": -1.85,
       "fedNetLiqT": 3.68,
-      "globalM2Yoy": 3.22,
+      "globalM2Yoy": 3.31,
       "stableSupplyB": 109.92
     },
     {
@@ -2600,7 +2600,7 @@
       "band2High": 81182.02,
       "zScore": -1.89,
       "fedNetLiqT": 3.69,
-      "globalM2Yoy": 3.06,
+      "globalM2Yoy": 3.31,
       "stableSupplyB": 110.44
     },
     {
@@ -2613,7 +2613,7 @@
       "band2High": 80621.75,
       "zScore": -1.94,
       "fedNetLiqT": 3.69,
-      "globalM2Yoy": 2.9,
+      "globalM2Yoy": 3.31,
       "stableSupplyB": 110.96
     },
     {
@@ -2626,7 +2626,7 @@
       "band2High": 80085.49,
       "zScore": -1.98,
       "fedNetLiqT": 3.7,
-      "globalM2Yoy": 2.75,
+      "globalM2Yoy": 3.31,
       "stableSupplyB": 111.48
     },
     {
@@ -2639,7 +2639,7 @@
       "band2High": 79575.56,
       "zScore": -2.02,
       "fedNetLiqT": 3.7,
-      "globalM2Yoy": 2.6,
+      "globalM2Yoy": 3.17,
       "stableSupplyB": 112.0
     },
     {
@@ -2652,7 +2652,7 @@
       "band2High": 79094.18,
       "zScore": -2.06,
       "fedNetLiqT": 3.7,
-      "globalM2Yoy": 2.45,
+      "globalM2Yoy": 3.17,
       "stableSupplyB": 112.52
     },
     {
@@ -2665,7 +2665,7 @@
       "band2High": 78643.52,
       "zScore": -2.09,
       "fedNetLiqT": 3.71,
-      "globalM2Yoy": 2.31,
+      "globalM2Yoy": 3.17,
       "stableSupplyB": 113.04
     },
     {
@@ -2678,7 +2678,7 @@
       "band2High": 78225.67,
       "zScore": -2.12,
       "fedNetLiqT": 3.71,
-      "globalM2Yoy": 2.18,
+      "globalM2Yoy": 3.17,
       "stableSupplyB": 113.56
     },
     {
@@ -2691,7 +2691,7 @@
       "band2High": 77842.63,
       "zScore": -2.15,
       "fedNetLiqT": 3.72,
-      "globalM2Yoy": 2.05,
+      "globalM2Yoy": 3.17,
       "stableSupplyB": 114.08
     },
     {
@@ -2704,7 +2704,7 @@
       "band2High": 77496.33,
       "zScore": -2.17,
       "fedNetLiqT": 3.72,
-      "globalM2Yoy": 1.93,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 114.6
     },
     {
@@ -2717,7 +2717,7 @@
       "band2High": 77188.6,
       "zScore": -2.19,
       "fedNetLiqT": 3.73,
-      "globalM2Yoy": 1.81,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 115.12
     },
     {
@@ -2730,7 +2730,7 @@
       "band2High": 76921.16,
       "zScore": -2.2,
       "fedNetLiqT": 3.73,
-      "globalM2Yoy": 1.7,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 115.64
     },
     {
@@ -2743,7 +2743,7 @@
       "band2High": 76695.64,
       "zScore": -2.21,
       "fedNetLiqT": 3.74,
-      "globalM2Yoy": 1.6,
+      "globalM2Yoy": 3.64,
       "stableSupplyB": 116.16
     },
     {
@@ -2756,7 +2756,7 @@
       "band2High": 76513.58,
       "zScore": -2.22,
       "fedNetLiqT": 3.74,
-      "globalM2Yoy": 1.51,
+      "globalM2Yoy": 4.02,
       "stableSupplyB": 116.68
     },
     {
@@ -2769,7 +2769,7 @@
       "band2High": 76376.39,
       "zScore": -2.22,
       "fedNetLiqT": 3.74,
-      "globalM2Yoy": 1.42,
+      "globalM2Yoy": 4.02,
       "stableSupplyB": 117.2
     },
     {
@@ -2782,7 +2782,7 @@
       "band2High": 76285.37,
       "zScore": -2.22,
       "fedNetLiqT": 3.75,
-      "globalM2Yoy": 1.34,
+      "globalM2Yoy": 4.02,
       "stableSupplyB": 117.72
     },
     {
@@ -2795,7 +2795,7 @@
       "band2High": 76241.72,
       "zScore": -2.21,
       "fedNetLiqT": 3.75,
-      "globalM2Yoy": 1.27,
+      "globalM2Yoy": 4.02,
       "stableSupplyB": 118.24
     },
     {
@@ -2808,7 +2808,7 @@
       "band2High": 76246.5,
       "zScore": -2.2,
       "fedNetLiqT": 3.76,
-      "globalM2Yoy": 1.21,
+      "globalM2Yoy": 3.99,
       "stableSupplyB": 118.76
     },
     {
@@ -2821,7 +2821,7 @@
       "band2High": 76300.66,
       "zScore": -2.18,
       "fedNetLiqT": 3.76,
-      "globalM2Yoy": 1.15,
+      "globalM2Yoy": 3.99,
       "stableSupplyB": 119.28
     },
     {
@@ -2834,7 +2834,7 @@
       "band2High": 76405.04,
       "zScore": -2.16,
       "fedNetLiqT": 3.77,
-      "globalM2Yoy": 1.11,
+      "globalM2Yoy": 3.99,
       "stableSupplyB": 119.8
     },
     {
@@ -2847,7 +2847,7 @@
       "band2High": 76560.34,
       "zScore": -2.14,
       "fedNetLiqT": 3.77,
-      "globalM2Yoy": 1.07,
+      "globalM2Yoy": 3.99,
       "stableSupplyB": 120.32
     },
     {
@@ -2860,7 +2860,7 @@
       "band2High": 76767.12,
       "zScore": -2.11,
       "fedNetLiqT": 3.78,
-      "globalM2Yoy": 1.04,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 120.84
     },
     {
@@ -2873,7 +2873,7 @@
       "band2High": 77025.84,
       "zScore": -2.08,
       "fedNetLiqT": 3.78,
-      "globalM2Yoy": 1.02,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 121.36
     },
     {
@@ -2886,7 +2886,7 @@
       "band2High": 77336.8,
       "zScore": -2.05,
       "fedNetLiqT": 3.79,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 121.88
     },
     {
@@ -2899,7 +2899,7 @@
       "band2High": 77700.21,
       "zScore": -2.01,
       "fedNetLiqT": 3.79,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 122.4
     },
     {
@@ -2912,7 +2912,7 @@
       "band2High": 78116.09,
       "zScore": -1.97,
       "fedNetLiqT": 3.79,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 122.92
     },
     {
@@ -2925,7 +2925,7 @@
       "band2High": 78584.4,
       "zScore": -1.93,
       "fedNetLiqT": 3.8,
-      "globalM2Yoy": 1.02,
+      "globalM2Yoy": 3.98,
       "stableSupplyB": 123.44
     },
     {
@@ -2938,7 +2938,7 @@
       "band2High": 79104.9,
       "zScore": -1.89,
       "fedNetLiqT": 3.8,
-      "globalM2Yoy": 1.04,
+      "globalM2Yoy": 3.98,
       "stableSupplyB": 123.96
     },
     {
@@ -2951,7 +2951,7 @@
       "band2High": 79677.27,
       "zScore": -1.84,
       "fedNetLiqT": 3.81,
-      "globalM2Yoy": 1.07,
+      "globalM2Yoy": 3.98,
       "stableSupplyB": 124.48
     },
     {
@@ -2964,7 +2964,7 @@
       "band2High": 80301.03,
       "zScore": -1.79,
       "fedNetLiqT": 3.81,
-      "globalM2Yoy": 1.11,
+      "globalM2Yoy": 3.98,
       "stableSupplyB": 125.0
     },
     {
@@ -2977,7 +2977,7 @@
       "band2High": 80975.6,
       "zScore": -1.74,
       "fedNetLiqT": 3.82,
-      "globalM2Yoy": 1.16,
+      "globalM2Yoy": 4.34,
       "stableSupplyB": 125.52
     },
     {
@@ -2990,7 +2990,7 @@
       "band2High": 81700.24,
       "zScore": -1.68,
       "fedNetLiqT": 3.82,
-      "globalM2Yoy": 1.22,
+      "globalM2Yoy": 4.34,
       "stableSupplyB": 126.04
     },
     {
@@ -3003,7 +3003,7 @@
       "band2High": 82474.1,
       "zScore": -1.63,
       "fedNetLiqT": 3.83,
-      "globalM2Yoy": 1.28,
+      "globalM2Yoy": 4.34,
       "stableSupplyB": 126.56
     },
     {
@@ -3016,7 +3016,7 @@
       "band2High": 83296.22,
       "zScore": -1.58,
       "fedNetLiqT": 3.83,
-      "globalM2Yoy": 1.36,
+      "globalM2Yoy": 4.34,
       "stableSupplyB": 127.08
     },
     {
@@ -3029,7 +3029,7 @@
       "band2High": 84165.5,
       "zScore": -1.52,
       "fedNetLiqT": 3.83,
-      "globalM2Yoy": 1.44,
+      "globalM2Yoy": 4.34,
       "stableSupplyB": 127.6
     },
     {
@@ -3042,7 +3042,7 @@
       "band2High": 85080.74,
       "zScore": -1.46,
       "fedNetLiqT": 3.84,
-      "globalM2Yoy": 1.52,
+      "globalM2Yoy": 4.71,
       "stableSupplyB": 128.12
     },
     {
@@ -3055,7 +3055,7 @@
       "band2High": 86040.6,
       "zScore": -1.41,
       "fedNetLiqT": 3.84,
-      "globalM2Yoy": 1.62,
+      "globalM2Yoy": 4.71,
       "stableSupplyB": 128.64
     },
     {
@@ -3068,7 +3068,7 @@
       "band2High": 87043.65,
       "zScore": -1.35,
       "fedNetLiqT": 3.85,
-      "globalM2Yoy": 1.72,
+      "globalM2Yoy": 4.71,
       "stableSupplyB": 129.16
     },
     {
@@ -3081,7 +3081,7 @@
       "band2High": 88088.34,
       "zScore": -1.29,
       "fedNetLiqT": 3.85,
-      "globalM2Yoy": 1.83,
+      "globalM2Yoy": 4.71,
       "stableSupplyB": 129.68
     },
     {
@@ -3094,7 +3094,7 @@
       "band2High": 89173.04,
       "zScore": -1.24,
       "fedNetLiqT": 3.86,
-      "globalM2Yoy": 1.95,
+      "globalM2Yoy": 5.02,
       "stableSupplyB": 130.2
     },
     {
@@ -3107,7 +3107,7 @@
       "band2High": 90295.97,
       "zScore": -1.18,
       "fedNetLiqT": 3.86,
-      "globalM2Yoy": 2.07,
+      "globalM2Yoy": 5.02,
       "stableSupplyB": 130.72
     },
     {
@@ -3120,7 +3120,7 @@
       "band2High": 91455.31,
       "zScore": -1.12,
       "fedNetLiqT": 3.87,
-      "globalM2Yoy": 2.2,
+      "globalM2Yoy": 5.02,
       "stableSupplyB": 131.24
     },
     {
@@ -3133,7 +3133,7 @@
       "band2High": 92649.12,
       "zScore": -1.07,
       "fedNetLiqT": 3.87,
-      "globalM2Yoy": 2.34,
+      "globalM2Yoy": 5.02,
       "stableSupplyB": 131.76
     },
     {
@@ -3146,7 +3146,7 @@
       "band2High": 93875.37,
       "zScore": -1.01,
       "fedNetLiqT": 3.88,
-      "globalM2Yoy": 2.48,
+      "globalM2Yoy": 5.28,
       "stableSupplyB": 132.28
     },
     {
@@ -3159,7 +3159,7 @@
       "band2High": 95131.97,
       "zScore": -0.96,
       "fedNetLiqT": 3.88,
-      "globalM2Yoy": 2.62,
+      "globalM2Yoy": 5.28,
       "stableSupplyB": 132.8
     },
     {
@@ -3172,7 +3172,7 @@
       "band2High": 96416.73,
       "zScore": -0.91,
       "fedNetLiqT": 3.88,
-      "globalM2Yoy": 2.77,
+      "globalM2Yoy": 5.28,
       "stableSupplyB": 133.32
     },
     {
@@ -3185,7 +3185,7 @@
       "band2High": 97727.4,
       "zScore": -0.85,
       "fedNetLiqT": 3.89,
-      "globalM2Yoy": 2.93,
+      "globalM2Yoy": 5.28,
       "stableSupplyB": 133.84
     },
     {
@@ -3198,7 +3198,7 @@
       "band2High": 99061.68,
       "zScore": -0.8,
       "fedNetLiqT": 3.89,
-      "globalM2Yoy": 3.08,
+      "globalM2Yoy": 5.28,
       "stableSupplyB": 134.36
     },
     {
@@ -3211,7 +3211,7 @@
       "band2High": 100417.19,
       "zScore": -0.75,
       "fedNetLiqT": 3.9,
-      "globalM2Yoy": 3.25,
+      "globalM2Yoy": 5.63,
       "stableSupplyB": 134.88
     },
     {
@@ -3224,7 +3224,7 @@
       "band2High": 101791.49,
       "zScore": -0.7,
       "fedNetLiqT": 3.9,
-      "globalM2Yoy": 3.41,
+      "globalM2Yoy": 5.63,
       "stableSupplyB": 135.4
     },
     {
@@ -3237,7 +3237,7 @@
       "band2High": 103182.13,
       "zScore": -0.65,
       "fedNetLiqT": 3.91,
-      "globalM2Yoy": 3.58,
+      "globalM2Yoy": 5.63,
       "stableSupplyB": 135.92
     },
     {
@@ -3250,7 +3250,7 @@
       "band2High": 104586.59,
       "zScore": -0.61,
       "fedNetLiqT": 3.91,
-      "globalM2Yoy": 3.75,
+      "globalM2Yoy": 5.63,
       "stableSupplyB": 136.44
     },
     {
@@ -3263,7 +3263,7 @@
       "band2High": 106002.31,
       "zScore": -0.56,
       "fedNetLiqT": 3.92,
-      "globalM2Yoy": 3.92,
+      "globalM2Yoy": 6.51,
       "stableSupplyB": 136.96
     },
     {
@@ -3276,7 +3276,7 @@
       "band2High": 107426.73,
       "zScore": -0.52,
       "fedNetLiqT": 3.92,
-      "globalM2Yoy": 4.09,
+      "globalM2Yoy": 6.51,
       "stableSupplyB": 137.48
     },
     {
@@ -3289,7 +3289,7 @@
       "band2High": 108857.24,
       "zScore": -0.48,
       "fedNetLiqT": 3.92,
-      "globalM2Yoy": 4.27,
+      "globalM2Yoy": 6.51,
       "stableSupplyB": 138.0
     },
     {
@@ -3302,7 +3302,7 @@
       "band2High": 110291.23,
       "zScore": -0.44,
       "fedNetLiqT": 3.93,
-      "globalM2Yoy": 4.44,
+      "globalM2Yoy": 6.51,
       "stableSupplyB": 138.52
     },
     {
@@ -3315,7 +3315,7 @@
       "band2High": 111726.08,
       "zScore": -0.4,
       "fedNetLiqT": 3.93,
-      "globalM2Yoy": 4.62,
+      "globalM2Yoy": 7.09,
       "stableSupplyB": 139.04
     },
     {
@@ -3328,7 +3328,7 @@
       "band2High": 113159.17,
       "zScore": -0.36,
       "fedNetLiqT": 3.94,
-      "globalM2Yoy": 4.79,
+      "globalM2Yoy": 7.09,
       "stableSupplyB": 139.56
     },
     {
@@ -3341,7 +3341,7 @@
       "band2High": 114587.87,
       "zScore": -0.33,
       "fedNetLiqT": 3.94,
-      "globalM2Yoy": 4.97,
+      "globalM2Yoy": 7.09,
       "stableSupplyB": 140.08
     },
     {
@@ -3354,7 +3354,7 @@
       "band2High": 116009.58,
       "zScore": -0.29,
       "fedNetLiqT": 3.95,
-      "globalM2Yoy": 5.14,
+      "globalM2Yoy": 7.09,
       "stableSupplyB": 140.6
     },
     {
@@ -3367,7 +3367,7 @@
       "band2High": 117421.71,
       "zScore": -0.26,
       "fedNetLiqT": 3.95,
-      "globalM2Yoy": 5.31,
+      "globalM2Yoy": 7.09,
       "stableSupplyB": 141.12
     },
     {
@@ -3380,7 +3380,7 @@
       "band2High": 118821.68,
       "zScore": -0.23,
       "fedNetLiqT": 3.96,
-      "globalM2Yoy": 5.48,
+      "globalM2Yoy": 6.68,
       "stableSupplyB": 141.64
     },
     {
@@ -3393,7 +3393,7 @@
       "band2High": 120206.96,
       "zScore": -0.2,
       "fedNetLiqT": 3.96,
-      "globalM2Yoy": 5.65,
+      "globalM2Yoy": 6.68,
       "stableSupplyB": 142.16
     },
     {
@@ -3406,7 +3406,7 @@
       "band2High": 121575.06,
       "zScore": -0.18,
       "fedNetLiqT": 3.97,
-      "globalM2Yoy": 5.81,
+      "globalM2Yoy": 6.68,
       "stableSupplyB": 142.68
     },
     {
@@ -3419,7 +3419,7 @@
       "band2High": 122923.51,
       "zScore": -0.15,
       "fedNetLiqT": 3.97,
-      "globalM2Yoy": 5.97,
+      "globalM2Yoy": 6.68,
       "stableSupplyB": 143.2
     },
     {
@@ -3432,7 +3432,7 @@
       "band2High": 124249.9,
       "zScore": -0.13,
       "fedNetLiqT": 3.97,
-      "globalM2Yoy": 6.13,
+      "globalM2Yoy": 6.69,
       "stableSupplyB": 143.72
     },
     {
@@ -3445,7 +3445,7 @@
       "band2High": 125551.89,
       "zScore": -0.11,
       "fedNetLiqT": 3.98,
-      "globalM2Yoy": 6.28,
+      "globalM2Yoy": 6.69,
       "stableSupplyB": 144.24
     },
     {
@@ -3458,7 +3458,7 @@
       "band2High": 126827.18,
       "zScore": -0.09,
       "fedNetLiqT": 3.98,
-      "globalM2Yoy": 6.43,
+      "globalM2Yoy": 6.69,
       "stableSupplyB": 144.76
     },
     {
@@ -3471,7 +3471,7 @@
       "band2High": 128073.54,
       "zScore": -0.07,
       "fedNetLiqT": 3.99,
-      "globalM2Yoy": 6.57,
+      "globalM2Yoy": 6.69,
       "stableSupplyB": 145.28
     },
     {
@@ -3484,7 +3484,7 @@
       "band2High": 129288.83,
       "zScore": -0.06,
       "fedNetLiqT": 3.99,
-      "globalM2Yoy": 6.71,
+      "globalM2Yoy": 6.69,
       "stableSupplyB": 145.8
     },
     {
@@ -3497,7 +3497,7 @@
       "band2High": 130470.97,
       "zScore": -0.04,
       "fedNetLiqT": 4.0,
-      "globalM2Yoy": 6.84,
+      "globalM2Yoy": 6.8,
       "stableSupplyB": 146.32
     },
     {
@@ -3510,7 +3510,7 @@
       "band2High": 131617.95,
       "zScore": -0.03,
       "fedNetLiqT": 4.0,
-      "globalM2Yoy": 6.97,
+      "globalM2Yoy": 6.8,
       "stableSupplyB": 146.84
     },
     {
@@ -3523,7 +3523,7 @@
       "band2High": 132727.89,
       "zScore": -0.02,
       "fedNetLiqT": 4.01,
-      "globalM2Yoy": 7.09,
+      "globalM2Yoy": 6.8,
       "stableSupplyB": 147.36
     },
     {
@@ -3536,7 +3536,7 @@
       "band2High": 133798.97,
       "zScore": -0.01,
       "fedNetLiqT": 4.01,
-      "globalM2Yoy": 7.21,
+      "globalM2Yoy": 6.8,
       "stableSupplyB": 147.88
     },
     {
@@ -3549,7 +3549,7 @@
       "band2High": 134829.47,
       "zScore": -0.01,
       "fedNetLiqT": 4.01,
-      "globalM2Yoy": 7.31,
+      "globalM2Yoy": 10.14,
       "stableSupplyB": 148.4
     },
     {
@@ -3562,7 +3562,7 @@
       "band2High": 135817.78,
       "zScore": -0.0,
       "fedNetLiqT": 4.02,
-      "globalM2Yoy": 7.41,
+      "globalM2Yoy": 10.14,
       "stableSupplyB": 148.92
     },
     {
@@ -3575,7 +3575,7 @@
       "band2High": 136762.4,
       "zScore": -0.0,
       "fedNetLiqT": 4.02,
-      "globalM2Yoy": 7.51,
+      "globalM2Yoy": 10.14,
       "stableSupplyB": 149.44
     },
     {
@@ -3588,7 +3588,7 @@
       "band2High": 137661.92,
       "zScore": -0.0,
       "fedNetLiqT": 4.03,
-      "globalM2Yoy": 7.59,
+      "globalM2Yoy": 10.14,
       "stableSupplyB": 149.96
     },
     {
@@ -3601,7 +3601,7 @@
       "band2High": 138515.05,
       "zScore": -0.0,
       "fedNetLiqT": 4.03,
-      "globalM2Yoy": 7.67,
+      "globalM2Yoy": 16.93,
       "stableSupplyB": 150.48
     },
     {
@@ -3614,7 +3614,7 @@
       "band2High": 139320.63,
       "zScore": -0.0,
       "fedNetLiqT": 4.04,
-      "globalM2Yoy": 7.74,
+      "globalM2Yoy": 16.93,
       "stableSupplyB": 151.0
     },
     {
@@ -3627,7 +3627,7 @@
       "band2High": 140077.61,
       "zScore": -0.01,
       "fedNetLiqT": 4.04,
-      "globalM2Yoy": 7.8,
+      "globalM2Yoy": 16.93,
       "stableSupplyB": 151.52
     },
     {
@@ -3640,7 +3640,7 @@
       "band2High": 140785.05,
       "zScore": -0.02,
       "fedNetLiqT": 4.05,
-      "globalM2Yoy": 7.86,
+      "globalM2Yoy": 16.93,
       "stableSupplyB": 152.04
     },
     {
@@ -3653,7 +3653,7 @@
       "band2High": 141442.16,
       "zScore": -0.03,
       "fedNetLiqT": 4.05,
-      "globalM2Yoy": 7.9,
+      "globalM2Yoy": 21.96,
       "stableSupplyB": 152.56
     },
     {
@@ -3666,7 +3666,7 @@
       "band2High": 142048.24,
       "zScore": -0.04,
       "fedNetLiqT": 4.06,
-      "globalM2Yoy": 7.94,
+      "globalM2Yoy": 21.96,
       "stableSupplyB": 153.08
     },
     {
@@ -3679,7 +3679,7 @@
       "band2High": 142602.75,
       "zScore": -0.05,
       "fedNetLiqT": 4.06,
-      "globalM2Yoy": 7.97,
+      "globalM2Yoy": 21.96,
       "stableSupplyB": 153.6
     },
     {
@@ -3692,7 +3692,7 @@
       "band2High": 143105.27,
       "zScore": -0.06,
       "fedNetLiqT": 4.06,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 21.96,
       "stableSupplyB": 154.12
     },
     {
@@ -3705,7 +3705,7 @@
       "band2High": 143555.5,
       "zScore": -0.08,
       "fedNetLiqT": 4.07,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 21.96,
       "stableSupplyB": 154.64
     },
     {
@@ -3718,7 +3718,7 @@
       "band2High": 143953.27,
       "zScore": -0.1,
       "fedNetLiqT": 4.07,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 22.84,
       "stableSupplyB": 155.16
     },
     {
@@ -3731,7 +3731,7 @@
       "band2High": 144298.56,
       "zScore": -0.12,
       "fedNetLiqT": 4.08,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 22.84,
       "stableSupplyB": 155.68
     },
     {
@@ -3744,7 +3744,7 @@
       "band2High": 144591.46,
       "zScore": -0.14,
       "fedNetLiqT": 4.08,
-      "globalM2Yoy": 7.98,
+      "globalM2Yoy": 22.84,
       "stableSupplyB": 156.2
     },
     {
@@ -3757,7 +3757,7 @@
       "band2High": 144832.21,
       "zScore": -0.17,
       "fedNetLiqT": 4.09,
-      "globalM2Yoy": 7.95,
+      "globalM2Yoy": 22.84,
       "stableSupplyB": 156.72
     },
     {
@@ -3770,7 +3770,7 @@
       "band2High": 145021.16,
       "zScore": -0.19,
       "fedNetLiqT": 4.09,
-      "globalM2Yoy": 7.92,
+      "globalM2Yoy": 23.17,
       "stableSupplyB": 157.24
     },
     {
@@ -3783,7 +3783,7 @@
       "band2High": 145158.81,
       "zScore": -0.22,
       "fedNetLiqT": 4.1,
-      "globalM2Yoy": 7.88,
+      "globalM2Yoy": 23.17,
       "stableSupplyB": 157.76
     },
     {
@@ -3796,7 +3796,7 @@
       "band2High": 145245.78,
       "zScore": -0.25,
       "fedNetLiqT": 4.1,
-      "globalM2Yoy": 7.83,
+      "globalM2Yoy": 23.17,
       "stableSupplyB": 158.28
     },
     {
@@ -3809,7 +3809,7 @@
       "band2High": 145282.8,
       "zScore": -0.28,
       "fedNetLiqT": 4.1,
-      "globalM2Yoy": 7.77,
+      "globalM2Yoy": 23.17,
       "stableSupplyB": 158.8
     },
     {
@@ -3822,7 +3822,7 @@
       "band2High": 145270.75,
       "zScore": -0.31,
       "fedNetLiqT": 4.11,
-      "globalM2Yoy": 7.71,
+      "globalM2Yoy": 23.17,
       "stableSupplyB": 159.32
     },
     {
@@ -3835,7 +3835,7 @@
       "band2High": 145210.61,
       "zScore": -0.35,
       "fedNetLiqT": 4.11,
-      "globalM2Yoy": 7.63,
+      "globalM2Yoy": 22.95,
       "stableSupplyB": 159.84
     },
     {
@@ -3848,7 +3848,7 @@
       "band2High": 145103.52,
       "zScore": -0.38,
       "fedNetLiqT": 4.12,
-      "globalM2Yoy": 7.55,
+      "globalM2Yoy": 22.95,
       "stableSupplyB": 160.36
     },
     {
@@ -3861,7 +3861,7 @@
       "band2High": 144950.68,
       "zScore": -0.42,
       "fedNetLiqT": 4.12,
-      "globalM2Yoy": 7.46,
+      "globalM2Yoy": 22.95,
       "stableSupplyB": 160.88
     },
     {
@@ -3874,7 +3874,7 @@
       "band2High": 144753.46,
       "zScore": -0.46,
       "fedNetLiqT": 4.13,
-      "globalM2Yoy": 7.36,
+      "globalM2Yoy": 22.95,
       "stableSupplyB": 161.4
     },
     {
@@ -3887,7 +3887,7 @@
       "band2High": 144513.29,
       "zScore": -0.5,
       "fedNetLiqT": 4.13,
-      "globalM2Yoy": 7.26,
+      "globalM2Yoy": 23.63,
       "stableSupplyB": 161.92
     },
     {
@@ -3900,7 +3900,7 @@
       "band2High": 144231.76,
       "zScore": -0.54,
       "fedNetLiqT": 4.14,
-      "globalM2Yoy": 7.15,
+      "globalM2Yoy": 23.63,
       "stableSupplyB": 162.44
     },
     {
@@ -3913,7 +3913,7 @@
       "band2High": 143910.51,
       "zScore": -0.59,
       "fedNetLiqT": 4.14,
-      "globalM2Yoy": 7.03,
+      "globalM2Yoy": 23.63,
       "stableSupplyB": 162.96
     },
     {
@@ -3926,7 +3926,7 @@
       "band2High": 143551.32,
       "zScore": -0.63,
       "fedNetLiqT": 4.15,
-      "globalM2Yoy": 6.91,
+      "globalM2Yoy": 23.63,
       "stableSupplyB": 163.48
     },
     {
@@ -3939,7 +3939,7 @@
       "band2High": 143156.04,
       "zScore": -0.68,
       "fedNetLiqT": 4.15,
-      "globalM2Yoy": 6.78,
+      "globalM2Yoy": 23.53,
       "stableSupplyB": 164.0
     },
     {
@@ -3952,7 +3952,7 @@
       "band2High": 142726.64,
       "zScore": -0.73,
       "fedNetLiqT": 4.15,
-      "globalM2Yoy": 6.64,
+      "globalM2Yoy": 23.53,
       "stableSupplyB": 164.52
     },
     {
@@ -3965,7 +3965,7 @@
       "band2High": 142265.13,
       "zScore": -0.78,
       "fedNetLiqT": 4.16,
-      "globalM2Yoy": 6.5,
+      "globalM2Yoy": 23.53,
       "stableSupplyB": 165.04
     },
     {
@@ -3978,7 +3978,7 @@
       "band2High": 141773.65,
       "zScore": -0.83,
       "fedNetLiqT": 4.16,
-      "globalM2Yoy": 6.35,
+      "globalM2Yoy": 23.53,
       "stableSupplyB": 165.56
     },
     {
@@ -3991,7 +3991,7 @@
       "band2High": 141254.37,
       "zScore": -0.88,
       "fedNetLiqT": 4.17,
-      "globalM2Yoy": 6.2,
+      "globalM2Yoy": 23.53,
       "stableSupplyB": 166.08
     },
     {
@@ -4004,7 +4004,7 @@
       "band2High": 140709.57,
       "zScore": -0.93,
       "fedNetLiqT": 4.17,
-      "globalM2Yoy": 6.05,
+      "globalM2Yoy": 24.2,
       "stableSupplyB": 166.6
     },
     {
@@ -4017,7 +4017,7 @@
       "band2High": 140141.55,
       "zScore": -0.99,
       "fedNetLiqT": 4.18,
-      "globalM2Yoy": 5.89,
+      "globalM2Yoy": 24.2,
       "stableSupplyB": 167.12
     },
     {
@@ -4030,7 +4030,7 @@
       "band2High": 139552.71,
       "zScore": -1.04,
       "fedNetLiqT": 4.18,
-      "globalM2Yoy": 5.73,
+      "globalM2Yoy": 24.2,
       "stableSupplyB": 167.64
     },
     {
@@ -4043,7 +4043,7 @@
       "band2High": 138945.49,
       "zScore": -1.1,
       "fedNetLiqT": 4.19,
-      "globalM2Yoy": 5.56,
+      "globalM2Yoy": 24.2,
       "stableSupplyB": 168.16
     },
     {
@@ -4056,7 +4056,7 @@
       "band2High": 138322.35,
       "zScore": -1.15,
       "fedNetLiqT": 4.19,
-      "globalM2Yoy": 5.39,
+      "globalM2Yoy": 24.55,
       "stableSupplyB": 168.68
     },
     {
@@ -4069,7 +4069,7 @@
       "band2High": 137685.82,
       "zScore": -1.21,
       "fedNetLiqT": 4.19,
-      "globalM2Yoy": 5.22,
+      "globalM2Yoy": 24.55,
       "stableSupplyB": 169.2
     },
     {
@@ -4082,7 +4082,7 @@
       "band2High": 137038.45,
       "zScore": -1.27,
       "fedNetLiqT": 4.2,
-      "globalM2Yoy": 5.05,
+      "globalM2Yoy": 24.55,
       "stableSupplyB": 169.72
     },
     {
@@ -4095,7 +4095,7 @@
       "band2High": 136382.83,
       "zScore": -1.32,
       "fedNetLiqT": 4.2,
-      "globalM2Yoy": 4.88,
+      "globalM2Yoy": 24.55,
       "stableSupplyB": 170.24
     },
     {
@@ -4108,7 +4108,7 @@
       "band2High": 135721.55,
       "zScore": -1.38,
       "fedNetLiqT": 4.21,
-      "globalM2Yoy": 4.7,
+      "globalM2Yoy": 25.62,
       "stableSupplyB": 170.76
     },
     {
@@ -4121,7 +4121,7 @@
       "band2High": 135057.23,
       "zScore": -1.44,
       "fedNetLiqT": 4.21,
-      "globalM2Yoy": 4.53,
+      "globalM2Yoy": 25.62,
       "stableSupplyB": 171.28
     },
     {
@@ -4134,7 +4134,7 @@
       "band2High": 134392.49,
       "zScore": -1.49,
       "fedNetLiqT": 4.22,
-      "globalM2Yoy": 4.35,
+      "globalM2Yoy": 25.62,
       "stableSupplyB": 171.8
     },
     {
@@ -4147,7 +4147,7 @@
       "band2High": 133729.96,
       "zScore": -1.55,
       "fedNetLiqT": 4.22,
-      "globalM2Yoy": 4.18,
+      "globalM2Yoy": 25.62,
       "stableSupplyB": 172.32
     },
     {
@@ -4160,7 +4160,7 @@
       "band2High": 133072.25,
       "zScore": -1.6,
       "fedNetLiqT": 4.23,
-      "globalM2Yoy": 4.0,
+      "globalM2Yoy": 25.62,
       "stableSupplyB": 172.84
     },
     {
@@ -4173,7 +4173,7 @@
       "band2High": 132421.97,
       "zScore": -1.66,
       "fedNetLiqT": 4.23,
-      "globalM2Yoy": 3.83,
+      "globalM2Yoy": 26.78,
       "stableSupplyB": 173.36
     },
     {
@@ -4186,7 +4186,7 @@
       "band2High": 131781.71,
       "zScore": -1.71,
       "fedNetLiqT": 4.24,
-      "globalM2Yoy": 3.66,
+      "globalM2Yoy": 26.78,
       "stableSupplyB": 173.88
     },
     {
@@ -4199,7 +4199,7 @@
       "band2High": 131154.03,
       "zScore": -1.76,
       "fedNetLiqT": 4.24,
-      "globalM2Yoy": 3.49,
+      "globalM2Yoy": 26.78,
       "stableSupplyB": 174.4
     },
     {
@@ -4212,7 +4212,7 @@
       "band2High": 130541.46,
       "zScore": -1.81,
       "fedNetLiqT": 4.24,
-      "globalM2Yoy": 3.33,
+      "globalM2Yoy": 26.78,
       "stableSupplyB": 174.92
     },
     {
@@ -4225,7 +4225,7 @@
       "band2High": 129946.5,
       "zScore": -1.86,
       "fedNetLiqT": 4.25,
-      "globalM2Yoy": 3.16,
+      "globalM2Yoy": 23.95,
       "stableSupplyB": 175.44
     },
     {
@@ -4238,7 +4238,7 @@
       "band2High": 129371.59,
       "zScore": -1.91,
       "fedNetLiqT": 4.25,
-      "globalM2Yoy": 3.0,
+      "globalM2Yoy": 23.95,
       "stableSupplyB": 175.96
     },
     {
@@ -4251,7 +4251,7 @@
       "band2High": 128819.14,
       "zScore": -1.95,
       "fedNetLiqT": 4.26,
-      "globalM2Yoy": 2.85,
+      "globalM2Yoy": 23.95,
       "stableSupplyB": 176.48
     },
     {
@@ -4264,7 +4264,7 @@
       "band2High": 128291.48,
       "zScore": -1.99,
       "fedNetLiqT": 4.26,
-      "globalM2Yoy": 2.69,
+      "globalM2Yoy": 23.95,
       "stableSupplyB": 177.0
     },
     {
@@ -4277,7 +4277,7 @@
       "band2High": 127790.9,
       "zScore": -2.03,
       "fedNetLiqT": 4.27,
-      "globalM2Yoy": 2.55,
+      "globalM2Yoy": 18.22,
       "stableSupplyB": 177.52
     },
     {
@@ -4290,7 +4290,7 @@
       "band2High": 127319.62,
       "zScore": -2.07,
       "fedNetLiqT": 4.27,
-      "globalM2Yoy": 2.4,
+      "globalM2Yoy": 18.22,
       "stableSupplyB": 178.04
     },
     {
@@ -4303,7 +4303,7 @@
       "band2High": 126879.76,
       "zScore": -2.1,
       "fedNetLiqT": 4.28,
-      "globalM2Yoy": 2.27,
+      "globalM2Yoy": 18.22,
       "stableSupplyB": 178.56
     },
     {
@@ -4316,7 +4316,7 @@
       "band2High": 126473.4,
       "zScore": -2.13,
       "fedNetLiqT": 4.28,
-      "globalM2Yoy": 2.13,
+      "globalM2Yoy": 18.22,
       "stableSupplyB": 179.08
     },
     {
@@ -4329,7 +4329,7 @@
       "band2High": 126102.51,
       "zScore": -2.15,
       "fedNetLiqT": 4.29,
-      "globalM2Yoy": 2.01,
+      "globalM2Yoy": 18.22,
       "stableSupplyB": 179.6
     },
     {
@@ -4342,7 +4342,7 @@
       "band2High": 125768.98,
       "zScore": -2.17,
       "fedNetLiqT": 4.29,
-      "globalM2Yoy": 1.89,
+      "globalM2Yoy": 14.09,
       "stableSupplyB": 180.12
     },
     {
@@ -4355,7 +4355,7 @@
       "band2High": 125474.61,
       "zScore": -2.19,
       "fedNetLiqT": 4.29,
-      "globalM2Yoy": 1.78,
+      "globalM2Yoy": 14.09,
       "stableSupplyB": 180.64
     },
     {
@@ -4368,7 +4368,7 @@
       "band2High": 125221.09,
       "zScore": -2.2,
       "fedNetLiqT": 4.3,
-      "globalM2Yoy": 1.67,
+      "globalM2Yoy": 14.09,
       "stableSupplyB": 181.16
     },
     {
@@ -4381,7 +4381,7 @@
       "band2High": 125010.02,
       "zScore": -2.21,
       "fedNetLiqT": 4.3,
-      "globalM2Yoy": 1.57,
+      "globalM2Yoy": 14.09,
       "stableSupplyB": 181.68
     },
     {
@@ -4394,7 +4394,7 @@
       "band2High": 124842.9,
       "zScore": -2.22,
       "fedNetLiqT": 4.31,
-      "globalM2Yoy": 1.48,
+      "globalM2Yoy": 12.61,
       "stableSupplyB": 182.2
     },
     {
@@ -4407,7 +4407,7 @@
       "band2High": 124721.09,
       "zScore": -2.22,
       "fedNetLiqT": 4.31,
-      "globalM2Yoy": 1.39,
+      "globalM2Yoy": 12.61,
       "stableSupplyB": 182.72
     },
     {
@@ -4420,7 +4420,7 @@
       "band2High": 124645.88,
       "zScore": -2.21,
       "fedNetLiqT": 4.32,
-      "globalM2Yoy": 1.32,
+      "globalM2Yoy": 12.61,
       "stableSupplyB": 183.24
     },
     {
@@ -4433,7 +4433,7 @@
       "band2High": 124618.4,
       "zScore": -2.21,
       "fedNetLiqT": 4.32,
-      "globalM2Yoy": 1.25,
+      "globalM2Yoy": 12.61,
       "stableSupplyB": 183.76
     },
     {
@@ -4446,7 +4446,7 @@
       "band2High": 124639.69,
       "zScore": -2.19,
       "fedNetLiqT": 4.33,
-      "globalM2Yoy": 1.19,
+      "globalM2Yoy": 12.53,
       "stableSupplyB": 184.28
     },
     {
@@ -4459,7 +4459,7 @@
       "band2High": 124710.65,
       "zScore": -2.18,
       "fedNetLiqT": 4.33,
-      "globalM2Yoy": 1.14,
+      "globalM2Yoy": 12.53,
       "stableSupplyB": 184.8
     },
     {
@@ -4472,7 +4472,7 @@
       "band2High": 124832.08,
       "zScore": -2.16,
       "fedNetLiqT": 4.33,
-      "globalM2Yoy": 1.09,
+      "globalM2Yoy": 12.53,
       "stableSupplyB": 185.32
     },
     {
@@ -4485,7 +4485,7 @@
       "band2High": 125004.63,
       "zScore": -2.13,
       "fedNetLiqT": 4.34,
-      "globalM2Yoy": 1.06,
+      "globalM2Yoy": 12.53,
       "stableSupplyB": 185.84
     },
     {
@@ -4498,7 +4498,7 @@
       "band2High": 125228.84,
       "zScore": -2.1,
       "fedNetLiqT": 4.34,
-      "globalM2Yoy": 1.03,
+      "globalM2Yoy": 12.53,
       "stableSupplyB": 186.36
     },
     {
@@ -4511,7 +4511,7 @@
       "band2High": 125505.1,
       "zScore": -2.07,
       "fedNetLiqT": 4.35,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": 13.2,
       "stableSupplyB": 186.88
     },
     {
@@ -4524,7 +4524,7 @@
       "band2High": 125833.68,
       "zScore": -2.04,
       "fedNetLiqT": 4.35,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": 13.2,
       "stableSupplyB": 187.4
     },
     {
@@ -4537,7 +4537,7 @@
       "band2High": 126214.74,
       "zScore": -2.0,
       "fedNetLiqT": 4.36,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": 13.2,
       "stableSupplyB": 187.92
     },
     {
@@ -4550,7 +4550,7 @@
       "band2High": 126648.27,
       "zScore": -1.96,
       "fedNetLiqT": 4.36,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": 13.2,
       "stableSupplyB": 188.44
     },
     {
@@ -4563,7 +4563,7 @@
       "band2High": 127134.15,
       "zScore": -1.92,
       "fedNetLiqT": 4.37,
-      "globalM2Yoy": 1.03,
+      "globalM2Yoy": 12.79,
       "stableSupplyB": 188.96
     },
     {
@@ -4576,7 +4576,7 @@
       "band2High": 127672.14,
       "zScore": -1.87,
       "fedNetLiqT": 4.37,
-      "globalM2Yoy": 1.05,
+      "globalM2Yoy": 12.79,
       "stableSupplyB": 189.48
     },
     {
@@ -4589,7 +4589,7 @@
       "band2High": 128261.85,
       "zScore": -1.82,
       "fedNetLiqT": 4.38,
-      "globalM2Yoy": 1.09,
+      "globalM2Yoy": 12.79,
       "stableSupplyB": 190.0
     },
     {
@@ -4602,7 +4602,7 @@
       "band2High": 128902.77,
       "zScore": -1.77,
       "fedNetLiqT": 4.38,
-      "globalM2Yoy": 1.13,
+      "globalM2Yoy": 12.79,
       "stableSupplyB": 190.52
     },
     {
@@ -4615,7 +4615,7 @@
       "band2High": 129594.27,
       "zScore": -1.72,
       "fedNetLiqT": 4.38,
-      "globalM2Yoy": 1.18,
+      "globalM2Yoy": 12.81,
       "stableSupplyB": 191.04
     },
     {
@@ -4628,7 +4628,7 @@
       "band2High": 130335.56,
       "zScore": -1.67,
       "fedNetLiqT": 4.39,
-      "globalM2Yoy": 1.24,
+      "globalM2Yoy": 12.81,
       "stableSupplyB": 191.56
     },
     {
@@ -4641,7 +4641,7 @@
       "band2High": 131125.77,
       "zScore": -1.61,
       "fedNetLiqT": 4.39,
-      "globalM2Yoy": 1.31,
+      "globalM2Yoy": 12.81,
       "stableSupplyB": 192.08
     },
     {
@@ -4654,7 +4654,7 @@
       "band2High": 131963.88,
       "zScore": -1.56,
       "fedNetLiqT": 4.4,
-      "globalM2Yoy": 1.38,
+      "globalM2Yoy": 12.81,
       "stableSupplyB": 192.6
     },
     {
@@ -4667,7 +4667,7 @@
       "band2High": 132848.75,
       "zScore": -1.5,
       "fedNetLiqT": 4.4,
-      "globalM2Yoy": 1.46,
+      "globalM2Yoy": 12.81,
       "stableSupplyB": 193.12
     },
     {
@@ -4680,7 +4680,7 @@
       "band2High": 133779.15,
       "zScore": -1.45,
       "fedNetLiqT": 4.41,
-      "globalM2Yoy": 1.56,
+      "globalM2Yoy": 12.31,
       "stableSupplyB": 193.64
     },
     {
@@ -4693,7 +4693,7 @@
       "band2High": 134753.7,
       "zScore": -1.39,
       "fedNetLiqT": 4.41,
-      "globalM2Yoy": 1.65,
+      "globalM2Yoy": 12.31,
       "stableSupplyB": 194.16
     },
     {
@@ -4706,7 +4706,7 @@
       "band2High": 135770.93,
       "zScore": -1.33,
       "fedNetLiqT": 4.42,
-      "globalM2Yoy": 1.76,
+      "globalM2Yoy": 12.31,
       "stableSupplyB": 194.68
     },
     {
@@ -4719,7 +4719,7 @@
       "band2High": 136829.27,
       "zScore": -1.27,
       "fedNetLiqT": 4.42,
-      "globalM2Yoy": 1.87,
+      "globalM2Yoy": 12.31,
       "stableSupplyB": 195.2
     },
     {
@@ -4732,7 +4732,7 @@
       "band2High": 137927.02,
       "zScore": -1.22,
       "fedNetLiqT": 4.42,
-      "globalM2Yoy": 1.99,
+      "globalM2Yoy": 12.47,
       "stableSupplyB": 195.72
     },
     {
@@ -4745,7 +4745,7 @@
       "band2High": 139062.41,
       "zScore": -1.16,
       "fedNetLiqT": 4.43,
-      "globalM2Yoy": 2.12,
+      "globalM2Yoy": 12.47,
       "stableSupplyB": 196.24
     },
     {
@@ -4758,7 +4758,7 @@
       "band2High": 140233.56,
       "zScore": -1.1,
       "fedNetLiqT": 4.43,
-      "globalM2Yoy": 2.25,
+      "globalM2Yoy": 12.47,
       "stableSupplyB": 196.76
     },
     {
@@ -4771,7 +4771,7 @@
       "band2High": 141438.51,
       "zScore": -1.05,
       "fedNetLiqT": 4.44,
-      "globalM2Yoy": 2.38,
+      "globalM2Yoy": 12.47,
       "stableSupplyB": 197.28
     },
     {
@@ -4784,7 +4784,7 @@
       "band2High": 142675.21,
       "zScore": -0.99,
       "fedNetLiqT": 4.44,
-      "globalM2Yoy": 2.53,
+      "globalM2Yoy": 12.47,
       "stableSupplyB": 197.8
     },
     {
@@ -4797,7 +4797,7 @@
       "band2High": 143941.52,
       "zScore": -0.94,
       "fedNetLiqT": 4.45,
-      "globalM2Yoy": 2.67,
+      "globalM2Yoy": 11.72,
       "stableSupplyB": 198.32
     },
     {
@@ -4810,7 +4810,7 @@
       "band2High": 145235.25,
       "zScore": -0.89,
       "fedNetLiqT": 4.45,
-      "globalM2Yoy": 2.82,
+      "globalM2Yoy": 11.72,
       "stableSupplyB": 198.84
     },
     {
@@ -4823,7 +4823,7 @@
       "band2High": 146554.12,
       "zScore": -0.84,
       "fedNetLiqT": 4.46,
-      "globalM2Yoy": 2.98,
+      "globalM2Yoy": 11.72,
       "stableSupplyB": 199.36
     },
     {
@@ -4836,7 +4836,7 @@
       "band2High": 147895.81,
       "zScore": -0.78,
       "fedNetLiqT": 4.46,
-      "globalM2Yoy": 3.14,
+      "globalM2Yoy": 11.72,
       "stableSupplyB": 199.88
     },
     {
@@ -4849,7 +4849,7 @@
       "band2High": 149257.91,
       "zScore": -0.73,
       "fedNetLiqT": 4.46,
-      "globalM2Yoy": 3.3,
+      "globalM2Yoy": 10.6,
       "stableSupplyB": 200.4
     },
     {
@@ -4862,7 +4862,7 @@
       "band2High": 150637.99,
       "zScore": -0.69,
       "fedNetLiqT": 4.47,
-      "globalM2Yoy": 3.47,
+      "globalM2Yoy": 10.6,
       "stableSupplyB": 200.92
     },
     {
@@ -4875,7 +4875,7 @@
       "band2High": 152033.55,
       "zScore": -0.64,
       "fedNetLiqT": 4.47,
-      "globalM2Yoy": 3.64,
+      "globalM2Yoy": 10.6,
       "stableSupplyB": 201.44
     },
     {
@@ -4888,7 +4888,7 @@
       "band2High": 153442.08,
       "zScore": -0.59,
       "fedNetLiqT": 4.48,
-      "globalM2Yoy": 3.81,
+      "globalM2Yoy": 10.6,
       "stableSupplyB": 201.96
     },
     {
@@ -4901,7 +4901,7 @@
       "band2High": 154861.02,
       "zScore": -0.55,
       "fedNetLiqT": 4.48,
-      "globalM2Yoy": 3.98,
+      "globalM2Yoy": 9.63,
       "stableSupplyB": 202.48
     },
     {
@@ -4914,7 +4914,7 @@
       "band2High": 156287.78,
       "zScore": -0.51,
       "fedNetLiqT": 4.49,
-      "globalM2Yoy": 4.15,
+      "globalM2Yoy": 9.63,
       "stableSupplyB": 203.0
     },
     {
@@ -4927,7 +4927,7 @@
       "band2High": 157719.75,
       "zScore": -0.47,
       "fedNetLiqT": 4.49,
-      "globalM2Yoy": 4.33,
+      "globalM2Yoy": 9.63,
       "stableSupplyB": 203.52
     },
     {
@@ -4940,7 +4940,7 @@
       "band2High": 159154.33,
       "zScore": -0.43,
       "fedNetLiqT": 4.5,
-      "globalM2Yoy": 4.5,
+      "globalM2Yoy": 9.63,
       "stableSupplyB": 204.04
     },
     {
@@ -4953,7 +4953,7 @@
       "band2High": 160588.88,
       "zScore": -0.39,
       "fedNetLiqT": 4.5,
-      "globalM2Yoy": 4.68,
+      "globalM2Yoy": 7.9,
       "stableSupplyB": 204.56
     },
     {
@@ -4966,7 +4966,7 @@
       "band2High": 162020.78,
       "zScore": -0.35,
       "fedNetLiqT": 4.51,
-      "globalM2Yoy": 4.85,
+      "globalM2Yoy": 7.9,
       "stableSupplyB": 205.08
     },
     {
@@ -4979,7 +4979,7 @@
       "band2High": 163447.42,
       "zScore": -0.32,
       "fedNetLiqT": 4.51,
-      "globalM2Yoy": 5.02,
+      "globalM2Yoy": 7.9,
       "stableSupplyB": 205.6
     },
     {
@@ -4992,7 +4992,7 @@
       "band2High": 164866.2,
       "zScore": -0.28,
       "fedNetLiqT": 4.51,
-      "globalM2Yoy": 5.2,
+      "globalM2Yoy": 7.9,
       "stableSupplyB": 206.12
     },
     {
@@ -5005,7 +5005,7 @@
       "band2High": 166274.52,
       "zScore": -0.25,
       "fedNetLiqT": 4.52,
-      "globalM2Yoy": 5.37,
+      "globalM2Yoy": 7.9,
       "stableSupplyB": 206.64
     },
     {
@@ -5018,7 +5018,7 @@
       "band2High": 167669.83,
       "zScore": -0.22,
       "fedNetLiqT": 4.52,
-      "globalM2Yoy": 5.54,
+      "globalM2Yoy": 6.16,
       "stableSupplyB": 207.16
     },
     {
@@ -5031,7 +5031,7 @@
       "band2High": 169049.61,
       "zScore": -0.19,
       "fedNetLiqT": 4.53,
-      "globalM2Yoy": 5.7,
+      "globalM2Yoy": 6.16,
       "stableSupplyB": 207.68
     },
     {
@@ -5044,7 +5044,7 @@
       "band2High": 170411.37,
       "zScore": -0.17,
       "fedNetLiqT": 4.53,
-      "globalM2Yoy": 5.86,
+      "globalM2Yoy": 6.16,
       "stableSupplyB": 208.2
     },
     {
@@ -5057,7 +5057,7 @@
       "band2High": 171752.67,
       "zScore": -0.14,
       "fedNetLiqT": 4.54,
-      "globalM2Yoy": 6.02,
+      "globalM2Yoy": 6.16,
       "stableSupplyB": 208.72
     },
     {
@@ -5070,7 +5070,7 @@
       "band2High": 173071.12,
       "zScore": -0.12,
       "fedNetLiqT": 4.54,
-      "globalM2Yoy": 6.18,
+      "globalM2Yoy": 5.73,
       "stableSupplyB": 209.24
     },
     {
@@ -5083,7 +5083,7 @@
       "band2High": 174364.38,
       "zScore": -0.1,
       "fedNetLiqT": 4.55,
-      "globalM2Yoy": 6.33,
+      "globalM2Yoy": 5.73,
       "stableSupplyB": 209.76
     },
     {
@@ -5096,7 +5096,7 @@
       "band2High": 175630.19,
       "zScore": -0.08,
       "fedNetLiqT": 4.55,
-      "globalM2Yoy": 6.48,
+      "globalM2Yoy": 5.73,
       "stableSupplyB": 210.28
     },
     {
@@ -5109,7 +5109,7 @@
       "band2High": 176866.34,
       "zScore": -0.07,
       "fedNetLiqT": 4.55,
-      "globalM2Yoy": 6.62,
+      "globalM2Yoy": 5.73,
       "stableSupplyB": 210.8
     },
     {
@@ -5122,7 +5122,7 @@
       "band2High": 178070.7,
       "zScore": -0.05,
       "fedNetLiqT": 4.56,
-      "globalM2Yoy": 6.76,
+      "globalM2Yoy": 4.94,
       "stableSupplyB": 211.32
     },
     {
@@ -5135,7 +5135,7 @@
       "band2High": 179241.24,
       "zScore": -0.04,
       "fedNetLiqT": 4.56,
-      "globalM2Yoy": 6.89,
+      "globalM2Yoy": 4.94,
       "stableSupplyB": 211.84
     },
     {
@@ -5148,7 +5148,7 @@
       "band2High": 180375.97,
       "zScore": -0.03,
       "fedNetLiqT": 4.57,
-      "globalM2Yoy": 7.01,
+      "globalM2Yoy": 4.94,
       "stableSupplyB": 212.36
     },
     {
@@ -5161,7 +5161,7 @@
       "band2High": 181473.04,
       "zScore": -0.02,
       "fedNetLiqT": 4.57,
-      "globalM2Yoy": 7.13,
+      "globalM2Yoy": 4.94,
       "stableSupplyB": 212.88
     },
     {
@@ -5174,7 +5174,7 @@
       "band2High": 182530.66,
       "zScore": -0.01,
       "fedNetLiqT": 4.58,
-      "globalM2Yoy": 7.24,
+      "globalM2Yoy": 4.94,
       "stableSupplyB": 213.4
     },
     {
@@ -5187,7 +5187,7 @@
       "band2High": 183547.15,
       "zScore": -0.01,
       "fedNetLiqT": 4.58,
-      "globalM2Yoy": 7.35,
+      "globalM2Yoy": 3.83,
       "stableSupplyB": 213.92
     },
     {
@@ -5200,7 +5200,7 @@
       "band2High": 184520.93,
       "zScore": -0.0,
       "fedNetLiqT": 4.59,
-      "globalM2Yoy": 7.45,
+      "globalM2Yoy": 3.83,
       "stableSupplyB": 214.44
     },
     {
@@ -5213,7 +5213,7 @@
       "band2High": 185450.53,
       "zScore": -0.0,
       "fedNetLiqT": 4.59,
-      "globalM2Yoy": 7.54,
+      "globalM2Yoy": 3.83,
       "stableSupplyB": 214.96
     },
     {
@@ -5226,7 +5226,7 @@
       "band2High": 186334.58,
       "zScore": -0.0,
       "fedNetLiqT": 4.6,
-      "globalM2Yoy": 7.62,
+      "globalM2Yoy": 3.83,
       "stableSupplyB": 215.48
     },
     {
@@ -5239,7 +5239,7 @@
       "band2High": 187171.85,
       "zScore": -0.0,
       "fedNetLiqT": 4.6,
-      "globalM2Yoy": 7.7,
+      "globalM2Yoy": 2.65,
       "stableSupplyB": 216.0
     },
     {
@@ -5252,7 +5252,7 @@
       "band2High": 187961.2,
       "zScore": -0.01,
       "fedNetLiqT": 4.6,
-      "globalM2Yoy": 7.76,
+      "globalM2Yoy": 2.65,
       "stableSupplyB": 216.52
     },
     {
@@ -5265,7 +5265,7 @@
       "band2High": 188701.62,
       "zScore": -0.01,
       "fedNetLiqT": 4.61,
-      "globalM2Yoy": 7.82,
+      "globalM2Yoy": 2.65,
       "stableSupplyB": 217.04
     },
     {
@@ -5278,7 +5278,7 @@
       "band2High": 189392.21,
       "zScore": -0.02,
       "fedNetLiqT": 4.61,
-      "globalM2Yoy": 7.87,
+      "globalM2Yoy": 2.65,
       "stableSupplyB": 217.56
     },
     {
@@ -5291,7 +5291,7 @@
       "band2High": 190032.23,
       "zScore": -0.03,
       "fedNetLiqT": 4.62,
-      "globalM2Yoy": 7.92,
+      "globalM2Yoy": 2.65,
       "stableSupplyB": 218.08
     },
     {
@@ -5304,7 +5304,7 @@
       "band2High": 190621.03,
       "zScore": -0.04,
       "fedNetLiqT": 4.62,
-      "globalM2Yoy": 7.95,
+      "globalM2Yoy": 1.42,
       "stableSupplyB": 218.6
     },
     {
@@ -5317,7 +5317,7 @@
       "band2High": 191158.09,
       "zScore": -0.05,
       "fedNetLiqT": 4.63,
-      "globalM2Yoy": 7.97,
+      "globalM2Yoy": 1.42,
       "stableSupplyB": 219.12
     },
     {
@@ -5330,7 +5330,7 @@
       "band2High": 191643.05,
       "zScore": -0.07,
       "fedNetLiqT": 4.63,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 1.42,
       "stableSupplyB": 219.64
     },
     {
@@ -5343,7 +5343,7 @@
       "band2High": 192075.65,
       "zScore": -0.09,
       "fedNetLiqT": 4.64,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 1.42,
       "stableSupplyB": 220.16
     },
     {
@@ -5356,7 +5356,7 @@
       "band2High": 192455.77,
       "zScore": -0.11,
       "fedNetLiqT": 4.64,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 0.33,
       "stableSupplyB": 220.68
     },
     {
@@ -5369,7 +5369,7 @@
       "band2High": 192783.43,
       "zScore": -0.13,
       "fedNetLiqT": 4.64,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 0.33,
       "stableSupplyB": 221.2
     },
     {
@@ -5382,7 +5382,7 @@
       "band2High": 193058.76,
       "zScore": -0.15,
       "fedNetLiqT": 4.65,
-      "globalM2Yoy": 7.97,
+      "globalM2Yoy": 0.33,
       "stableSupplyB": 221.72
     },
     {
@@ -5395,7 +5395,7 @@
       "band2High": 193282.04,
       "zScore": -0.17,
       "fedNetLiqT": 4.65,
-      "globalM2Yoy": 7.94,
+      "globalM2Yoy": 0.33,
       "stableSupplyB": 222.24
     },
     {
@@ -5408,7 +5408,7 @@
       "band2High": 193453.68,
       "zScore": -0.2,
       "fedNetLiqT": 4.66,
-      "globalM2Yoy": 7.91,
+      "globalM2Yoy": -0.97,
       "stableSupplyB": 222.76
     },
     {
@@ -5421,7 +5421,7 @@
       "band2High": 193574.21,
       "zScore": -0.23,
       "fedNetLiqT": 4.66,
-      "globalM2Yoy": 7.86,
+      "globalM2Yoy": -0.97,
       "stableSupplyB": 223.28
     },
     {
@@ -5434,7 +5434,7 @@
       "band2High": 193644.28,
       "zScore": -0.26,
       "fedNetLiqT": 4.67,
-      "globalM2Yoy": 7.81,
+      "globalM2Yoy": -0.97,
       "stableSupplyB": 223.8
     },
     {
@@ -5447,7 +5447,7 @@
       "band2High": 193664.7,
       "zScore": -0.29,
       "fedNetLiqT": 4.67,
-      "globalM2Yoy": 7.75,
+      "globalM2Yoy": -0.97,
       "stableSupplyB": 224.32
     },
     {
@@ -5460,7 +5460,7 @@
       "band2High": 193636.36,
       "zScore": -0.32,
       "fedNetLiqT": 4.68,
-      "globalM2Yoy": 7.68,
+      "globalM2Yoy": -0.97,
       "stableSupplyB": 224.84
     },
     {
@@ -5473,7 +5473,7 @@
       "band2High": 193560.31,
       "zScore": -0.36,
       "fedNetLiqT": 4.68,
-      "globalM2Yoy": 7.61,
+      "globalM2Yoy": -1.71,
       "stableSupplyB": 225.36
     },
     {
@@ -5486,7 +5486,7 @@
       "band2High": 193437.69,
       "zScore": -0.39,
       "fedNetLiqT": 4.69,
-      "globalM2Yoy": 7.52,
+      "globalM2Yoy": -1.71,
       "stableSupplyB": 225.88
     },
     {
@@ -5499,7 +5499,7 @@
       "band2High": 193269.77,
       "zScore": -0.43,
       "fedNetLiqT": 4.69,
-      "globalM2Yoy": 7.43,
+      "globalM2Yoy": -1.71,
       "stableSupplyB": 226.4
     },
     {
@@ -5512,7 +5512,7 @@
       "band2High": 193057.93,
       "zScore": -0.47,
       "fedNetLiqT": 4.69,
-      "globalM2Yoy": 7.33,
+      "globalM2Yoy": -1.71,
       "stableSupplyB": 226.92
     },
     {
@@ -5525,7 +5525,7 @@
       "band2High": 192803.68,
       "zScore": -0.51,
       "fedNetLiqT": 4.7,
-      "globalM2Yoy": 7.22,
+      "globalM2Yoy": -2.22,
       "stableSupplyB": 227.44
     },
     {
@@ -5538,7 +5538,7 @@
       "band2High": 192508.59,
       "zScore": -0.56,
       "fedNetLiqT": 4.7,
-      "globalM2Yoy": 7.11,
+      "globalM2Yoy": -2.22,
       "stableSupplyB": 227.96
     },
     {
@@ -5551,7 +5551,7 @@
       "band2High": 192174.39,
       "zScore": -0.6,
       "fedNetLiqT": 4.71,
-      "globalM2Yoy": 6.99,
+      "globalM2Yoy": -2.22,
       "stableSupplyB": 228.48
     },
     {
@@ -5564,7 +5564,7 @@
       "band2High": 191802.85,
       "zScore": -0.65,
       "fedNetLiqT": 4.71,
-      "globalM2Yoy": 6.86,
+      "globalM2Yoy": -2.22,
       "stableSupplyB": 229.0
     },
     {
@@ -5577,7 +5577,7 @@
       "band2High": 191395.87,
       "zScore": -0.7,
       "fedNetLiqT": 4.72,
-      "globalM2Yoy": 6.73,
+      "globalM2Yoy": -3.86,
       "stableSupplyB": 229.52
     },
     {
@@ -5590,7 +5590,7 @@
       "band2High": 190955.44,
       "zScore": -0.74,
       "fedNetLiqT": 4.72,
-      "globalM2Yoy": 6.59,
+      "globalM2Yoy": -3.86,
       "stableSupplyB": 230.04
     },
     {
@@ -5603,7 +5603,7 @@
       "band2High": 190483.62,
       "zScore": -0.79,
       "fedNetLiqT": 4.73,
-      "globalM2Yoy": 6.45,
+      "globalM2Yoy": -3.86,
       "stableSupplyB": 230.56
     },
     {
@@ -5616,7 +5616,7 @@
       "band2High": 189982.54,
       "zScore": -0.84,
       "fedNetLiqT": 4.73,
-      "globalM2Yoy": 6.3,
+      "globalM2Yoy": -3.86,
       "stableSupplyB": 231.08
     },
     {
@@ -5629,7 +5629,7 @@
       "band2High": 189454.42,
       "zScore": -0.9,
       "fedNetLiqT": 4.73,
-      "globalM2Yoy": 6.15,
+      "globalM2Yoy": -3.86,
       "stableSupplyB": 231.6
     },
     {
@@ -5642,7 +5642,7 @@
       "band2High": 188901.55,
       "zScore": -0.95,
       "fedNetLiqT": 4.74,
-      "globalM2Yoy": 5.99,
+      "globalM2Yoy": -4.63,
       "stableSupplyB": 232.12
     },
     {
@@ -5655,7 +5655,7 @@
       "band2High": 188326.26,
       "zScore": -1.0,
       "fedNetLiqT": 4.74,
-      "globalM2Yoy": 5.83,
+      "globalM2Yoy": -4.63,
       "stableSupplyB": 232.64
     },
     {
@@ -5668,7 +5668,7 @@
       "band2High": 187730.96,
       "zScore": -1.06,
       "fedNetLiqT": 4.75,
-      "globalM2Yoy": 5.67,
+      "globalM2Yoy": -4.63,
       "stableSupplyB": 233.16
     },
     {
@@ -5681,7 +5681,7 @@
       "band2High": 187118.11,
       "zScore": -1.12,
       "fedNetLiqT": 4.75,
-      "globalM2Yoy": 5.5,
+      "globalM2Yoy": -4.63,
       "stableSupplyB": 233.68
     },
     {
@@ -5694,7 +5694,7 @@
       "band2High": 186490.18,
       "zScore": -1.17,
       "fedNetLiqT": 4.76,
-      "globalM2Yoy": 5.34,
+      "globalM2Yoy": -4.1,
       "stableSupplyB": 234.2
     },
     {
@@ -5707,7 +5707,7 @@
       "band2High": 185849.72,
       "zScore": -1.23,
       "fedNetLiqT": 4.76,
-      "globalM2Yoy": 5.16,
+      "globalM2Yoy": -4.1,
       "stableSupplyB": 234.72
     },
     {
@@ -5720,7 +5720,7 @@
       "band2High": 185199.29,
       "zScore": -1.28,
       "fedNetLiqT": 4.77,
-      "globalM2Yoy": 4.99,
+      "globalM2Yoy": -4.1,
       "stableSupplyB": 235.24
     },
     {
@@ -5733,7 +5733,7 @@
       "band2High": 184541.47,
       "zScore": -1.34,
       "fedNetLiqT": 4.77,
-      "globalM2Yoy": 4.82,
+      "globalM2Yoy": -4.1,
       "stableSupplyB": 235.76
     },
     {
@@ -5746,7 +5746,7 @@
       "band2High": 183878.88,
       "zScore": -1.4,
       "fedNetLiqT": 4.78,
-      "globalM2Yoy": 4.64,
+      "globalM2Yoy": -3.93,
       "stableSupplyB": 236.28
     },
     {
@@ -5759,7 +5759,7 @@
       "band2High": 183214.12,
       "zScore": -1.46,
       "fedNetLiqT": 4.78,
-      "globalM2Yoy": 4.47,
+      "globalM2Yoy": -3.93,
       "stableSupplyB": 236.8
     },
     {
@@ -5772,7 +5772,7 @@
       "band2High": 182549.83,
       "zScore": -1.51,
       "fedNetLiqT": 4.78,
-      "globalM2Yoy": 4.29,
+      "globalM2Yoy": -3.93,
       "stableSupplyB": 237.32
     },
     {
@@ -5785,7 +5785,7 @@
       "band2High": 181888.63,
       "zScore": -1.57,
       "fedNetLiqT": 4.79,
-      "globalM2Yoy": 4.12,
+      "globalM2Yoy": -3.93,
       "stableSupplyB": 237.84
     },
     {
@@ -5798,7 +5798,7 @@
       "band2High": 181233.13,
       "zScore": -1.62,
       "fedNetLiqT": 4.79,
-      "globalM2Yoy": 3.95,
+      "globalM2Yoy": -3.93,
       "stableSupplyB": 238.36
     },
     {
@@ -5811,7 +5811,7 @@
       "band2High": 180585.94,
       "zScore": -1.68,
       "fedNetLiqT": 4.8,
-      "globalM2Yoy": 3.77,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 238.88
     },
     {
@@ -5824,7 +5824,7 @@
       "band2High": 179949.62,
       "zScore": -1.73,
       "fedNetLiqT": 4.8,
-      "globalM2Yoy": 3.6,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 239.4
     },
     {
@@ -5837,7 +5837,7 @@
       "band2High": 179326.74,
       "zScore": -1.78,
       "fedNetLiqT": 4.81,
-      "globalM2Yoy": 3.44,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 239.92
     },
     {
@@ -5850,7 +5850,7 @@
       "band2High": 178719.82,
       "zScore": -1.83,
       "fedNetLiqT": 4.81,
-      "globalM2Yoy": 3.27,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 240.44
     },
     {
@@ -5863,7 +5863,7 @@
       "band2High": 178131.33,
       "zScore": -1.88,
       "fedNetLiqT": 4.82,
-      "globalM2Yoy": 3.11,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 240.96
     },
     {
@@ -5876,7 +5876,7 @@
       "band2High": 177563.71,
       "zScore": -1.92,
       "fedNetLiqT": 4.82,
-      "globalM2Yoy": 2.95,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 241.48
     },
     {
@@ -5889,7 +5889,7 @@
       "band2High": 177019.34,
       "zScore": -1.97,
       "fedNetLiqT": 4.82,
-      "globalM2Yoy": 2.79,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 242.0
     },
     {
@@ -5902,7 +5902,7 @@
       "band2High": 176500.53,
       "zScore": -2.01,
       "fedNetLiqT": 4.83,
-      "globalM2Yoy": 2.64,
+      "globalM2Yoy": -3.98,
       "stableSupplyB": 242.52
     },
     {
@@ -5915,7 +5915,7 @@
       "band2High": 176009.56,
       "zScore": -2.04,
       "fedNetLiqT": 4.83,
-      "globalM2Yoy": 2.5,
+      "globalM2Yoy": -3.66,
       "stableSupplyB": 243.04
     },
     {
@@ -5928,7 +5928,7 @@
       "band2High": 175548.61,
       "zScore": -2.08,
       "fedNetLiqT": 4.84,
-      "globalM2Yoy": 2.36,
+      "globalM2Yoy": -3.66,
       "stableSupplyB": 243.56
     },
     {
@@ -5941,7 +5941,7 @@
       "band2High": 175119.79,
       "zScore": -2.11,
       "fedNetLiqT": 4.84,
-      "globalM2Yoy": 2.22,
+      "globalM2Yoy": -3.66,
       "stableSupplyB": 244.08
     },
     {
@@ -5954,7 +5954,7 @@
       "band2High": 174725.14,
       "zScore": -2.14,
       "fedNetLiqT": 4.85,
-      "globalM2Yoy": 2.09,
+      "globalM2Yoy": -3.66,
       "stableSupplyB": 244.6
     },
     {
@@ -5967,7 +5967,7 @@
       "band2High": 174366.61,
       "zScore": -2.16,
       "fedNetLiqT": 4.85,
-      "globalM2Yoy": 1.97,
+      "globalM2Yoy": -3.66,
       "stableSupplyB": 245.12
     },
     {
@@ -5980,7 +5980,7 @@
       "band2High": 174046.05,
       "zScore": -2.18,
       "fedNetLiqT": 4.86,
-      "globalM2Yoy": 1.85,
+      "globalM2Yoy": -3.39,
       "stableSupplyB": 245.64
     },
     {
@@ -5993,7 +5993,7 @@
       "band2High": 173765.24,
       "zScore": -2.2,
       "fedNetLiqT": 4.86,
-      "globalM2Yoy": 1.74,
+      "globalM2Yoy": -3.39,
       "stableSupplyB": 246.16
     },
     {
@@ -6006,7 +6006,7 @@
       "band2High": 173525.82,
       "zScore": -2.21,
       "fedNetLiqT": 4.87,
-      "globalM2Yoy": 1.64,
+      "globalM2Yoy": -3.39,
       "stableSupplyB": 246.68
     },
     {
@@ -6019,7 +6019,7 @@
       "band2High": 173329.37,
       "zScore": -2.22,
       "fedNetLiqT": 4.87,
-      "globalM2Yoy": 1.54,
+      "globalM2Yoy": -3.39,
       "stableSupplyB": 247.2
     },
     {
@@ -6032,7 +6032,7 @@
       "band2High": 173177.34,
       "zScore": -2.22,
       "fedNetLiqT": 4.87,
-      "globalM2Yoy": 1.45,
+      "globalM2Yoy": -3.08,
       "stableSupplyB": 247.72
     },
     {
@@ -6045,7 +6045,7 @@
       "band2High": 173071.07,
       "zScore": -2.22,
       "fedNetLiqT": 4.88,
-      "globalM2Yoy": 1.37,
+      "globalM2Yoy": -3.08,
       "stableSupplyB": 248.24
     },
     {
@@ -6058,7 +6058,7 @@
       "band2High": 173011.78,
       "zScore": -2.21,
       "fedNetLiqT": 4.88,
-      "globalM2Yoy": 1.29,
+      "globalM2Yoy": -3.08,
       "stableSupplyB": 248.76
     },
     {
@@ -6071,7 +6071,7 @@
       "band2High": 173000.59,
       "zScore": -2.2,
       "fedNetLiqT": 4.89,
-      "globalM2Yoy": 1.23,
+      "globalM2Yoy": -3.08,
       "stableSupplyB": 249.28
     },
     {
@@ -6084,7 +6084,7 @@
       "band2High": 173038.49,
       "zScore": -2.19,
       "fedNetLiqT": 4.89,
-      "globalM2Yoy": 1.17,
+      "globalM2Yoy": -2.41,
       "stableSupplyB": 249.8
     },
     {
@@ -6097,7 +6097,7 @@
       "band2High": 173126.35,
       "zScore": -2.17,
       "fedNetLiqT": 4.9,
-      "globalM2Yoy": 1.12,
+      "globalM2Yoy": -2.41,
       "stableSupplyB": 250.32
     },
     {
@@ -6110,7 +6110,7 @@
       "band2High": 173264.9,
       "zScore": -2.15,
       "fedNetLiqT": 4.9,
-      "globalM2Yoy": 1.08,
+      "globalM2Yoy": -2.41,
       "stableSupplyB": 250.84
     },
     {
@@ -6123,7 +6123,7 @@
       "band2High": 173454.77,
       "zScore": -2.12,
       "fedNetLiqT": 4.91,
-      "globalM2Yoy": 1.05,
+      "globalM2Yoy": -2.41,
       "stableSupplyB": 251.36
     },
     {
@@ -6136,7 +6136,7 @@
       "band2High": 173696.45,
       "zScore": -2.09,
       "fedNetLiqT": 4.91,
-      "globalM2Yoy": 1.02,
+      "globalM2Yoy": -2.41,
       "stableSupplyB": 251.88
     },
     {
@@ -6149,7 +6149,7 @@
       "band2High": 173990.28,
       "zScore": -2.06,
       "fedNetLiqT": 4.91,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": -2.05,
       "stableSupplyB": 252.4
     },
     {
@@ -6162,7 +6162,7 @@
       "band2High": 174336.5,
       "zScore": -2.03,
       "fedNetLiqT": 4.92,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": -2.05,
       "stableSupplyB": 252.92
     },
     {
@@ -6175,7 +6175,7 @@
       "band2High": 174735.2,
       "zScore": -1.99,
       "fedNetLiqT": 4.92,
-      "globalM2Yoy": 1.0,
+      "globalM2Yoy": -2.05,
       "stableSupplyB": 253.44
     },
     {
@@ -6188,7 +6188,7 @@
       "band2High": 175186.36,
       "zScore": -1.94,
       "fedNetLiqT": 4.93,
-      "globalM2Yoy": 1.01,
+      "globalM2Yoy": -2.05,
       "stableSupplyB": 253.96
     },
     {
@@ -6201,7 +6201,7 @@
       "band2High": 175689.8,
       "zScore": -1.9,
       "fedNetLiqT": 4.93,
-      "globalM2Yoy": 1.03,
+      "globalM2Yoy": -1.49,
       "stableSupplyB": 254.48
     },
     {
@@ -6214,7 +6214,7 @@
       "band2High": 176245.24,
       "zScore": -1.85,
       "fedNetLiqT": 4.94,
-      "globalM2Yoy": 1.06,
+      "globalM2Yoy": -1.49,
       "stableSupplyB": 255.0
     },
     {
@@ -6227,7 +6227,7 @@
       "band2High": 176852.23,
       "zScore": -1.8,
       "fedNetLiqT": 4.94,
-      "globalM2Yoy": 1.1,
+      "globalM2Yoy": -1.49,
       "stableSupplyB": 255.52
     },
     {
@@ -6240,7 +6240,7 @@
       "band2High": 177510.24,
       "zScore": -1.75,
       "fedNetLiqT": 4.95,
-      "globalM2Yoy": 1.14,
+      "globalM2Yoy": -1.49,
       "stableSupplyB": 256.04
     },
     {
@@ -6253,7 +6253,7 @@
       "band2High": 178218.57,
       "zScore": -1.7,
       "fedNetLiqT": 4.95,
-      "globalM2Yoy": 1.2,
+      "globalM2Yoy": 0.13,
       "stableSupplyB": 256.56
     },
     {
@@ -6266,7 +6266,7 @@
       "band2High": 178976.42,
       "zScore": -1.65,
       "fedNetLiqT": 4.96,
-      "globalM2Yoy": 1.26,
+      "globalM2Yoy": 0.13,
       "stableSupplyB": 257.08
     },
     {
@@ -6279,7 +6279,7 @@
       "band2High": 179782.85,
       "zScore": -1.59,
       "fedNetLiqT": 4.96,
-      "globalM2Yoy": 1.33,
+      "globalM2Yoy": 0.13,
       "stableSupplyB": 257.6
     },
     {
@@ -6292,7 +6292,7 @@
       "band2High": 180636.82,
       "zScore": -1.54,
       "fedNetLiqT": 4.96,
-      "globalM2Yoy": 1.41,
+      "globalM2Yoy": 0.13,
       "stableSupplyB": 258.12
     },
     {
@@ -6305,7 +6305,7 @@
       "band2High": 181537.15,
       "zScore": -1.48,
       "fedNetLiqT": 4.97,
-      "globalM2Yoy": 1.49,
+      "globalM2Yoy": 0.13,
       "stableSupplyB": 258.64
     },
     {
@@ -6318,7 +6318,7 @@
       "band2High": 182482.56,
       "zScore": -1.43,
       "fedNetLiqT": 4.97,
-      "globalM2Yoy": 1.59,
+      "globalM2Yoy": 0.96,
       "stableSupplyB": 259.16
     },
     {
@@ -6331,7 +6331,7 @@
       "band2High": 183471.63,
       "zScore": -1.37,
       "fedNetLiqT": 4.98,
-      "globalM2Yoy": 1.69,
+      "globalM2Yoy": 0.96,
       "stableSupplyB": 259.68
     },
     {
@@ -6344,7 +6344,7 @@
       "band2High": 184502.87,
       "zScore": -1.31,
       "fedNetLiqT": 4.98,
-      "globalM2Yoy": 1.8,
+      "globalM2Yoy": 0.96,
       "stableSupplyB": 260.2
     },
     {
@@ -6357,7 +6357,7 @@
       "band2High": 185574.65,
       "zScore": -1.26,
       "fedNetLiqT": 4.99,
-      "globalM2Yoy": 1.91,
+      "globalM2Yoy": 0.96,
       "stableSupplyB": 260.72
     },
     {
@@ -6370,7 +6370,7 @@
       "band2High": 186685.26,
       "zScore": -1.2,
       "fedNetLiqT": 4.99,
-      "globalM2Yoy": 2.03,
+      "globalM2Yoy": 0.92,
       "stableSupplyB": 261.24
     },
     {
@@ -6383,7 +6383,7 @@
       "band2High": 187832.89,
       "zScore": -1.14,
       "fedNetLiqT": 5.0,
-      "globalM2Yoy": 2.16,
+      "globalM2Yoy": 0.92,
       "stableSupplyB": 261.76
     },
     {
@@ -6396,7 +6396,7 @@
       "band2High": 189015.63,
       "zScore": -1.09,
       "fedNetLiqT": 5.0,
-      "globalM2Yoy": 2.29,
+      "globalM2Yoy": 0.92,
       "stableSupplyB": 262.28
     },
     {
@@ -6409,7 +6409,7 @@
       "band2High": 190231.49,
       "zScore": -1.03,
       "fedNetLiqT": 5.0,
-      "globalM2Yoy": 2.43,
+      "globalM2Yoy": 0.92,
       "stableSupplyB": 262.8
     },
     {
@@ -6422,7 +6422,7 @@
       "band2High": 191478.39,
       "zScore": -0.98,
       "fedNetLiqT": 5.01,
-      "globalM2Yoy": 2.57,
+      "globalM2Yoy": 0.92,
       "stableSupplyB": 263.32
     },
     {
@@ -6435,7 +6435,7 @@
       "band2High": 192754.17,
       "zScore": -0.92,
       "fedNetLiqT": 5.01,
-      "globalM2Yoy": 2.72,
+      "globalM2Yoy": 1.29,
       "stableSupplyB": 263.84
     },
     {
@@ -6448,7 +6448,7 @@
       "band2High": 194056.61,
       "zScore": -0.87,
       "fedNetLiqT": 5.02,
-      "globalM2Yoy": 2.88,
+      "globalM2Yoy": 1.29,
       "stableSupplyB": 264.36
     },
     {
@@ -6461,7 +6461,7 @@
       "band2High": 195383.42,
       "zScore": -0.82,
       "fedNetLiqT": 5.02,
-      "globalM2Yoy": 3.03,
+      "globalM2Yoy": 1.29,
       "stableSupplyB": 264.88
     },
     {
@@ -6474,7 +6474,7 @@
       "band2High": 196732.24,
       "zScore": -0.77,
       "fedNetLiqT": 5.03,
-      "globalM2Yoy": 3.19,
+      "globalM2Yoy": 1.29,
       "stableSupplyB": 265.4
     },
     {
@@ -6487,7 +6487,7 @@
       "band2High": 198100.66,
       "zScore": -0.72,
       "fedNetLiqT": 5.03,
-      "globalM2Yoy": 3.36,
+      "globalM2Yoy": 1.46,
       "stableSupplyB": 265.92
     },
     {
@@ -6500,7 +6500,7 @@
       "band2High": 199486.23,
       "zScore": -0.67,
       "fedNetLiqT": 5.04,
-      "globalM2Yoy": 3.52,
+      "globalM2Yoy": 1.46,
       "stableSupplyB": 266.44
     },
     {
@@ -6513,7 +6513,7 @@
       "band2High": 200886.44,
       "zScore": -0.62,
       "fedNetLiqT": 5.04,
-      "globalM2Yoy": 3.69,
+      "globalM2Yoy": 1.46,
       "stableSupplyB": 266.96
     },
     {
@@ -6526,7 +6526,7 @@
       "band2High": 202298.76,
       "zScore": -0.58,
       "fedNetLiqT": 5.05,
-      "globalM2Yoy": 3.86,
+      "globalM2Yoy": 1.46,
       "stableSupplyB": 267.48
     },
     {
@@ -6539,7 +6539,7 @@
       "band2High": 203720.61,
       "zScore": -0.53,
       "fedNetLiqT": 5.05,
-      "globalM2Yoy": 4.04,
+      "globalM2Yoy": 1.97,
       "stableSupplyB": 268.0
     },
     {
@@ -6552,7 +6552,7 @@
       "band2High": 205149.42,
       "zScore": -0.49,
       "fedNetLiqT": 5.05,
-      "globalM2Yoy": 4.21,
+      "globalM2Yoy": 1.97,
       "stableSupplyB": 268.52
     },
     {
@@ -6565,7 +6565,7 @@
       "band2High": 206582.56,
       "zScore": -0.45,
       "fedNetLiqT": 5.06,
-      "globalM2Yoy": 4.39,
+      "globalM2Yoy": 1.97,
       "stableSupplyB": 269.04
     },
     {
@@ -6578,7 +6578,7 @@
       "band2High": 208017.42,
       "zScore": -0.41,
       "fedNetLiqT": 5.06,
-      "globalM2Yoy": 4.56,
+      "globalM2Yoy": 1.97,
       "stableSupplyB": 269.56
     },
     {
@@ -6591,7 +6591,7 @@
       "band2High": 209451.37,
       "zScore": -0.37,
       "fedNetLiqT": 5.07,
-      "globalM2Yoy": 4.74,
+      "globalM2Yoy": 1.97,
       "stableSupplyB": 270.08
     },
     {
@@ -6604,7 +6604,7 @@
       "band2High": 210881.8,
       "zScore": -0.34,
       "fedNetLiqT": 5.07,
-      "globalM2Yoy": 4.91,
+      "globalM2Yoy": 2.51,
       "stableSupplyB": 270.6
     },
     {
@@ -6617,7 +6617,7 @@
       "band2High": 212306.08,
       "zScore": -0.31,
       "fedNetLiqT": 5.08,
-      "globalM2Yoy": 5.08,
+      "globalM2Yoy": 2.51,
       "stableSupplyB": 271.12
     },
     {
@@ -6630,7 +6630,7 @@
       "band2High": 213721.63,
       "zScore": -0.27,
       "fedNetLiqT": 5.08,
-      "globalM2Yoy": 5.25,
+      "globalM2Yoy": 2.51,
       "stableSupplyB": 271.64
     },
     {
@@ -6643,7 +6643,7 @@
       "band2High": 215125.86,
       "zScore": -0.24,
       "fedNetLiqT": 5.09,
-      "globalM2Yoy": 5.42,
+      "globalM2Yoy": 2.51,
       "stableSupplyB": 272.16
     },
     {
@@ -6656,7 +6656,7 @@
       "band2High": 216516.23,
       "zScore": -0.21,
       "fedNetLiqT": 5.09,
-      "globalM2Yoy": 5.59,
+      "globalM2Yoy": 2.89,
       "stableSupplyB": 272.68
     },
     {
@@ -6669,7 +6669,7 @@
       "band2High": 217890.23,
       "zScore": -0.19,
       "fedNetLiqT": 5.09,
-      "globalM2Yoy": 5.76,
+      "globalM2Yoy": 2.89,
       "stableSupplyB": 273.2
     },
     {
@@ -6682,7 +6682,7 @@
       "band2High": 219245.37,
       "zScore": -0.16,
       "fedNetLiqT": 5.1,
-      "globalM2Yoy": 5.92,
+      "globalM2Yoy": 2.89,
       "stableSupplyB": 273.72
     },
     {
@@ -6695,7 +6695,7 @@
       "band2High": 220579.25,
       "zScore": -0.14,
       "fedNetLiqT": 5.1,
-      "globalM2Yoy": 6.08,
+      "globalM2Yoy": 2.89,
       "stableSupplyB": 274.24
     },
     {
@@ -6708,7 +6708,7 @@
       "band2High": 221889.49,
       "zScore": -0.12,
       "fedNetLiqT": 5.11,
-      "globalM2Yoy": 6.23,
+      "globalM2Yoy": 3.4,
       "stableSupplyB": 274.76
     },
     {
@@ -6721,7 +6721,7 @@
       "band2High": 223173.77,
       "zScore": -0.1,
       "fedNetLiqT": 5.11,
-      "globalM2Yoy": 6.38,
+      "globalM2Yoy": 3.4,
       "stableSupplyB": 275.28
     },
     {
@@ -6734,7 +6734,7 @@
       "band2High": 224429.84,
       "zScore": -0.08,
       "fedNetLiqT": 5.12,
-      "globalM2Yoy": 6.53,
+      "globalM2Yoy": 3.4,
       "stableSupplyB": 275.8
     },
     {
@@ -6747,7 +6747,7 @@
       "band2High": 225655.54,
       "zScore": -0.06,
       "fedNetLiqT": 5.12,
-      "globalM2Yoy": 6.67,
+      "globalM2Yoy": 3.4,
       "stableSupplyB": 276.32
     },
     {
@@ -6760,7 +6760,7 @@
       "band2High": 226848.75,
       "zScore": -0.05,
       "fedNetLiqT": 5.13,
-      "globalM2Yoy": 6.8,
+      "globalM2Yoy": 3.4,
       "stableSupplyB": 276.84
     },
     {
@@ -6773,7 +6773,7 @@
       "band2High": 228007.46,
       "zScore": -0.03,
       "fedNetLiqT": 5.13,
-      "globalM2Yoy": 6.93,
+      "globalM2Yoy": 3.41,
       "stableSupplyB": 277.36
     },
     {
@@ -6786,7 +6786,7 @@
       "band2High": 229129.73,
       "zScore": -0.02,
       "fedNetLiqT": 5.14,
-      "globalM2Yoy": 7.05,
+      "globalM2Yoy": 3.41,
       "stableSupplyB": 277.88
     },
     {
@@ -6799,7 +6799,7 @@
       "band2High": 230213.73,
       "zScore": -0.02,
       "fedNetLiqT": 5.14,
-      "globalM2Yoy": 7.17,
+      "globalM2Yoy": 3.41,
       "stableSupplyB": 278.4
     },
     {
@@ -6812,7 +6812,7 @@
       "band2High": 231257.7,
       "zScore": -0.01,
       "fedNetLiqT": 5.14,
-      "globalM2Yoy": 7.28,
+      "globalM2Yoy": 3.41,
       "stableSupplyB": 278.92
     },
     {
@@ -6825,7 +6825,7 @@
       "band2High": 232259.99,
       "zScore": -0.0,
       "fedNetLiqT": 5.15,
-      "globalM2Yoy": 7.38,
+      "globalM2Yoy": 3.38,
       "stableSupplyB": 279.44
     },
     {
@@ -6838,7 +6838,7 @@
       "band2High": 233219.07,
       "zScore": -0.0,
       "fedNetLiqT": 5.15,
-      "globalM2Yoy": 7.48,
+      "globalM2Yoy": 3.38,
       "stableSupplyB": 279.96
     },
     {
@@ -6851,7 +6851,7 @@
       "band2High": 234133.5,
       "zScore": -0.0,
       "fedNetLiqT": 5.16,
-      "globalM2Yoy": 7.57,
+      "globalM2Yoy": 3.38,
       "stableSupplyB": 280.48
     },
     {
@@ -6864,7 +6864,7 @@
       "band2High": 235001.96,
       "zScore": -0.0,
       "fedNetLiqT": 5.16,
-      "globalM2Yoy": 7.65,
+      "globalM2Yoy": 3.38,
       "stableSupplyB": 281.0
     },
     {
@@ -6877,7 +6877,7 @@
       "band2High": 235823.23,
       "zScore": -0.0,
       "fedNetLiqT": 5.17,
-      "globalM2Yoy": 7.72,
+      "globalM2Yoy": 3.38,
       "stableSupplyB": 281.52
     },
     {
@@ -6890,7 +6890,7 @@
       "band2High": 236596.23,
       "zScore": -0.01,
       "fedNetLiqT": 5.17,
-      "globalM2Yoy": 7.78,
+      "globalM2Yoy": 3.28,
       "stableSupplyB": 282.04
     },
     {
@@ -6903,7 +6903,7 @@
       "band2High": 237319.99,
       "zScore": -0.01,
       "fedNetLiqT": 5.18,
-      "globalM2Yoy": 7.84,
+      "globalM2Yoy": 3.28,
       "stableSupplyB": 282.56
     },
     {
@@ -6916,7 +6916,7 @@
       "band2High": 237993.65,
       "zScore": -0.02,
       "fedNetLiqT": 5.18,
-      "globalM2Yoy": 7.89,
+      "globalM2Yoy": 3.28,
       "stableSupplyB": 283.08
     },
     {
@@ -6929,7 +6929,7 @@
       "band2High": 238616.51,
       "zScore": -0.03,
       "fedNetLiqT": 5.18,
-      "globalM2Yoy": 7.93,
+      "globalM2Yoy": 3.28,
       "stableSupplyB": 283.6
     },
     {
@@ -6942,7 +6942,7 @@
       "band2High": 239187.96,
       "zScore": -0.05,
       "fedNetLiqT": 5.19,
-      "globalM2Yoy": 7.96,
+      "globalM2Yoy": 3.43,
       "stableSupplyB": 284.12
     },
     {
@@ -6955,7 +6955,7 @@
       "band2High": 239707.54,
       "zScore": -0.06,
       "fedNetLiqT": 5.19,
-      "globalM2Yoy": 7.98,
+      "globalM2Yoy": 3.43,
       "stableSupplyB": 284.64
     },
     {
@@ -6968,7 +6968,7 @@
       "band2High": 240174.91,
       "zScore": -0.08,
       "fedNetLiqT": 5.2,
-      "globalM2Yoy": 7.99,
+      "globalM2Yoy": 3.43,
       "stableSupplyB": 285.16
     },
     {
@@ -6981,7 +6981,7 @@
       "band2High": 240589.87,
       "zScore": -0.09,
       "fedNetLiqT": 5.2,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 3.43,
       "stableSupplyB": 285.68
     },
     {
@@ -6994,7 +6994,7 @@
       "band2High": 240952.34,
       "zScore": -0.11,
       "fedNetLiqT": 5.21,
-      "globalM2Yoy": 8.0,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 286.2
     },
     {
@@ -7007,7 +7007,7 @@
       "band2High": 241262.37,
       "zScore": -0.13,
       "fedNetLiqT": 5.21,
-      "globalM2Yoy": 7.98,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 286.72
     },
     {
@@ -7020,7 +7020,7 @@
       "band2High": 241520.16,
       "zScore": -0.16,
       "fedNetLiqT": 5.22,
-      "globalM2Yoy": 7.96,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 287.24
     },
     {
@@ -7033,7 +7033,7 @@
       "band2High": 241726.03,
       "zScore": -0.18,
       "fedNetLiqT": 5.22,
-      "globalM2Yoy": 7.93,
+      "globalM2Yoy": 3.89,
       "stableSupplyB": 287.76
     },
     {
@@ -7046,7 +7046,7 @@
       "band2High": 241880.41,
       "zScore": -0.21,
       "fedNetLiqT": 5.23,
-      "globalM2Yoy": 7.89,
+      "globalM2Yoy": 3.87,
       "stableSupplyB": 288.28
     },
     {
@@ -7059,7 +7059,7 @@
       "band2High": 241983.89,
       "zScore": -0.24,
       "fedNetLiqT": 5.23,
-      "globalM2Yoy": 7.85,
+      "globalM2Yoy": 3.87,
       "stableSupplyB": 288.8
     },
     {
@@ -7072,7 +7072,7 @@
       "band2High": 242037.18,
       "zScore": -0.27,
       "fedNetLiqT": 5.23,
-      "globalM2Yoy": 7.79,
+      "globalM2Yoy": 3.87,
       "stableSupplyB": 289.32
     },
     {
@@ -7085,7 +7085,7 @@
       "band2High": 242041.09,
       "zScore": -0.3,
       "fedNetLiqT": 5.24,
-      "globalM2Yoy": 7.73,
+      "globalM2Yoy": 3.87,
       "stableSupplyB": 289.84
     },
     {
@@ -7098,7 +7098,7 @@
       "band2High": 241996.58,
       "zScore": -0.33,
       "fedNetLiqT": 5.24,
-      "globalM2Yoy": 7.66,
+      "globalM2Yoy": 3.87,
       "stableSupplyB": 290.36
     },
     {
@@ -7111,7 +7111,7 @@
       "band2High": 241904.73,
       "zScore": -0.37,
       "fedNetLiqT": 5.25,
-      "globalM2Yoy": 7.58,
+      "globalM2Yoy": 4.13,
       "stableSupplyB": 290.88
     },
     {
@@ -7124,7 +7124,7 @@
       "band2High": 241766.73,
       "zScore": -0.41,
       "fedNetLiqT": 5.25,
-      "globalM2Yoy": 7.49,
+      "globalM2Yoy": 4.13,
       "stableSupplyB": 291.4
     },
     {
@@ -7137,7 +7137,7 @@
       "band2High": 241583.89,
       "zScore": -0.45,
       "fedNetLiqT": 5.26,
-      "globalM2Yoy": 7.4,
+      "globalM2Yoy": 4.13,
       "stableSupplyB": 291.92
     },
     {
@@ -7150,7 +7150,7 @@
       "band2High": 241357.61,
       "zScore": -0.49,
       "fedNetLiqT": 5.26,
-      "globalM2Yoy": 7.29,
+      "globalM2Yoy": 4.13,
       "stableSupplyB": 292.44
     },
     {
@@ -7163,7 +7163,7 @@
       "band2High": 241089.44,
       "zScore": -0.53,
       "fedNetLiqT": 5.27,
-      "globalM2Yoy": 7.18,
+      "globalM2Yoy": 4.38,
       "stableSupplyB": 292.96
     },
     {
@@ -7176,7 +7176,7 @@
       "band2High": 240781.01,
       "zScore": -0.57,
       "fedNetLiqT": 5.27,
-      "globalM2Yoy": 7.07,
+      "globalM2Yoy": 4.38,
       "stableSupplyB": 293.48
     },
     {
@@ -7189,7 +7189,7 @@
       "band2High": 240434.04,
       "zScore": -0.62,
       "fedNetLiqT": 5.27,
-      "globalM2Yoy": 6.95,
+      "globalM2Yoy": 4.38,
       "stableSupplyB": 294.0
     },
     {
@@ -7202,7 +7202,7 @@
       "band2High": 240050.37,
       "zScore": -0.66,
       "fedNetLiqT": 5.28,
-      "globalM2Yoy": 6.82,
+      "globalM2Yoy": 4.38,
       "stableSupplyB": 294.52
     },
     {
@@ -7215,7 +7215,7 @@
       "band2High": 239631.92,
       "zScore": -0.71,
       "fedNetLiqT": 5.28,
-      "globalM2Yoy": 6.69,
+      "globalM2Yoy": 4.25,
       "stableSupplyB": 295.04
     },
     {
@@ -7228,7 +7228,7 @@
       "band2High": 239180.7,
       "zScore": -0.76,
       "fedNetLiqT": 5.29,
-      "globalM2Yoy": 6.55,
+      "globalM2Yoy": 4.25,
       "stableSupplyB": 295.56
     },
     {
@@ -7241,7 +7241,7 @@
       "band2High": 238698.79,
       "zScore": -0.81,
       "fedNetLiqT": 5.29,
-      "globalM2Yoy": 6.4,
+      "globalM2Yoy": 4.25,
       "stableSupplyB": 296.08
     },
     {
@@ -7254,7 +7254,7 @@
       "band2High": 238188.37,
       "zScore": -0.86,
       "fedNetLiqT": 5.3,
-      "globalM2Yoy": 6.25,
+      "globalM2Yoy": 4.25,
       "stableSupplyB": 296.6
     },
     {
@@ -7267,7 +7267,7 @@
       "band2High": 237651.67,
       "zScore": -0.91,
       "fedNetLiqT": 5.3,
-      "globalM2Yoy": 6.1,
+      "globalM2Yoy": 4.25,
       "stableSupplyB": 297.12
     },
     {
@@ -7280,7 +7280,7 @@
       "band2High": 237090.99,
       "zScore": -0.97,
       "fedNetLiqT": 5.31,
-      "globalM2Yoy": 5.94,
+      "globalM2Yoy": 4.24,
       "stableSupplyB": 297.64
     },
     {
@@ -7293,7 +7293,7 @@
       "band2High": 236508.71,
       "zScore": -1.02,
       "fedNetLiqT": 5.31,
-      "globalM2Yoy": 5.78,
+      "globalM2Yoy": 4.24,
       "stableSupplyB": 298.16
     },
     {
@@ -7306,7 +7306,7 @@
       "band2High": 235907.23,
       "zScore": -1.08,
       "fedNetLiqT": 5.32,
-      "globalM2Yoy": 5.62,
+      "globalM2Yoy": 4.24,
       "stableSupplyB": 298.68
     },
     {
@@ -7319,7 +7319,7 @@
       "band2High": 235289.02,
       "zScore": -1.13,
       "fedNetLiqT": 5.32,
-      "globalM2Yoy": 5.45,
+      "globalM2Yoy": 4.24,
       "stableSupplyB": 299.2
     },
     {
@@ -7332,7 +7332,7 @@
       "band2High": 234656.6,
       "zScore": -1.19,
       "fedNetLiqT": 5.32,
-      "globalM2Yoy": 5.28,
+      "globalM2Yoy": 4.28,
       "stableSupplyB": 299.72
     },
     {
@@ -7345,7 +7345,7 @@
       "band2High": 234012.5,
       "zScore": -1.25,
       "fedNetLiqT": 5.33,
-      "globalM2Yoy": 5.11,
+      "globalM2Yoy": 4.28,
       "stableSupplyB": 300.24
     },
     {
@@ -7358,7 +7358,7 @@
       "band2High": 233359.29,
       "zScore": -1.3,
       "fedNetLiqT": 5.33,
-      "globalM2Yoy": 4.93,
+      "globalM2Yoy": 4.28,
       "stableSupplyB": 300.76
     },
     {
@@ -7371,7 +7371,7 @@
       "band2High": 232699.57,
       "zScore": -1.36,
       "fedNetLiqT": 5.34,
-      "globalM2Yoy": 4.76,
+      "globalM2Yoy": 4.28,
       "stableSupplyB": 301.28
     },
     {
@@ -7384,7 +7384,7 @@
       "band2High": 232035.96,
       "zScore": -1.42,
       "fedNetLiqT": 5.34,
-      "globalM2Yoy": 4.59,
+      "globalM2Yoy": 4.28,
       "stableSupplyB": 301.8
     },
     {
@@ -7397,7 +7397,7 @@
       "band2High": 231371.07,
       "zScore": -1.47,
       "fedNetLiqT": 5.35,
-      "globalM2Yoy": 4.41,
+      "globalM2Yoy": 3.85,
       "stableSupplyB": 302.32
     },
     {
@@ -7410,7 +7410,7 @@
       "band2High": 230707.53,
       "zScore": -1.53,
       "fedNetLiqT": 5.35,
-      "globalM2Yoy": 4.24,
+      "globalM2Yoy": 3.85,
       "stableSupplyB": 302.84
     },
     {
@@ -7423,7 +7423,7 @@
       "band2High": 230047.95,
       "zScore": -1.59,
       "fedNetLiqT": 5.36,
-      "globalM2Yoy": 4.06,
+      "globalM2Yoy": 3.85,
       "stableSupplyB": 303.36
     },
     {
@@ -7436,7 +7436,7 @@
       "band2High": 229394.96,
       "zScore": -1.64,
       "fedNetLiqT": 5.36,
-      "globalM2Yoy": 3.89,
+      "globalM2Yoy": 3.85,
       "stableSupplyB": 303.88
     },
     {
@@ -7449,7 +7449,7 @@
       "band2High": 228751.13,
       "zScore": -1.69,
       "fedNetLiqT": 5.37,
-      "globalM2Yoy": 3.72,
+      "globalM2Yoy": 4.04,
       "stableSupplyB": 304.4
     },
     {
@@ -7462,7 +7462,7 @@
       "band2High": 228119.05,
       "zScore": -1.75,
       "fedNetLiqT": 5.37,
-      "globalM2Yoy": 3.55,
+      "globalM2Yoy": 4.04,
       "stableSupplyB": 304.92
     },
     {
@@ -7475,7 +7475,7 @@
       "band2High": 227501.26,
       "zScore": -1.8,
       "fedNetLiqT": 5.37,
-      "globalM2Yoy": 3.38,
+      "globalM2Yoy": 4.04,
       "stableSupplyB": 305.44
     },
     {
@@ -7488,7 +7488,7 @@
       "band2High": 226900.26,
       "zScore": -1.85,
       "fedNetLiqT": 5.38,
-      "globalM2Yoy": 3.22,
+      "globalM2Yoy": 4.04,
       "stableSupplyB": 305.96
     },
     {
@@ -7501,7 +7501,7 @@
       "band2High": 226318.52,
       "zScore": -1.89,
       "fedNetLiqT": 5.38,
-      "globalM2Yoy": 3.05,
+      "globalM2Yoy": 4.09,
       "stableSupplyB": 306.48
     },
     {
@@ -7514,7 +7514,7 @@
       "band2High": 225758.45,
       "zScore": -1.94,
       "fedNetLiqT": 5.39,
-      "globalM2Yoy": 2.9,
+      "globalM2Yoy": 4.09,
       "stableSupplyB": 307.0
     },
     {
@@ -7527,7 +7527,7 @@
       "band2High": 225222.42,
       "zScore": -1.98,
       "fedNetLiqT": 5.39,
-      "globalM2Yoy": 2.74,
+      "globalM2Yoy": 4.09,
       "stableSupplyB": 307.52
     },
     {
@@ -7540,7 +7540,7 @@
       "band2High": 224712.73,
       "zScore": -2.02,
       "fedNetLiqT": 5.4,
-      "globalM2Yoy": 2.59,
+      "globalM2Yoy": 4.09,
       "stableSupplyB": 308.04
     },
     {
@@ -7553,7 +7553,7 @@
       "band2High": 224231.62,
       "zScore": -2.06,
       "fedNetLiqT": 5.4,
-      "globalM2Yoy": 2.45,
+      "globalM2Yoy": 4.09,
       "stableSupplyB": 308.56
     },
     {
@@ -7566,7 +7566,7 @@
       "band2High": 223781.24,
       "zScore": -2.09,
       "fedNetLiqT": 5.41,
-      "globalM2Yoy": 2.31,
+      "globalM2Yoy": 4.69,
       "stableSupplyB": 309.08
     },
     {
@@ -7579,7 +7579,7 @@
       "band2High": 223363.69,
       "zScore": -2.12,
       "fedNetLiqT": 5.41,
-      "globalM2Yoy": 2.18,
+      "globalM2Yoy": 4.69,
       "stableSupplyB": 309.6
     },
     {
@@ -7592,7 +7592,7 @@
       "band2High": 222980.97,
       "zScore": -2.15,
       "fedNetLiqT": 5.41,
-      "globalM2Yoy": 2.05,
+      "globalM2Yoy": 4.69,
       "stableSupplyB": 310.12
     },
     {
@@ -7605,7 +7605,7 @@
       "band2High": 222635.01,
       "zScore": -2.17,
       "fedNetLiqT": 5.42,
-      "globalM2Yoy": 1.93,
+      "globalM2Yoy": 4.69,
       "stableSupplyB": 310.64
     },
     {
@@ -7618,7 +7618,7 @@
       "band2High": 222327.62,
       "zScore": -2.19,
       "fedNetLiqT": 5.42,
-      "globalM2Yoy": 1.81,
+      "globalM2Yoy": 4.58,
       "stableSupplyB": 311.16
     },
     {
@@ -7631,7 +7631,7 @@
       "band2High": 222060.55,
       "zScore": -2.2,
       "fedNetLiqT": 5.43,
-      "globalM2Yoy": 1.7,
+      "globalM2Yoy": 4.58,
       "stableSupplyB": 311.68
     },
     {
@@ -7644,7 +7644,7 @@
       "band2High": 221835.41,
       "zScore": -2.21,
       "fedNetLiqT": 5.43,
-      "globalM2Yoy": 1.6,
+      "globalM2Yoy": 4.58,
       "stableSupplyB": 312.2
     },
     {
@@ -7657,7 +7657,7 @@
       "band2High": 221653.74,
       "zScore": -2.22,
       "fedNetLiqT": 5.44,
-      "globalM2Yoy": 1.51,
+      "globalM2Yoy": 4.58,
       "stableSupplyB": 312.72
     },
     {
@@ -7670,7 +7670,7 @@
       "band2High": 221516.96,
       "zScore": -2.22,
       "fedNetLiqT": 5.44,
-      "globalM2Yoy": 1.42,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 313.24
     },
     {
@@ -7683,7 +7683,7 @@
       "band2High": 221426.35,
       "zScore": -2.22,
       "fedNetLiqT": 5.45,
-      "globalM2Yoy": 1.34,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 313.76
     },
     {
@@ -7696,7 +7696,7 @@
       "band2High": 221383.12,
       "zScore": -2.21,
       "fedNetLiqT": 5.45,
-      "globalM2Yoy": 1.27,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 314.28
     },
     {
@@ -7709,7 +7709,7 @@
       "band2High": 221388.34,
       "zScore": -2.2,
       "fedNetLiqT": 5.46,
-      "globalM2Yoy": 1.21,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 314.8
     },
     {
@@ -7722,7 +7722,7 @@
       "band2High": 221442.95,
       "zScore": -2.18,
       "fedNetLiqT": 5.46,
-      "globalM2Yoy": 1.15,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 315.32
     },
     {
@@ -7735,7 +7735,7 @@
       "band2High": 221547.78,
       "zScore": -2.16,
       "fedNetLiqT": 5.46,
-      "globalM2Yoy": 1.1,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 315.84
     },
     {
@@ -7748,7 +7748,7 @@
       "band2High": 221703.53,
       "zScore": -2.14,
       "fedNetLiqT": 5.47,
-      "globalM2Yoy": 1.07,
+      "globalM2Yoy": 4.72,
       "stableSupplyB": 316.36
     },
     {
@@ -7761,7 +7761,7 @@
       "band2High": 221910.77,
       "zScore": -2.11,
       "fedNetLiqT": 5.47,
-      "globalM2Yoy": 1.04,
+      "globalM2Yoy": 4.7,
       "stableSupplyB": 316.88
     }
   ]

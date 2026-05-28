@@ -8,7 +8,7 @@ from pathlib import Path
 
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
-from fred_utils import fetch_fred_series, load_fred_api_key  # noqa: E402
+from fred_utils import fetch_fred_series, load_fred_api_key, compute_m2_yoy  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "m2-yoy.json"
@@ -18,7 +18,7 @@ SERIES = "M2SL"
 def main() -> None:
     api_key = load_fred_api_key()
     levels = fetch_fred_series(SERIES, api_key, start="2000-01-01")
-    yoy = ((levels / levels.shift(12) - 1) * 100).dropna().tail(500)
+    yoy = compute_m2_yoy(levels).dropna().tail(500)
     points = [{"date": idx.strftime("%Y-%m-%d"), "m2yoy": round(float(v), 2)} for idx, v in yoy.items()]
     latest, prev = yoy.iloc[-1], yoy.iloc[-2]
     delta = float(latest - prev)

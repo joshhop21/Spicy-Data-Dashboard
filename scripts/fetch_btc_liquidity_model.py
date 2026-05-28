@@ -17,7 +17,7 @@ import yfinance as yf
 
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
-from fred_utils import fetch_fred_series, load_fred_api_key  # noqa: E402
+from fred_utils import fetch_fred_series, load_fred_api_key, m2_yoy_on_index  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "btc-liquidity-model.json"
@@ -96,7 +96,8 @@ def build_weekly_panel(api_key: str) -> pd.DataFrame:
 
     # WALCL & WTREGEN are millions USD; RRPONTSYD is billions USD
     fed_net_t = (walcl_w - tga_w - rrp_w * 1000) / 1e6  # trillions
-    m2_yoy = (m2_w / m2_w.shift(52) - 1.0) * 100.0
+    # 12-month YoY on monthly M2SL, forward-filled to weekly BTC dates (same as m2-yoy tile)
+    m2_yoy = m2_yoy_on_index(m2, idx)
     stable_30d = stables_w.pct_change(4) * 100.0  # ~4 weeks
 
     t0 = idx[0]

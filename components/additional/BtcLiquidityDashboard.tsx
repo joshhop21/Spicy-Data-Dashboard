@@ -124,7 +124,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
         <MetricCard
           label="Global M2 (USD) YoY"
           value={`${cards.globalM2Yoy >= 0 ? "+" : ""}${cards.globalM2Yoy.toFixed(2)}%`}
-          sub="US M2 proxy (M2SL)"
+          sub="FRED M2SL (same as Phase 2 M2 tile)"
           hint={cards.globalM2Yoy > 0 ? "Expansionary" : "Contracting"}
         />
         <MetricCard
@@ -179,7 +179,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
             yFormatter={(v) => `$${v.toFixed(2)}T`}
           />
         </ChartPanel>
-        <ChartPanel title="Global M2 YoY" subtitle="US M2SL, % (USD proxy)" range={range} onRangeChange={setRange}>
+        <ChartPanel title="Global M2 YoY" subtitle="FRED M2SL, 12-month % (Phase 2 series)" range={range} onRangeChange={setRange}>
           <SingleAreaChart
             data={filtered}
             dataKey="globalM2Yoy"
