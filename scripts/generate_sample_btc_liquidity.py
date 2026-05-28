@@ -8,29 +8,33 @@ OUT = Path(__file__).resolve().parents[1] / "data" / "btc-liquidity-model.json"
 
 
 def main() -> None:
-    start = datetime(2017, 8, 1)
+    start = datetime(2015, 1, 2)
+    today = datetime.now(timezone.utc).replace(tzinfo=None)
     points = []
-    for i in range(450):
-        d = start + timedelta(days=7 * i)
+    i = 0
+    d = start
+    while d <= today:
         t = i / 20
-        fair = 30000 + i * 180 + math.sin(t) * 8000
-        btc = fair * (0.75 + 0.25 * math.sin(t + 0.5))
-        z = (math.log(btc) - math.log(fair)) / 0.37
+        fair = 8000 + i * 220 + math.sin(t) * 12000
+        btc = fair * (0.72 + 0.28 * math.sin(t + 0.5))
+        z = (math.log(max(btc, 1)) - math.log(max(fair, 1))) / 0.37
         points.append(
             {
                 "date": d.strftime("%Y-%m-%d"),
                 "btcActual": round(btc, 2),
                 "modelFair": round(fair, 2),
-                "band1Low": round(fair * 0.75, 2),
-                "band1High": round(fair * 1.35, 2),
-                "band2Low": round(fair * 0.55, 2),
-                "band2High": round(fair * 1.65, 2),
+                "band1Low": round(fair * 0.69, 2),
+                "band1High": round(fair * 1.45, 2),
+                "band2Low": round(fair * 0.5, 2),
+                "band2High": round(fair * 1.75, 2),
                 "zScore": round(z, 2),
-                "fedNetLiqT": round(3.5 + i * 0.005, 2),
-                "globalM2Yoy": round(5 + math.sin(t) * 4, 2),
-                "stableSupplyB": round(50 + i * 0.45, 2),
+                "fedNetLiqT": round(2.8 + i * 0.0045, 2),
+                "globalM2Yoy": round(4.5 + math.sin(t) * 3.5, 2),
+                "stableSupplyB": round(8 + i * 0.52, 2),
             }
         )
+        i += 1
+        d += timedelta(days=7)
 
     latest = points[-1]
     z = latest["zScore"]
@@ -70,14 +74,14 @@ def main() -> None:
                 2,
             ),
         },
-        "modelStats": {"r2": 0.891, "observations": 478, "residualSigma": 0.369},
+        "modelStats": {"r2": 0.891, "observations": len(points), "residualSigma": 0.369},
         "coefficients": [],
         "methodology": "Sample data — run fetch_btc_liquidity_model.py with FRED_API_KEY.",
         "sources": ["Sample generator"],
         "points": points,
     }
     OUT.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    print(f"Wrote sample {OUT}")
+    print(f"Wrote sample {OUT} ({len(points)} weeks, through {latest['date']})")
 
 
 if __name__ == "__main__":
