@@ -1,11 +1,11 @@
 {
   "slug": "marty-distressed",
-  "updatedAt": "2026-05-27T10:20:02Z",
+  "updatedAt": "2026-05-28T10:34:18Z",
   "headline": {
-    "value": "7.7%",
-    "delta": "+0.0%",
+    "value": "7.6%",
+    "delta": "-0.0%",
     "deltaDate": "May 26",
-    "deltaPositive": true
+    "deltaPositive": false
   },
   "series": [
     {
@@ -16,10 +16,6 @@
     }
   ],
   "points": [
-    {
-      "date": "2024-06-28",
-      "ratio": 7.3
-    },
     {
       "date": "2024-06-30",
       "ratio": 7.37
@@ -2015,6 +2011,10 @@
     {
       "date": "2026-05-25",
       "ratio": 7.65
+    },
+    {
+      "date": "2026-05-26",
+      "ratio": 7.64
     }
   ],
   "referenceLine": {

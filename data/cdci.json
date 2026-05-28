@@ -1,11 +1,11 @@
 {
   "slug": "cdci",
-  "updatedAt": "2026-05-27T10:19:59Z",
+  "updatedAt": "2026-05-28T10:34:15Z",
   "headline": {
-    "value": "152.3",
-    "delta": "+0.5%",
+    "value": "151.4",
+    "delta": "-0.6%",
     "deltaDate": "May 26",
-    "deltaPositive": true
+    "deltaPositive": false
   },
   "series": [
     {
@@ -24,11 +24,6 @@
     }
   ],
   "points": [
-    {
-      "date": "2024-10-18",
-      "cdci": 114.5,
-      "gold": 251.27
-    },
     {
       "date": "2024-10-21",
       "cdci": 112.81,
@@ -2023,6 +2018,11 @@
       "date": "2026-05-26",
       "cdci": 152.34,
       "gold": 414.0
+    },
+    {
+      "date": "2026-05-27",
+      "cdci": 151.38,
+      "gold": 408.49
     }
   ],
   "thesis": "The Credit Default Cycle Index tracks an equal-weight basket of consumer credit and bank exposures against gold. When credit stress rises while gold strengthens, the cycle often signals late-cycle risk appetite shifts.",

@@ -1,11 +1,11 @@
 {
   "slug": "private-credit-stress",
-  "updatedAt": "2026-05-27T10:20:07Z",
+  "updatedAt": "2026-05-28T10:34:22Z",
   "headline": {
     "value": "5.5%",
-    "delta": "-0.2%",
+    "delta": "+0.0%",
     "deltaDate": "May 26",
-    "deltaPositive": true
+    "deltaPositive": false
   },
   "series": [
     {
@@ -24,11 +24,6 @@
     }
   ],
   "points": [
-    {
-      "date": "2024-10-18",
-      "bdcDiscount": 4.37,
-      "hyOas": 2.88
-    },
     {
       "date": "2024-10-21",
       "bdcDiscount": 4.27,
@@ -2022,7 +2017,12 @@
     {
       "date": "2026-05-26",
       "bdcDiscount": 5.49,
-      "hyOas": 2.74
+      "hyOas": 2.72
+    },
+    {
+      "date": "2026-05-27",
+      "bdcDiscount": 5.49,
+      "hyOas": 2.72
     }
   ],
   "thesis": "Private credit stress rises when BDC valuations slide relative to NAV while public HY spreads widen \u2014 a combined read on direct-lending and traded credit risk.",

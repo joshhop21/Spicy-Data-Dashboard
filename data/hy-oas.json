@@ -1,9 +1,9 @@
 {
   "slug": "hy-oas",
-  "updatedAt": "2026-05-27T10:20:04Z",
+  "updatedAt": "2026-05-28T10:34:19Z",
   "headline": {
-    "value": "2.74%",
-    "delta": "+0.00%",
+    "value": "2.72%",
+    "delta": "-0.02%",
     "deltaDate": "May 26",
     "deltaPositive": true
   },
@@ -16,10 +16,6 @@
     }
   ],
   "points": [
-    {
-      "date": "2024-06-28",
-      "oas": 3.18
-    },
     {
       "date": "2024-06-30",
       "oas": 3.21
@@ -2015,6 +2011,10 @@
     {
       "date": "2026-05-25",
       "oas": 2.74
+    },
+    {
+      "date": "2026-05-26",
+      "oas": 2.72
     }
   ],
   "thesis": "High-yield option-adjusted spread is a core gauge of corporate credit stress.",
