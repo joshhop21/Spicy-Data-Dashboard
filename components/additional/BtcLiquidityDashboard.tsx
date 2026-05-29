@@ -19,14 +19,19 @@ type Props = { data: BtcLiquidityModelData };
 
 type RangeKey = "1Y" | "3Y" | "5Y" | "ALL";
 
-const COLORS = {
-  teal: "#0d9488",
-  amber: "#b45309",
-  coral: "#c45c4a",
-  stone: "#a8a29e",
+/** Matches Global M2 YoY chart — linear segments, soft area fill, coral stroke. */
+const CHART_STYLE = {
+  lineType: "linear" as const,
+  color: "#c45c4a",
+  fillOpacity: 0.2,
+  strokeWidth: 2,
+  gridStroke: "#e7e5e4",
+  tickFill: "#78716c",
   bandOuter: "#d6d3d1",
   bandInner: "#e7e5e4",
-} as const;
+  modelColor: "#b45309",
+  stone: "#a8a29e",
+};
 
 const RANGE_OPTIONS: { key: RangeKey; label: string }[] = [
   { key: "1Y", label: "1Y" },
@@ -38,6 +43,12 @@ const RANGE_OPTIONS: { key: RangeKey; label: string }[] = [
 type FairValuePoint = BtcLiquidityPoint & {
   band1Range: [number, number];
   band2Range: [number, number];
+};
+
+type SeriesConfig = {
+  key: keyof BtcLiquidityPoint | string;
+  color?: string;
+  label?: string;
 };
 
 export function BtcLiquidityDashboard({ data }: Props) {
@@ -143,10 +154,10 @@ export function BtcLiquidityDashboard({ data }: Props) {
       >
         <FairValueChart data={fairValuePoints} />
         <div className="mt-2 flex flex-wrap gap-4 text-xs text-muted">
-          <LegendDot color={COLORS.teal} label="BTC actual" />
-          <LegendDot color={COLORS.amber} label="Model fair value" />
-          <LegendDot color={COLORS.bandInner} label="±1σ range" />
-          <LegendDot color={COLORS.bandOuter} label="±2σ range" />
+          <LegendDot color={CHART_STYLE.color} label="BTC actual" />
+          <LegendDot color={CHART_STYLE.modelColor} label="Model fair value" />
+          <LegendDot color={CHART_STYLE.bandInner} label="±1σ range" />
+          <LegendDot color={CHART_STYLE.bandOuter} label="±2σ range" />
         </div>
       </ChartPanel>
 
@@ -157,10 +168,9 @@ export function BtcLiquidityDashboard({ data }: Props) {
         range={range}
         onRangeChange={setRange}
       >
-        <SingleAreaChart
+        <LiquidityAreaChart
           data={filtered}
-          dataKey="zScore"
-          color={COLORS.teal}
+          series={[{ key: "zScore", label: "Z-score" }]}
           yFormatter={(v) => v.toFixed(1)}
           referenceLines={[
             { y: 1.5, label: "+1.5" },
@@ -172,26 +182,23 @@ export function BtcLiquidityDashboard({ data }: Props) {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <ChartPanel title="Fed Net Liquidity" subtitle="WALCL - TGA - RRP, $T" range={range} onRangeChange={setRange}>
-          <SingleAreaChart
+          <LiquidityAreaChart
             data={filtered}
-            dataKey="fedNetLiqT"
-            color={COLORS.teal}
+            series={[{ key: "fedNetLiqT", label: "Fed net liq" }]}
             yFormatter={(v) => `$${v.toFixed(2)}T`}
           />
         </ChartPanel>
         <ChartPanel title="Global M2 YoY" subtitle="USD-converted, US + EA + JP + CN + UK" range={range} onRangeChange={setRange}>
-          <SingleAreaChart
+          <LiquidityAreaChart
             data={filtered}
-            dataKey="globalM2Yoy"
-            color={COLORS.coral}
+            series={[{ key: "globalM2Yoy", label: "Global M2 YoY" }]}
             yFormatter={(v) => `${v.toFixed(1)}%`}
           />
         </ChartPanel>
         <ChartPanel title="Stablecoin Supply" subtitle="USDT + USDC, $B" range={range} onRangeChange={setRange}>
-          <SingleAreaChart
+          <LiquidityAreaChart
             data={filtered}
-            dataKey="stableSupplyB"
-            color={COLORS.coral}
+            series={[{ key: "stableSupplyB", label: "Stablecoin supply" }]}
             yFormatter={(v) => `$${v.toFixed(0)}B`}
           />
         </ChartPanel>
@@ -214,19 +221,120 @@ export function BtcLiquidityDashboard({ data }: Props) {
   );
 }
 
+/** Shared chart shell — same grid, axes, tooltip as Global M2 YoY. */
+function LiquidityAreaChart({
+  data,
+  series,
+  heightClass = "h-48",
+  logScale = false,
+  yFormatter,
+  referenceLines,
+  tooltipContent,
+}: {
+  data: BtcLiquidityPoint[] | FairValuePoint[];
+  series: SeriesConfig[];
+  heightClass?: string;
+  logScale?: boolean;
+  yFormatter?: (v: number) => string;
+  referenceLines?: { y: number; label?: string }[];
+  tooltipContent?: React.ReactNode;
+}) {
+  const chartData = data.filter((p) =>
+    series.every((s) => {
+      const v = p[s.key as keyof typeof p];
+      return typeof v === "number" && Number.isFinite(v);
+    }),
+  );
+
+  if (chartData.length === 0) {
+    return <ChartEmpty heightClass={heightClass} />;
+  }
+
+  const tickFormatter = (v: number) => (yFormatter ? yFormatter(v) : String(v));
+
+  return (
+    <div className={`${heightClass} w-full`}>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_STYLE.gridStroke} />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 10, fill: CHART_STYLE.tickFill }}
+            tickFormatter={formatAxisDate}
+            minTickGap={40}
+            axisLine={false}
+            tickLine={false}
+          />
+          <YAxis
+            scale={logScale ? "log" : undefined}
+            domain={logScale ? ["auto", "auto"] : undefined}
+            allowDataOverflow={logScale}
+            tick={{ fontSize: 10, fill: CHART_STYLE.tickFill }}
+            width={48}
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={tickFormatter}
+          />
+          {tooltipContent ?? (
+            <Tooltip
+              contentStyle={{
+                fontSize: 12,
+                borderRadius: 8,
+                border: "1px solid #e7e5e4",
+              }}
+              labelFormatter={(l) => String(l)}
+              formatter={(value: number, name: string) => [
+                tickFormatter(value),
+                series.find((s) => s.key === name)?.label ?? name,
+              ]}
+            />
+          )}
+          {referenceLines?.map((r) => (
+            <ReferenceLine
+              key={r.y}
+              y={r.y}
+              stroke={CHART_STYLE.stone}
+              strokeDasharray="4 4"
+              label={
+                r.label
+                  ? { value: r.label, fontSize: 10, fill: CHART_STYLE.tickFill, position: "right" }
+                  : undefined
+              }
+            />
+          ))}
+          {series.map((s) => (
+            <Area
+              key={String(s.key)}
+              type={CHART_STYLE.lineType}
+              dataKey={s.key as string}
+              name={String(s.key)}
+              stroke={s.color ?? CHART_STYLE.color}
+              fill={s.color ?? CHART_STYLE.color}
+              fillOpacity={CHART_STYLE.fillOpacity}
+              strokeWidth={CHART_STYLE.strokeWidth}
+              dot={false}
+              isAnimationActive={false}
+            />
+          ))}
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
 function FairValueChart({ data }: { data: FairValuePoint[] }) {
   if (data.length === 0) {
-    return <ChartEmpty />;
+    return <ChartEmpty heightClass="h-80" />;
   }
 
   return (
     <div className="h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_STYLE.gridStroke} />
           <XAxis
             dataKey="date"
-            tick={{ fontSize: 10, fill: "#78716c" }}
+            tick={{ fontSize: 10, fill: CHART_STYLE.tickFill }}
             tickFormatter={formatAxisDate}
             minTickGap={40}
             axisLine={false}
@@ -236,7 +344,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             scale="log"
             domain={["auto", "auto"]}
             allowDataOverflow
-            tick={{ fontSize: 10, fill: "#78716c" }}
+            tick={{ fontSize: 10, fill: CHART_STYLE.tickFill }}
             tickFormatter={formatLogUsd}
             width={48}
             axisLine={false}
@@ -244,44 +352,44 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
           />
           <Tooltip content={<FairValueTooltip />} />
           <Area
-            type="monotone"
+            type={CHART_STYLE.lineType}
             dataKey="band2Range"
             isRange
             stroke="none"
-            fill={COLORS.bandOuter}
+            fill={CHART_STYLE.bandOuter}
             fillOpacity={0.4}
             isAnimationActive={false}
             legendType="none"
           />
           <Area
-            type="monotone"
+            type={CHART_STYLE.lineType}
             dataKey="band1Range"
             isRange
             stroke="none"
-            fill={COLORS.bandInner}
+            fill={CHART_STYLE.bandInner}
             fillOpacity={0.55}
             isAnimationActive={false}
             legendType="none"
           />
           <Area
-            type="monotone"
+            type={CHART_STYLE.lineType}
             dataKey="modelFair"
-            name="Model fair value"
-            stroke={COLORS.amber}
-            fill={COLORS.amber}
-            fillOpacity={0.2}
-            strokeWidth={2}
+            name="modelFair"
+            stroke={CHART_STYLE.modelColor}
+            fill={CHART_STYLE.modelColor}
+            fillOpacity={CHART_STYLE.fillOpacity}
+            strokeWidth={CHART_STYLE.strokeWidth}
             dot={false}
             isAnimationActive={false}
           />
           <Area
-            type="monotone"
+            type={CHART_STYLE.lineType}
             dataKey="btcActual"
-            name="BTC actual"
-            stroke={COLORS.teal}
-            fill={COLORS.teal}
-            fillOpacity={0.2}
-            strokeWidth={2}
+            name="btcActual"
+            stroke={CHART_STYLE.color}
+            fill={CHART_STYLE.color}
+            fillOpacity={CHART_STYLE.fillOpacity}
+            strokeWidth={CHART_STYLE.strokeWidth}
             dot={false}
             isAnimationActive={false}
           />
@@ -297,10 +405,7 @@ function FairValueTooltip({ active, payload, label }: TooltipProps<number, strin
   if (!row) return null;
 
   return (
-    <div
-      className="rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-sm"
-      style={{ fontSize: 12 }}
-    >
+    <div className="rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-sm">
       <p className="mb-1 font-medium text-stone-800">{String(label)}</p>
       <p className="text-stone-600">
         BTC actual: <span className="font-mono tabular-nums">${row.btcActual.toLocaleString()}</span>
@@ -315,89 +420,6 @@ function FairValueTooltip({ active, payload, label }: TooltipProps<number, strin
       <p className="text-stone-500">
         ±2σ: ${row.band2Low.toLocaleString()} – ${row.band2High.toLocaleString()}
       </p>
-    </div>
-  );
-}
-
-function SingleAreaChart({
-  data,
-  dataKey,
-  color,
-  yFormatter,
-  referenceLines,
-}: {
-  data: BtcLiquidityPoint[];
-  dataKey: keyof BtcLiquidityPoint;
-  color: string;
-  yFormatter?: (v: number) => string;
-  referenceLines?: { y: number; label?: string }[];
-}) {
-  const chartData = data.filter((p) => {
-    const v = p[dataKey];
-    return typeof v === "number" && Number.isFinite(v);
-  });
-
-  if (chartData.length === 0) {
-    return <ChartEmpty />;
-  }
-
-  return (
-    <div className="h-48 w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis
-            dataKey="date"
-            tick={{ fontSize: 10, fill: "#78716c" }}
-            tickFormatter={formatAxisDate}
-            minTickGap={40}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
-            tick={{ fontSize: 10, fill: "#78716c" }}
-            width={48}
-            axisLine={false}
-            tickLine={false}
-            tickFormatter={(v) => (yFormatter ? yFormatter(Number(v)) : String(v))}
-          />
-          <Tooltip
-            contentStyle={{
-              fontSize: 12,
-              borderRadius: 8,
-              border: "1px solid #e7e5e4",
-            }}
-            labelFormatter={(l) => String(l)}
-            formatter={(value: number) => [
-              yFormatter ? yFormatter(value) : String(value),
-              String(dataKey),
-            ]}
-          />
-          {referenceLines?.map((r) => (
-            <ReferenceLine
-              key={r.y}
-              y={r.y}
-              stroke={COLORS.stone}
-              strokeDasharray="4 4"
-              label={
-                r.label
-                  ? { value: r.label, fontSize: 10, fill: "#78716c", position: "right" }
-                  : undefined
-              }
-            />
-          ))}
-          <Area
-            type="monotone"
-            dataKey={dataKey as string}
-            stroke={color}
-            fill={color}
-            fillOpacity={0.2}
-            strokeWidth={2}
-            dot={false}
-            isAnimationActive={false}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
     </div>
   );
 }
@@ -461,9 +483,11 @@ function ChartPanel({
   );
 }
 
-function ChartEmpty() {
+function ChartEmpty({ heightClass = "h-48" }: { heightClass?: string }) {
   return (
-    <div className="flex h-48 items-center justify-center text-xs text-muted">No data for this range</div>
+    <div className={`flex ${heightClass} items-center justify-center text-xs text-muted`}>
+      No data for this range
+    </div>
   );
 }
 
