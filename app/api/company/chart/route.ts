@@ -9,6 +9,8 @@ import { fetchMetricHistory } from "@/lib/yahoo-finance";
 import type { ChartDataFile } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const maxDuration = 30;
 
 function rangeToYahoo(range: string): string {
   const found = CHART_RANGES.find((r) => r.key === range);
