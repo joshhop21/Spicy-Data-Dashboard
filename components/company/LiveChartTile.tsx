@@ -13,7 +13,9 @@ type Props = {
 };
 
 export function LiveChartTile({ symbol, metric }: Props) {
-  const [range, setRange] = useState<ChartRange>("1Y");
+  const [range, setRange] = useState<ChartRange>(() =>
+    metric.id === "revenue-growth" ? "3Y" : "1Y",
+  );
   const [data, setData] = useState<ChartDataFile | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -34,7 +36,9 @@ export function LiveChartTile({ symbol, metric }: Props) {
           { cache: "no-store" },
         );
         const json = await res.json();
-        if (!res.ok) throw new Error(json.error ?? "Failed to load chart");
+        if (!res.ok && !json.unavailable) {
+          throw new Error(json.error ?? "Failed to load chart");
+        }
         setData(json as ChartDataFile);
         setError(null);
       } catch (err) {
@@ -108,13 +112,14 @@ export function LiveChartTile({ symbol, metric }: Props) {
             <p className="text-xl font-semibold tabular-nums text-ink sm:text-2xl">
               {loading ? "…" : (headline?.value ?? "—")}
             </p>
-            {headline && !loading && (
+            {headline && !loading && headline.delta && (
               <p
                 className={`text-xs font-medium tabular-nums ${
                   headline.deltaPositive === false ? "text-spice-red" : "text-emerald-700"
                 }`}
               >
-                {headline.delta} {headline.deltaDate}
+                {headline.delta}
+                {headline.deltaDate ? ` ${headline.deltaDate}` : ""}
               </p>
             )}
           </div>
@@ -123,15 +128,31 @@ export function LiveChartTile({ symbol, metric }: Props) {
 
       <div className="flex-1 px-2 pb-3 pt-1">
         {error && (
-          <div className="flex h-36 items-center justify-center px-4 text-center text-xs text-spice-red">
-            {error}
+          <div className="flex h-36 flex-col items-center justify-center gap-1 px-4 text-center">
+            <p className="text-sm font-medium text-muted">Could not load</p>
+            <p className="text-xs text-muted">{error}</p>
           </div>
         )}
         {!error && loading && (
           <div className="flex h-36 items-center justify-center text-xs text-muted">Loading…</div>
         )}
-        {!error && !loading && data?.points?.length ? <MiniChart data={data} /> : null}
-        {!error && !loading && !data?.points?.length && (
+        {!error && !loading && data?.unavailable && (
+          <div className="flex h-36 flex-col items-center justify-center gap-1 px-4 text-center">
+            <p className="text-sm font-medium text-muted">N/A</p>
+            <p className="text-xs text-muted">{data.unavailable}</p>
+          </div>
+        )}
+        {!error && !loading && !data?.unavailable && data?.points?.length ? (
+          <>
+            <MiniChart data={data} />
+            {data.dataNote && (
+              <p className="px-3 pb-1 text-center text-[10px] leading-snug text-muted">
+                {data.dataNote}
+              </p>
+            )}
+          </>
+        ) : null}
+        {!error && !loading && !data?.unavailable && !data?.points?.length && (
           <div className="flex h-36 items-center justify-center text-xs text-muted">No data</div>
         )}
       </div>

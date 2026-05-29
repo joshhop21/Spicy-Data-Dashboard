@@ -1,8 +1,17 @@
 /** Yahoo fundamentals timeseries API — no cookie/crumb required. */
 
+import timeseriesKeys from "@/lib/yahoo-timeseries-keys.json";
+import { getFallbackKeys } from "@/lib/yahoo-metric-fallbacks";
 import { YAHOO_UA } from "@/lib/yahoo-auth";
 
 export type HistoryPoint = { date: string; value: number };
+
+export type ResolvedSeries = {
+  points: HistoryPoint[];
+  resolvedKey?: string;
+  period?: "quarterly" | "annual";
+  note?: string;
+};
 
 const BASE =
   "https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries";
@@ -16,6 +25,8 @@ const QUARTERLY_TYPES = [
   "quarterlyOperatingCashFlow",
   "quarterlyCapitalExpenditure",
 ] as const;
+
+const BATCH_SIZE = 24;
 
 type FundamentalsCache = {
   expiresAt: number;
@@ -69,6 +80,62 @@ function parseTimeseriesResponse(json: unknown): Map<string, HistoryPoint[]> {
   return map;
 }
 
+async function fetchTypesRaw(
+  symbol: string,
+  types: string[],
+): Promise<Map<string, HistoryPoint[]>> {
+  if (!types.length) return new Map();
+
+  const period2 = Math.floor(Date.now() / 1000);
+  const period1 = Math.floor(
+    new Date(new Date().setFullYear(new Date().getFullYear() - 12)).getTime() / 1000,
+  );
+  const type = types.join(",");
+  const url = `${BASE}/${encodeURIComponent(symbol)}?period1=${period1}&period2=${period2}&type=${encodeURIComponent(type)}`;
+
+  const res = await fetch(url, {
+    headers: { "User-Agent": YAHOO_UA, Accept: "application/json" },
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return new Map();
+  }
+
+  return parseTimeseriesResponse(await res.json());
+}
+
+function cacheFieldPoints(cacheKey: string, points: HistoryPoint[]) {
+  fieldCache.set(cacheKey, { points, expiresAt: Date.now() + CACHE_MS });
+}
+
+export async function fetchTimeseriesModule(
+  symbol: string,
+  module: keyof typeof timeseriesKeys,
+  periodType: "quarterly" | "annual" = "quarterly",
+): Promise<Map<string, HistoryPoint[]>> {
+  const key = symbol.toUpperCase();
+  const cacheKey = `${key}:${periodType}:module:${module}`;
+  const hit = cache.get(cacheKey);
+  if (hit && Date.now() < hit.expiresAt) return hit.series;
+
+  const pascalKeys = (timeseriesKeys[module] as string[]) ?? [];
+  const types = pascalKeys.map((p) => `${periodType}${p}`);
+  const merged = new Map<string, HistoryPoint[]>();
+
+  for (let i = 0; i < types.length; i += BATCH_SIZE) {
+    const batch = types.slice(i, i + BATCH_SIZE);
+    const batchMap = await fetchTypesRaw(key, batch);
+    for (const [k, v] of batchMap) {
+      merged.set(k, v);
+      cacheFieldPoints(`${key}:${periodType}:${k}`, v);
+    }
+  }
+
+  cache.set(cacheKey, { series: merged, expiresAt: Date.now() + CACHE_MS });
+  return merged;
+}
+
 export async function fetchTimeseriesMetric(
   symbol: string,
   camelKey: string,
@@ -85,54 +152,85 @@ export async function fetchTimeseriesMetric(
       const existing = bundled.get(camelKey);
       if (existing?.length) return existing;
     } catch {
-      /* fetch individually below */
+      /* continue */
     }
   }
 
-  const period2 = Math.floor(Date.now() / 1000);
-  const period1 = Math.floor(
-    new Date(new Date().setFullYear(new Date().getFullYear() - 12)).getTime() / 1000,
-  );
   const type = `${periodType}${camelToPascal(camelKey)}`;
-  const url = `${BASE}/${encodeURIComponent(key)}?period1=${period1}&period2=${period2}&type=${encodeURIComponent(type)}`;
+  const map = await fetchTypesRaw(key, [type]);
+  const points = [...(map.get(camelKey) ?? [])];
+  cacheFieldPoints(cacheKey, points);
+  return points;
+}
 
-  const res = await fetch(url, {
-    headers: { "User-Agent": YAHOO_UA, Accept: "application/json" },
-    cache: "no-store",
-  });
+export async function resolveTimeseriesMetric(
+  symbol: string,
+  camelKey: string,
+  options?: { fallbacks?: string[]; module?: string },
+): Promise<ResolvedSeries> {
+  const sym = symbol.toUpperCase();
+  const keys = [camelKey, ...(options?.fallbacks ?? getFallbackKeys(camelKey))];
+  const uniqueKeys = [...new Set(keys)];
 
-  if (!res.ok) {
-    throw new Error(`Yahoo fundamentals timeseries ${res.status} (${camelKey})`);
+  for (const period of ["quarterly", "annual"] as const) {
+    for (const key of uniqueKeys) {
+      const points = await fetchTimeseriesMetric(sym, key, period);
+      if (points.length > 0) {
+        const note =
+          key !== camelKey
+            ? `Showing ${formatKeyLabel(key)} (closest reported line item).`
+            : period === "annual"
+              ? "Annual data — quarterly not reported for this company."
+              : undefined;
+        return { points, resolvedKey: key, period, note };
+      }
+    }
   }
 
-  const points = [...(parseTimeseriesResponse(await res.json()).get(camelKey) ?? [])];
-  fieldCache.set(cacheKey, { points, expiresAt: Date.now() + CACHE_MS });
-  return points;
+  if (options?.module && options.module in timeseriesKeys) {
+    for (const period of ["quarterly", "annual"] as const) {
+      const mod = await fetchTimeseriesModule(
+        sym,
+        options.module as keyof typeof timeseriesKeys,
+        period,
+      );
+      for (const key of uniqueKeys) {
+        const points = mod.get(key) ?? [];
+        if (points.length > 0) {
+          return {
+            points,
+            resolvedKey: key,
+            period,
+            note:
+              key !== camelKey
+                ? `Showing ${formatKeyLabel(key)} (closest reported line item).`
+                : period === "annual"
+                  ? "Annual data — quarterly not reported for this company."
+                  : undefined,
+          };
+        }
+      }
+    }
+  }
+
+  return { points: [] };
+}
+
+function formatKeyLabel(camelKey: string): string {
+  return camelKey.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
 }
 
 export async function getFundamentalsSeries(symbol: string): Promise<Map<string, HistoryPoint[]>> {
   const key = symbol.toUpperCase();
-  const hit = cache.get(key);
+  const hit = cache.get(`${key}:quarterly:bundle`);
   if (hit && Date.now() < hit.expiresAt) return hit.series;
 
-  const period2 = Math.floor(Date.now() / 1000);
-  const period1 = Math.floor(new Date(new Date().setFullYear(new Date().getFullYear() - 12)).getTime() / 1000);
-  const type = QUARTERLY_TYPES.join(",");
-
-  const url = `${BASE}/${encodeURIComponent(key)}?period1=${period1}&period2=${period2}&type=${encodeURIComponent(type)}`;
-
-  const res = await fetch(url, {
-    headers: { "User-Agent": YAHOO_UA, Accept: "application/json" },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error(`Yahoo fundamentals timeseries ${res.status}`);
+  const map = await fetchTypesRaw(key, [...QUARTERLY_TYPES]);
+  cache.set(`${key}:quarterly:bundle`, { series: map, expiresAt: Date.now() + CACHE_MS });
+  for (const [k, v] of map) {
+    cacheFieldPoints(`${key}:quarterly:${k}`, v);
   }
-
-  const series = parseTimeseriesResponse(await res.json());
-  cache.set(key, { series, expiresAt: Date.now() + CACHE_MS });
-  return series;
+  return map;
 }
 
 export function seriesFromMap(
@@ -179,7 +277,6 @@ export function freeCashFlowSeries(
   for (const c of ocf) {
     const x = capexByDate.get(c.date);
     if (x == null) continue;
-    // Yahoo reports capex as negative cash outflow.
     out.push({ date: c.date, value: c.value + x });
   }
 
@@ -200,7 +297,6 @@ export function yoyGrowthSeries(
   return out;
 }
 
-/** Quarter-over-quarter % change — used when YoY history is too short to chart. */
 export function qoqGrowthSeries(quarterly: HistoryPoint[]): HistoryPoint[] {
   const out: HistoryPoint[] = [];
   for (let i = 1; i < quarterly.length; i++) {
@@ -221,8 +317,7 @@ export async function buildRevenueGrowthSeries(symbol: string): Promise<HistoryP
   points = yoyGrowthSeries(quarterlyRev, 4);
   if (points.length >= 2) return points;
 
-  points = qoqGrowthSeries(quarterlyRev);
-  return points;
+  return qoqGrowthSeries(quarterlyRev);
 }
 
 export function trailingEpsFromQuarterly(eps: HistoryPoint[]): number | null {

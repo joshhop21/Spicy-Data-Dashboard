@@ -3,11 +3,11 @@
 import { getMetricById } from "@/lib/company-metrics-server";
 import {
   buildRevenueGrowthSeries,
-  fetchTimeseriesMetric,
   freeCashFlowSeries,
   getFundamentalsSeries,
   mergePointsByDate,
   ratioSeries,
+  resolveTimeseriesMetric,
   seriesFromMap,
   trailingEpsFromQuarterly,
   type HistoryPoint,
@@ -16,6 +16,13 @@ import { fetchQuoteSummary } from "@/lib/yahoo-quote-summary";
 import { YAHOO_UA } from "@/lib/yahoo-auth";
 
 export type { HistoryPoint };
+
+export type MetricHistoryResult = {
+  points: HistoryPoint[];
+  currency: string;
+  unavailable?: string;
+  dataNote?: string;
+};
 
 export async function fetchPriceHistory(
   symbol: string,
@@ -182,17 +189,29 @@ export async function fetchPeHistory(symbol: string, range: string): Promise<His
   return pePoints.sort((a, b) => a.date.localeCompare(b.date));
 }
 
+function unavailableMessage(symbol: string, label: string): string {
+  return `Yahoo Finance does not report ${label} for ${symbol}. This line item may be bundled with another account or not disclosed for this company.`;
+}
+
 export async function fetchMetricHistory(
   symbol: string,
   metricId: string,
   range: string,
-): Promise<{ points: HistoryPoint[]; currency: string }> {
+): Promise<MetricHistoryResult> {
   if (metricId === "price") {
-    return fetchPriceHistory(symbol, range);
+    const r = await fetchPriceHistory(symbol, range);
+    return { ...r };
   }
 
   if (metricId === "pe") {
     const points = applyRangeFilter(await fetchPeHistory(symbol, range), range);
+    if (points.length === 0) {
+      return {
+        points: [],
+        currency: "USD",
+        unavailable: unavailableMessage(symbol, "P/E ratio"),
+      };
+    }
     return { points, currency: "USD" };
   }
 
@@ -202,6 +221,7 @@ export async function fetchMetricHistory(
   ]);
 
   let points: HistoryPoint[] = [];
+  let dataNote: string | undefined;
 
   switch (metricId) {
     case "revenue":
@@ -274,15 +294,48 @@ export async function fetchMetricHistory(
     default: {
       const metric = getMetricById(metricId);
       if (metric?.timeseriesKey) {
-        points = await fetchTimeseriesMetric(symbol, metric.timeseriesKey, "quarterly");
+        const resolved = await resolveTimeseriesMetric(symbol, metric.timeseriesKey, {
+          module: metric.timeseriesModule,
+        });
+        points = resolved.points;
+        dataNote = resolved.note;
         break;
       }
-      throw new Error(`Unknown metric: ${metricId}`);
+      return {
+        points: [],
+        currency: "USD",
+        unavailable: `Unknown metric: ${metricId}`,
+      };
     }
   }
 
-  points = applyRangeFilter(points, range);
+  const metric = getMetricById(metricId);
+  return finishMetricHistory(symbol, metric?.label ?? metricId, points, range, dataNote);
+}
 
-  if (points.length === 0) throw new Error(`No data for ${metricId}`);
-  return { points, currency: "USD" };
+function finishMetricHistory(
+  symbol: string,
+  label: string,
+  points: HistoryPoint[],
+  range: string,
+  dataNote?: string,
+): MetricHistoryResult {
+  const filtered = applyRangeFilter(points, range);
+  if (filtered.length === 0 && points.length > 0) {
+    return {
+      points,
+      currency: "USD",
+      dataNote:
+        dataNote ?? "Only older periods available for this company — try ALL or a longer range.",
+    };
+  }
+  if (filtered.length === 0) {
+    return {
+      points: [],
+      currency: "USD",
+      unavailable: unavailableMessage(symbol, label),
+      dataNote,
+    };
+  }
+  return { points: filtered, currency: "USD", dataNote };
 }

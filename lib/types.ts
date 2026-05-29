@@ -31,6 +31,12 @@ export type ChartDataFile = {
   };
   series: ChartSeries[];
   points: ChartPoint[];
+  /** When set, chart area shows this instead of plotting (e.g. YoY on 1Y). */
+  unavailable?: string;
+  /** Footnote when data comes from a fallback line item or annual-only. */
+  dataNote?: string;
+  /** How to format Y-axis ticks (from metric format). */
+  axisFormat?: "currency" | "percent" | "ratio" | "number" | "compact";
   referenceLine?: { value: number; label?: string } | null;
   thesis?: string;
   methodology?: string;
