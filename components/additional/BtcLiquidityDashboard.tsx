@@ -19,9 +19,9 @@ type Props = { data: BtcLiquidityModelData };
 
 type RangeKey = "1Y" | "3Y" | "5Y" | "ALL";
 
-/** Matches Global M2 YoY chart — linear segments, soft area fill, coral stroke. */
+/** Matches Global M2 YoY chart — soft area fill, coral stroke. */
 const CHART_STYLE = {
-  lineType: "linear" as const,
+  lineType: "monotone" as const,
   color: "#c45c4a",
   fillOpacity: 0.2,
   strokeWidth: 2,
@@ -239,18 +239,19 @@ function LiquidityAreaChart({
   referenceLines?: { y: number; label?: string }[];
   tooltipContent?: React.ReactNode;
 }) {
-  const chartData = data.filter((p) =>
-    series.every((s) => {
-      const v = p[s.key as keyof typeof p];
-      return typeof v === "number" && Number.isFinite(v);
-    }),
-  );
+  const chartData = data.filter((p) => {
+    const v = p[series[0].key as keyof typeof p];
+    return typeof v === "number" && Number.isFinite(v);
+  });
 
   if (chartData.length === 0) {
     return <ChartEmpty heightClass={heightClass} />;
   }
 
-  const tickFormatter = (v: number) => (yFormatter ? yFormatter(v) : String(v));
+  const tickFormatter = (v: number) => {
+    if (!Number.isFinite(v)) return "";
+    return yFormatter ? yFormatter(v) : String(v);
+  };
 
   return (
     <div className={`${heightClass} w-full`}>
@@ -266,14 +267,14 @@ function LiquidityAreaChart({
             tickLine={false}
           />
           <YAxis
-            scale={logScale ? "log" : undefined}
-            domain={logScale ? ["auto", "auto"] : undefined}
-            allowDataOverflow={logScale}
             tick={{ fontSize: 10, fill: CHART_STYLE.tickFill }}
             width={48}
             axisLine={false}
             tickLine={false}
             tickFormatter={tickFormatter}
+            {...(logScale
+              ? { scale: "log" as const, domain: ["auto", "auto"] as [string, string], allowDataOverflow: true }
+              : {})}
           />
           {tooltipContent ?? (
             <Tooltip
@@ -283,10 +284,13 @@ function LiquidityAreaChart({
                 border: "1px solid #e7e5e4",
               }}
               labelFormatter={(l) => String(l)}
-              formatter={(value: number, name: string) => [
-                tickFormatter(value),
-                series.find((s) => s.key === name)?.label ?? name,
-              ]}
+              formatter={(value: number, name: string) => {
+                const num = typeof value === "number" ? value : Number(value);
+                return [
+                  tickFormatter(num),
+                  series.find((s) => String(s.key) === name)?.label ?? name,
+                ];
+              }}
             />
           )}
           {referenceLines?.map((r) => (
@@ -306,13 +310,14 @@ function LiquidityAreaChart({
             <Area
               key={String(s.key)}
               type={CHART_STYLE.lineType}
-              dataKey={s.key as string}
+              dataKey={String(s.key)}
               name={String(s.key)}
               stroke={s.color ?? CHART_STYLE.color}
               fill={s.color ?? CHART_STYLE.color}
               fillOpacity={CHART_STYLE.fillOpacity}
               strokeWidth={CHART_STYLE.strokeWidth}
               dot={false}
+              connectNulls
               isAnimationActive={false}
             />
           ))}
@@ -380,6 +385,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             fillOpacity={CHART_STYLE.fillOpacity}
             strokeWidth={CHART_STYLE.strokeWidth}
             dot={false}
+            connectNulls
             isAnimationActive={false}
           />
           <Area
@@ -391,6 +397,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             fillOpacity={CHART_STYLE.fillOpacity}
             strokeWidth={CHART_STYLE.strokeWidth}
             dot={false}
+            connectNulls
             isAnimationActive={false}
           />
         </ComposedChart>
