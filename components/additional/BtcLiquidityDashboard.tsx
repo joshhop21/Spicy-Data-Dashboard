@@ -18,19 +18,10 @@ import type { BtcLiquidityModelData, BtcLiquidityPoint } from "@/lib/btc-liquidi
 type Props = { data: BtcLiquidityModelData };
 
 type RangeKey = "1Y" | "3Y" | "5Y" | "ALL";
-type LineStyle = "line" | "points";
-type ChartId = "fairValue" | "zScore" | "fedNet" | "globalM2" | "stables";
 
-const DEFAULT_LINE_STYLES: Record<ChartId, LineStyle> = {
-  fairValue: "line",
-  zScore: "line",
-  fedNet: "line",
-  globalM2: "line",
-  stables: "line",
-};
-
-/** Shared area look — coral stroke, soft fill. */
+/** Matches Global M2 YoY chart — soft area fill, coral stroke. */
 const CHART_STYLE = {
+  lineType: "monotone" as const,
   color: "#c45c4a",
   fillOpacity: 0.2,
   strokeWidth: 2,
@@ -63,11 +54,6 @@ type SeriesConfig = {
 export function BtcLiquidityDashboard({ data }: Props) {
   const { headline, cards, points, modelStats, methodology, sources, updatedAt } = data;
   const [range, setRange] = useState<RangeKey>("ALL");
-  const [lineStyles, setLineStyles] = useState(DEFAULT_LINE_STYLES);
-
-  const setLineStyle = (chartId: ChartId, style: LineStyle) => {
-    setLineStyles((prev) => ({ ...prev, [chartId]: style }));
-  };
 
   const filtered = useMemo(() => filterByRange(points, range), [points, range]);
 
@@ -165,10 +151,8 @@ export function BtcLiquidityDashboard({ data }: Props) {
         subtitle="Log scale · ±1σ shaded as the likely range, ±2σ as the extreme range"
         range={range}
         onRangeChange={setRange}
-        lineStyle={lineStyles.fairValue}
-        onLineStyleChange={(s) => setLineStyle("fairValue", s)}
       >
-        <FairValueChart data={fairValuePoints} lineStyle={lineStyles.fairValue} />
+        <FairValueChart data={fairValuePoints} />
         <div className="mt-2 flex flex-wrap gap-4 text-xs text-muted">
           <LegendDot color={CHART_STYLE.color} label="BTC actual" />
           <LegendDot color={CHART_STYLE.modelColor} label="Model fair value" />
@@ -183,13 +167,10 @@ export function BtcLiquidityDashboard({ data }: Props) {
         right={`Current z = ${headline.zScore.toFixed(2)}`}
         range={range}
         onRangeChange={setRange}
-        lineStyle={lineStyles.zScore}
-        onLineStyleChange={(s) => setLineStyle("zScore", s)}
       >
         <LiquidityAreaChart
           data={filtered}
           series={[{ key: "zScore", label: "Z-score" }]}
-          lineStyle={lineStyles.zScore}
           yFormatter={(v) => v.toFixed(1)}
           referenceLines={[
             { y: 1.5, label: "+1.5" },
@@ -200,48 +181,24 @@ export function BtcLiquidityDashboard({ data }: Props) {
       </ChartPanel>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <ChartPanel
-          title="Fed Net Liquidity"
-          subtitle="WALCL - TGA - RRP, $T"
-          range={range}
-          onRangeChange={setRange}
-          lineStyle={lineStyles.fedNet}
-          onLineStyleChange={(s) => setLineStyle("fedNet", s)}
-        >
+        <ChartPanel title="Fed Net Liquidity" subtitle="WALCL - TGA - RRP, $T" range={range} onRangeChange={setRange}>
           <LiquidityAreaChart
             data={filtered}
             series={[{ key: "fedNetLiqT", label: "Fed net liq" }]}
-            lineStyle={lineStyles.fedNet}
             yFormatter={(v) => `$${v.toFixed(2)}T`}
           />
         </ChartPanel>
-        <ChartPanel
-          title="Global M2 YoY"
-          subtitle="USD-converted, US + EA + JP + CN + UK"
-          range={range}
-          onRangeChange={setRange}
-          lineStyle={lineStyles.globalM2}
-          onLineStyleChange={(s) => setLineStyle("globalM2", s)}
-        >
+        <ChartPanel title="Global M2 YoY" subtitle="USD-converted, US + EA + JP + CN + UK" range={range} onRangeChange={setRange}>
           <LiquidityAreaChart
             data={filtered}
             series={[{ key: "globalM2Yoy", label: "Global M2 YoY" }]}
-            lineStyle={lineStyles.globalM2}
             yFormatter={(v) => `${v.toFixed(1)}%`}
           />
         </ChartPanel>
-        <ChartPanel
-          title="Stablecoin Supply"
-          subtitle="USDT + USDC, $B"
-          range={range}
-          onRangeChange={setRange}
-          lineStyle={lineStyles.stables}
-          onLineStyleChange={(s) => setLineStyle("stables", s)}
-        >
+        <ChartPanel title="Stablecoin Supply" subtitle="USDT + USDC, $B" range={range} onRangeChange={setRange}>
           <LiquidityAreaChart
             data={filtered}
             series={[{ key: "stableSupplyB", label: "Stablecoin supply" }]}
-            lineStyle={lineStyles.stables}
             yFormatter={(v) => `$${v.toFixed(0)}B`}
           />
         </ChartPanel>
@@ -264,26 +221,10 @@ export function BtcLiquidityDashboard({ data }: Props) {
   );
 }
 
-/** Straight segments between weekly points; optional dot at each point. */
-function seriesLineProps(lineStyle: LineStyle, color: string) {
-  if (lineStyle === "points") {
-    return {
-      type: "linear" as const,
-      dot: { r: 3, fill: color, stroke: "#fff", strokeWidth: 1.5 },
-      activeDot: { r: 4, stroke: color, strokeWidth: 2, fill: "#fff" },
-    };
-  }
-  return {
-    type: "linear" as const,
-    dot: false as const,
-  };
-}
-
 /** Shared chart shell — same grid, axes, tooltip as Global M2 YoY. */
 function LiquidityAreaChart({
   data,
   series,
-  lineStyle = "line",
   heightClass = "h-48",
   logScale = false,
   yFormatter,
@@ -292,7 +233,6 @@ function LiquidityAreaChart({
 }: {
   data: BtcLiquidityPoint[] | FairValuePoint[];
   series: SeriesConfig[];
-  lineStyle?: LineStyle;
   heightClass?: string;
   logScale?: boolean;
   yFormatter?: (v: number) => string;
@@ -366,37 +306,31 @@ function LiquidityAreaChart({
               }
             />
           ))}
-          {series.map((s) => {
-            const color = s.color ?? CHART_STYLE.color;
-            const lineProps = seriesLineProps(lineStyle, color);
-            return (
-              <Area
-                key={String(s.key)}
-                dataKey={String(s.key)}
-                name={String(s.key)}
-                stroke={color}
-                fill={color}
-                fillOpacity={CHART_STYLE.fillOpacity}
-                strokeWidth={CHART_STYLE.strokeWidth}
-                connectNulls
-                isAnimationActive={false}
-                {...lineProps}
-              />
-            );
-          })}
+          {series.map((s) => (
+            <Area
+              key={String(s.key)}
+              type={CHART_STYLE.lineType}
+              dataKey={String(s.key)}
+              name={String(s.key)}
+              stroke={s.color ?? CHART_STYLE.color}
+              fill={s.color ?? CHART_STYLE.color}
+              fillOpacity={CHART_STYLE.fillOpacity}
+              strokeWidth={CHART_STYLE.strokeWidth}
+              dot={false}
+              connectNulls
+              isAnimationActive={false}
+            />
+          ))}
         </AreaChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
-function FairValueChart({ data, lineStyle = "line" }: { data: FairValuePoint[]; lineStyle?: LineStyle }) {
+function FairValueChart({ data }: { data: FairValuePoint[] }) {
   if (data.length === 0) {
     return <ChartEmpty heightClass="h-80" />;
   }
-
-  const btcLine = seriesLineProps(lineStyle, CHART_STYLE.color);
-  const modelLine = seriesLineProps(lineStyle, CHART_STYLE.modelColor);
 
   return (
     <div className="h-80 w-full">
@@ -423,7 +357,7 @@ function FairValueChart({ data, lineStyle = "line" }: { data: FairValuePoint[]; 
           />
           <Tooltip content={<FairValueTooltip />} />
           <Area
-            type="monotone"
+            type={CHART_STYLE.lineType}
             dataKey="band2Range"
             isRange
             stroke="none"
@@ -433,7 +367,7 @@ function FairValueChart({ data, lineStyle = "line" }: { data: FairValuePoint[]; 
             legendType="none"
           />
           <Area
-            type="monotone"
+            type={CHART_STYLE.lineType}
             dataKey="band1Range"
             isRange
             stroke="none"
@@ -443,26 +377,28 @@ function FairValueChart({ data, lineStyle = "line" }: { data: FairValuePoint[]; 
             legendType="none"
           />
           <Area
+            type={CHART_STYLE.lineType}
             dataKey="modelFair"
             name="modelFair"
             stroke={CHART_STYLE.modelColor}
             fill={CHART_STYLE.modelColor}
             fillOpacity={CHART_STYLE.fillOpacity}
             strokeWidth={CHART_STYLE.strokeWidth}
+            dot={false}
             connectNulls
             isAnimationActive={false}
-            {...modelLine}
           />
           <Area
+            type={CHART_STYLE.lineType}
             dataKey="btcActual"
             name="btcActual"
             stroke={CHART_STYLE.color}
             fill={CHART_STYLE.color}
             fillOpacity={CHART_STYLE.fillOpacity}
             strokeWidth={CHART_STYLE.strokeWidth}
+            dot={false}
             connectNulls
             isAnimationActive={false}
-            {...btcLine}
           />
         </ComposedChart>
       </ResponsiveContainer>
@@ -491,37 +427,6 @@ function FairValueTooltip({ active, payload, label }: TooltipProps<number, strin
       <p className="text-stone-500">
         ±2σ: ${row.band2Low.toLocaleString()} – ${row.band2High.toLocaleString()}
       </p>
-    </div>
-  );
-}
-
-function LineStyleSelector({
-  style,
-  onChange,
-}: {
-  style: LineStyle;
-  onChange: (s: LineStyle) => void;
-}) {
-  const options: { key: LineStyle; label: string }[] = [
-    { key: "line", label: "Line" },
-    { key: "points", label: "Points" },
-  ];
-  return (
-    <div className="flex gap-1">
-      {options.map(({ key, label }) => (
-        <button
-          key={key}
-          type="button"
-          onClick={() => onChange(key)}
-          className={`rounded px-2.5 py-1 text-xs font-medium transition ${
-            style === key
-              ? "bg-stone-800 text-white"
-              : "border border-stone-200 bg-white text-stone-600 hover:bg-stone-50"
-          }`}
-        >
-          {label}
-        </button>
-      ))}
     </div>
   );
 }
@@ -559,8 +464,6 @@ function ChartPanel({
   right,
   range,
   onRangeChange,
-  lineStyle,
-  onLineStyleChange,
   children,
 }: {
   title: string;
@@ -568,8 +471,6 @@ function ChartPanel({
   right?: string;
   range?: RangeKey;
   onRangeChange?: (r: RangeKey) => void;
-  lineStyle?: LineStyle;
-  onLineStyleChange?: (s: LineStyle) => void;
   children: React.ReactNode;
 }) {
   return (
@@ -581,12 +482,7 @@ function ChartPanel({
         </div>
         <div className="flex flex-col items-end gap-2">
           {right && <p className="font-mono text-xs tabular-nums text-muted">{right}</p>}
-          <div className="flex flex-wrap items-center justify-end gap-2">
-            {lineStyle && onLineStyleChange && (
-              <LineStyleSelector style={lineStyle} onChange={onLineStyleChange} />
-            )}
-            {range && onRangeChange && <RangeSelector range={range} onChange={onRangeChange} />}
-          </div>
+          {range && onRangeChange && <RangeSelector range={range} onChange={onRangeChange} />}
         </div>
       </div>
       {children}
