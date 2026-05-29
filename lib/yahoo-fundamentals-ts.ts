@@ -23,7 +23,12 @@ type FundamentalsCache = {
 };
 
 const cache = new Map<string, FundamentalsCache>();
+const fieldCache = new Map<string, { expiresAt: number; points: HistoryPoint[] }>();
 const CACHE_MS = 60_000;
+
+function camelToPascal(camel: string): string {
+  return camel.charAt(0).toUpperCase() + camel.slice(1);
+}
 
 function toCamelKey(dataKey: string): string {
   const short = dataKey.replace(/^(quarterly|annual|trailing)/, "");
@@ -62,6 +67,47 @@ function parseTimeseriesResponse(json: unknown): Map<string, HistoryPoint[]> {
   }
 
   return map;
+}
+
+export async function fetchTimeseriesMetric(
+  symbol: string,
+  camelKey: string,
+  periodType: "quarterly" | "annual" = "quarterly",
+): Promise<HistoryPoint[]> {
+  const key = symbol.toUpperCase();
+  const cacheKey = `${key}:${periodType}:${camelKey}`;
+  const hit = fieldCache.get(cacheKey);
+  if (hit && Date.now() < hit.expiresAt) return hit.points;
+
+  if (periodType === "quarterly") {
+    try {
+      const bundled = await getFundamentalsSeries(key);
+      const existing = bundled.get(camelKey);
+      if (existing?.length) return existing;
+    } catch {
+      /* fetch individually below */
+    }
+  }
+
+  const period2 = Math.floor(Date.now() / 1000);
+  const period1 = Math.floor(
+    new Date(new Date().setFullYear(new Date().getFullYear() - 12)).getTime() / 1000,
+  );
+  const type = `${periodType}${camelToPascal(camelKey)}`;
+  const url = `${BASE}/${encodeURIComponent(key)}?period1=${period1}&period2=${period2}&type=${encodeURIComponent(type)}`;
+
+  const res = await fetch(url, {
+    headers: { "User-Agent": YAHOO_UA, Accept: "application/json" },
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error(`Yahoo fundamentals timeseries ${res.status} (${camelKey})`);
+  }
+
+  const points = [...(parseTimeseriesResponse(await res.json()).get(camelKey) ?? [])];
+  fieldCache.set(cacheKey, { points, expiresAt: Date.now() + CACHE_MS });
+  return points;
 }
 
 export async function getFundamentalsSeries(symbol: string): Promise<Map<string, HistoryPoint[]>> {
@@ -140,17 +186,23 @@ export function freeCashFlowSeries(
   return out;
 }
 
-export function yoyGrowthSeries(quarterly: HistoryPoint[]): HistoryPoint[] {
+export function yoyGrowthSeries(
+  series: HistoryPoint[],
+  periodsBack = 4,
+): HistoryPoint[] {
   const out: HistoryPoint[] = [];
-  for (let i = 4; i < quarterly.length; i++) {
-    const prev = quarterly[i - 4]!.value;
-    const curr = quarterly[i]!.value;
+  for (let i = periodsBack; i < series.length; i++) {
+    const prev = series[i - periodsBack]!.value;
+    const curr = series[i]!.value;
     if (prev === 0) continue;
-    out.push({ date: quarterly[i]!.date, value: (curr / prev - 1) * 100 });
+    out.push({ date: series[i]!.date, value: (curr / prev - 1) * 100 });
   }
-  if (out.length > 0) return out;
+  return out;
+}
 
-  // Fallback: year-over-year on annual-like sparse data (1 period back if ≥2 years apart)
+/** Quarter-over-quarter % change — used when YoY history is too short to chart. */
+export function qoqGrowthSeries(quarterly: HistoryPoint[]): HistoryPoint[] {
+  const out: HistoryPoint[] = [];
   for (let i = 1; i < quarterly.length; i++) {
     const prev = quarterly[i - 1]!.value;
     const curr = quarterly[i]!.value;
@@ -158,6 +210,19 @@ export function yoyGrowthSeries(quarterly: HistoryPoint[]): HistoryPoint[] {
     out.push({ date: quarterly[i]!.date, value: (curr / prev - 1) * 100 });
   }
   return out;
+}
+
+export async function buildRevenueGrowthSeries(symbol: string): Promise<HistoryPoint[]> {
+  const annualRev = await fetchTimeseriesMetric(symbol, "totalRevenue", "annual");
+  let points = yoyGrowthSeries(annualRev, 1);
+  if (points.length >= 2) return points;
+
+  const quarterlyRev = await fetchTimeseriesMetric(symbol, "totalRevenue", "quarterly");
+  points = yoyGrowthSeries(quarterlyRev, 4);
+  if (points.length >= 2) return points;
+
+  points = qoqGrowthSeries(quarterlyRev);
+  return points;
 }
 
 export function trailingEpsFromQuarterly(eps: HistoryPoint[]): number | null {

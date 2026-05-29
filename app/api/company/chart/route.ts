@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  CHART_RANGES,
-  formatMetricValue,
-  getMetricById,
-  type ChartRange,
-} from "@/lib/company-metrics";
+import { CHART_RANGES, formatMetricValue, type ChartRange } from "@/lib/company-metrics";
+import { getMetricById } from "@/lib/company-metrics-server";
 import { fetchMetricHistory } from "@/lib/yahoo-finance";
 import type { ChartDataFile } from "@/lib/types";
 

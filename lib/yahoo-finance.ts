@@ -1,13 +1,15 @@
 /** Server-side Yahoo Finance helpers. */
 
+import { getMetricById } from "@/lib/company-metrics-server";
 import {
+  buildRevenueGrowthSeries,
+  fetchTimeseriesMetric,
   freeCashFlowSeries,
   getFundamentalsSeries,
   mergePointsByDate,
   ratioSeries,
   seriesFromMap,
   trailingEpsFromQuarterly,
-  yoyGrowthSeries,
   type HistoryPoint,
 } from "@/lib/yahoo-fundamentals-ts";
 import { fetchQuoteSummary } from "@/lib/yahoo-quote-summary";
@@ -221,12 +223,7 @@ export async function fetchMetricHistory(
       );
       break;
     case "revenue-growth":
-      points = yoyGrowthSeries(
-        mergePointsByDate(
-          seriesFromMap(ts, "totalRevenue"),
-          statementPoints(fallback.income, "totalRevenue"),
-        ),
-      );
+      points = await buildRevenueGrowthSeries(symbol);
       break;
     case "eps": {
       const fromTs = seriesFromMap(ts, "dilutedEPS");
@@ -274,8 +271,14 @@ export async function fetchMetricHistory(
       }
       break;
     }
-    default:
+    default: {
+      const metric = getMetricById(metricId);
+      if (metric?.timeseriesKey) {
+        points = await fetchTimeseriesMetric(symbol, metric.timeseriesKey, "quarterly");
+        break;
+      }
       throw new Error(`Unknown metric: ${metricId}`);
+    }
   }
 
   points = applyRangeFilter(points, range);

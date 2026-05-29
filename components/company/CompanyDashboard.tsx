@@ -3,19 +3,23 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-import { LiveChartTileById } from "@/components/company/LiveChartTile";
+import { LiveChartTile } from "@/components/company/LiveChartTile";
 import { MetricSearchBar } from "@/components/company/MetricSearchBar";
-import { DEFAULT_METRIC_IDS } from "@/lib/company-metrics";
+import { COMPANY_METRICS, DEFAULT_METRIC_IDS, type MetricDefinition } from "@/lib/company-metrics";
 
 type Props = { symbol: string };
 
 export function CompanyDashboard({ symbol }: Props) {
   const router = useRouter();
-  const [activeMetricIds, setActiveMetricIds] = useState<string[]>(() => [...DEFAULT_METRIC_IDS]);
+  const [activeMetrics, setActiveMetrics] = useState<MetricDefinition[]>(() =>
+    DEFAULT_METRIC_IDS.map((id) => COMPANY_METRICS.find((m) => m.id === id)).filter(
+      (m): m is MetricDefinition => m != null,
+    ),
+  );
   const [headerQuery, setHeaderQuery] = useState("");
 
-  const addMetric = useCallback((id: string) => {
-    setActiveMetricIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  const addMetric = useCallback((metric: MetricDefinition) => {
+    setActiveMetrics((prev) => (prev.some((m) => m.id === metric.id) ? prev : [...prev, metric]));
   }, []);
 
   function handleHeaderSearch(e: React.FormEvent) {
@@ -67,12 +71,12 @@ export function CompanyDashboard({ symbol }: Props) {
       </header>
 
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-        {activeMetricIds.map((id) => (
-          <LiveChartTileById key={`${symbol}-${id}`} symbol={symbol} metricId={id} />
+        {activeMetrics.map((metric) => (
+          <LiveChartTile key={`${symbol}-${metric.id}`} symbol={symbol} metric={metric} />
         ))}
       </div>
 
-      <MetricSearchBar symbol={symbol} activeMetricIds={activeMetricIds} onAddMetric={addMetric} />
+      <MetricSearchBar symbol={symbol} activeMetrics={activeMetrics} onAddMetric={addMetric} />
     </div>
   );
 }

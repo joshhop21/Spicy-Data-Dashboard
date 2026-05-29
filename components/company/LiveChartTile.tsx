@@ -2,12 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { MiniChart } from "@/components/MiniChart";
-import {
-  CHART_RANGES,
-  getMetricById,
-  type ChartRange,
-  type MetricDefinition,
-} from "@/lib/company-metrics";
+import { CHART_RANGES, type ChartRange, type MetricDefinition } from "@/lib/company-metrics";
 import type { ChartDataFile } from "@/lib/types";
 
 const REFRESH_MS = 30_000;
@@ -144,8 +139,3 @@ export function LiveChartTile({ symbol, metric }: Props) {
   );
 }
 
-export function LiveChartTileById({ symbol, metricId }: { symbol: string; metricId: string }) {
-  const metric = getMetricById(metricId);
-  if (!metric) return null;
-  return <LiveChartTile symbol={symbol} metric={metric} />;
-}

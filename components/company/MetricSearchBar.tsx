@@ -1,22 +1,24 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { COMPANY_METRICS, DEFAULT_METRIC_IDS } from "@/lib/company-metrics";
+import { COMPANY_METRICS, DEFAULT_METRIC_IDS, type MetricDefinition } from "@/lib/company-metrics";
 
-type SearchResult = { id: string; label: string; subtitle: string; icon: string };
+type SearchResult = MetricDefinition;
 
 type Props = {
   symbol: string;
-  activeMetricIds: string[];
-  onAddMetric: (metricId: string) => void;
+  activeMetrics: MetricDefinition[];
+  onAddMetric: (metric: MetricDefinition) => void;
 };
 
-export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props) {
+export function MetricSearchBar({ symbol, activeMetrics, onAddMetric }: Props) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [open, setOpen] = useState(false);
   const [highlight, setHighlight] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
+
+  const activeMetricIds = activeMetrics.map((m) => m.id);
 
   const search = useCallback(async (q: string) => {
     if (!q.trim()) {
@@ -44,8 +46,8 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
-  function pick(id: string) {
-    if (!activeMetricIds.includes(id)) onAddMetric(id);
+  function pick(metric: MetricDefinition) {
+    if (!activeMetricIds.includes(metric.id)) onAddMetric(metric);
     setQuery("");
     setResults([]);
     setOpen(false);
@@ -62,20 +64,22 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
     } else if (e.key === "Enter") {
       e.preventDefault();
       const item = results[highlight];
-      if (item) pick(item.id);
+      if (item) pick(item);
     } else if (e.key === "Escape") {
       setOpen(false);
     }
   }
 
-  const available = COMPANY_METRICS.filter((m) => !activeMetricIds.includes(m.id));
+  const suggested = COMPANY_METRICS.filter(
+    (m) => !m.default && !activeMetricIds.includes(m.id),
+  ).slice(0, 4);
 
   return (
     <section className="rounded-xl border border-stone-200/80 bg-card p-5 shadow-sm">
       <h2 className="font-serif text-lg font-semibold text-ink">Add a financial metric</h2>
       <p className="mt-1 text-sm text-muted">
-        Search metrics for {symbol} — e.g. type &quot;revenue g&quot; for revenue growth. Each
-        selection adds a new chart tile.
+        Search any Yahoo Finance fundamental for {symbol} — income statement, balance sheet,
+        cash flow (e.g. &quot;capital expenditure&quot;, &quot;EBITDA&quot;, &quot;R&amp;D&quot;).
       </p>
 
       <div ref={wrapRef} className="relative mt-4">
@@ -88,7 +92,7 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
-          placeholder='Try "revenue growth", "eps", "free cash flow"…'
+          placeholder='Try "capital expenditure", "EBITDA", "research and development"…'
           className="w-full rounded-lg border border-stone-300 bg-white px-4 py-2.5 text-sm outline-none ring-spice-gold/30 placeholder:text-stone-400 focus:ring-2"
           aria-label="Search financial metrics"
           aria-expanded={open}
@@ -97,7 +101,7 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
 
         {open && results.length > 0 && (
           <ul
-            className="absolute z-20 mt-1 max-h-64 w-full overflow-auto rounded-lg border border-stone-200 bg-white py-1 shadow-lg"
+            className="absolute z-20 mt-1 max-h-72 w-full overflow-auto rounded-lg border border-stone-200 bg-white py-1 shadow-lg"
             role="listbox"
           >
             {results.map((r, i) => {
@@ -109,7 +113,7 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
                     role="option"
                     aria-selected={i === highlight}
                     disabled={already}
-                    onClick={() => pick(r.id)}
+                    onClick={() => pick(r)}
                     className={`flex w-full items-start gap-3 px-4 py-2.5 text-left text-sm transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-50 ${
                       i === highlight ? "bg-stone-50" : ""
                     }`}
@@ -132,13 +136,13 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
         )}
       </div>
 
-      {available.length > 0 && !query && (
+      {suggested.length > 0 && !query && (
         <div className="mt-4 flex flex-wrap gap-2">
-          {available.slice(0, 6).map((m) => (
+          {suggested.map((m) => (
             <button
               key={m.id}
               type="button"
-              onClick={() => onAddMetric(m.id)}
+              onClick={() => onAddMetric(m)}
               className="rounded-full border border-stone-200 bg-white px-3 py-1 text-xs font-medium text-stone-700 transition hover:bg-stone-50"
             >
               + {m.label}
@@ -148,7 +152,9 @@ export function MetricSearchBar({ symbol, activeMetricIds, onAddMetric }: Props)
       )}
 
       <p className="mt-3 text-xs text-muted">
-        Default charts: {DEFAULT_METRIC_IDS.map((id) => COMPANY_METRICS.find((m) => m.id === id)?.label).join(", ")}
+        Default charts:{" "}
+        {DEFAULT_METRIC_IDS.map((id) => COMPANY_METRICS.find((m) => m.id === id)?.label).join(", ")}
+        . Search above for 400+ additional line items from Yahoo fundamentals.
       </p>
     </section>
   );

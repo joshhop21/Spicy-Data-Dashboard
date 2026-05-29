@@ -10,6 +10,9 @@ export type MetricDefinition = {
   format: MetricFormat;
   /** Built-in charts shown on every company page */
   default?: boolean;
+  /** Yahoo fundamentals timeseries field (camelCase), for `ts-*` metrics */
+  timeseriesKey?: string;
+  timeseriesModule?: string;
 };
 
 export const COMPANY_METRICS: MetricDefinition[] = [
@@ -46,7 +49,7 @@ export const COMPANY_METRICS: MetricDefinition[] = [
   {
     id: "revenue-growth",
     label: "Revenue Growth YoY",
-    subtitle: "Year-over-year % change",
+    subtitle: "Annual YoY % (falls back to quarterly)",
     keywords: ["revenue growth", "revenue g", "sales growth", "yoy revenue"],
     icon: "📈",
     accentColor: "#c45c4a",
@@ -110,24 +113,9 @@ export const CHART_RANGES: { key: ChartRange; yahoo: string }[] = [
   { key: "ALL", yahoo: "max" },
 ];
 
-export function getMetricById(id: string): MetricDefinition | undefined {
+/** Preset metrics only — use `company-metrics-server` for full catalog lookup. */
+export function getPresetMetricById(id: string): MetricDefinition | undefined {
   return COMPANY_METRICS.find((m) => m.id === id);
-}
-
-export function searchMetrics(query: string, limit = 8): MetricDefinition[] {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
-
-  return COMPANY_METRICS.filter((m) => {
-    const haystack = [m.label, m.subtitle, ...m.keywords].join(" ").toLowerCase();
-    return haystack.includes(q) || m.keywords.some((k) => k.includes(q) || q.includes(k.split(" ")[0]!));
-  })
-    .slice(0, limit)
-    .sort((a, b) => {
-      const aLabel = a.label.toLowerCase().startsWith(q) ? 0 : 1;
-      const bLabel = b.label.toLowerCase().startsWith(q) ? 0 : 1;
-      return aLabel - bLabel;
-    });
 }
 
 export function formatMetricValue(value: number, format: MetricFormat, currency = "USD"): string {
