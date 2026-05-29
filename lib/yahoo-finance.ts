@@ -1,15 +1,18 @@
 /** Server-side Yahoo Finance helpers (direct HTTP — no npm package). */
 
-export type HistoryPoint = { date: string; value: number };
+import { YAHOO_UA, yahooFetch } from "@/lib/yahoo-auth";
 
-const UA = { "User-Agent": "Mozilla/5.0 (compatible; SpicyDataDashboard/1.0)" };
+export type HistoryPoint = { date: string; value: number };
 
 export async function fetchPriceHistory(
   symbol: string,
   range: string,
 ): Promise<{ points: HistoryPoint[]; currency: string }> {
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`;
-  const res = await fetch(url, { headers: UA, cache: "no-store" });
+  const res = await fetch(url, {
+    headers: { "User-Agent": YAHOO_UA, Accept: "application/json" },
+    cache: "no-store",
+  });
   if (!res.ok) throw new Error(`Yahoo chart ${res.status}`);
 
   const json = await res.json();
@@ -48,15 +51,41 @@ type EarningsRow = {
 async function fetchQuoteSummary(symbol: string) {
   const modules = [
     "incomeStatementHistoryQuarterly",
+    "incomeStatementHistory",
     "cashflowStatementHistoryQuarterly",
+    "cashflowStatementHistory",
     "earningsHistory",
     "financialData",
+    "defaultKeyStatistics",
   ].join(",");
-  const url = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=${modules}`;
-  const res = await fetch(url, { headers: UA, cache: "no-store" });
-  if (!res.ok) throw new Error(`Yahoo quoteSummary ${res.status}`);
-  const json = await res.json();
-  return json?.quoteSummary?.result?.[0];
+
+  const bases = [
+    `https://query2.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=${modules}`,
+    `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=${modules}`,
+  ];
+
+  let lastStatus = 0;
+  for (const base of bases) {
+    const res = await yahooFetch(base);
+    lastStatus = res.status;
+    if (!res.ok) continue;
+    const json = await res.json();
+    const result = json?.quoteSummary?.result?.[0];
+    if (result) return result;
+  }
+
+  throw new Error(`Yahoo quoteSummary ${lastStatus || 401}`);
+}
+
+function mergeStatements(...lists: (RawStatement[] | undefined)[]): RawStatement[] {
+  const map = new Map<number, RawStatement>();
+  for (const rows of lists) {
+    for (const row of rows ?? []) {
+      const ts = row.endDate?.raw;
+      if (ts != null) map.set(ts, row);
+    }
+  }
+  return [...map.values()].sort((a, b) => (a.endDate?.raw ?? 0) - (b.endDate?.raw ?? 0));
 }
 
 function statementPoints(
@@ -86,7 +115,7 @@ function yoyGrowthPoints(quarterly: HistoryPoint[]): HistoryPoint[] {
     if (prev === 0) continue;
     out.push({
       date: quarterly[i]!.date,
-      value: ((curr / prev - 1) * 100),
+      value: (curr / prev - 1) * 100,
     });
   }
   return out;
@@ -107,6 +136,14 @@ export async function fetchPeHistory(symbol: string, range: string): Promise<His
     fetchQuoteSummary(symbol),
   ]);
 
+  const trailingEps =
+    summary?.defaultKeyStatistics?.trailingEps?.raw ??
+    summary?.financialData?.epsTrailingTwelveMonths?.raw;
+
+  if (trailingEps != null && trailingEps !== 0 && prices.length > 0) {
+    return prices.map((p) => ({ date: p.date, value: p.value / trailingEps }));
+  }
+
   const earnings: EarningsRow[] = summary?.earningsHistory?.history ?? [];
   const pePoints: HistoryPoint[] = [];
 
@@ -120,7 +157,9 @@ export async function fetchPeHistory(symbol: string, range: string): Promise<His
   }
 
   if (pePoints.length === 0) {
-    const trailingPe = summary?.financialData?.trailingPE?.raw;
+    const trailingPe =
+      summary?.financialData?.trailingPE?.raw ??
+      summary?.defaultKeyStatistics?.trailingPE?.raw;
     if (trailingPe != null) {
       pePoints.push({ date: new Date().toISOString().slice(0, 10), value: trailingPe });
     }
@@ -144,10 +183,14 @@ export async function fetchMetricHistory(
   }
 
   const summary = await fetchQuoteSummary(symbol);
-  const income: RawStatement[] =
-    summary?.incomeStatementHistoryQuarterly?.incomeStatementHistory ?? [];
-  const cashflow: RawStatement[] =
-    summary?.cashflowStatementHistoryQuarterly?.cashflowStatementHistory ?? [];
+  const income = mergeStatements(
+    summary?.incomeStatementHistory?.incomeStatementHistory,
+    summary?.incomeStatementHistoryQuarterly?.incomeStatementHistory,
+  );
+  const cashflow = mergeStatements(
+    summary?.cashflowStatementHistory?.cashflowStatementHistory,
+    summary?.cashflowStatementHistoryQuarterly?.cashflowStatementHistory,
+  );
 
   let points: HistoryPoint[] = [];
 
@@ -200,7 +243,6 @@ export async function fetchMetricHistory(
 
   if (points.length === 0) throw new Error(`No data for ${metricId}`);
 
-  // Trim to approximate range window for quarterly data
   if (range !== "max") {
     const years = range === "1y" ? 1 : range === "3y" ? 3 : range === "5y" ? 5 : 10;
     const cutoff = new Date();
