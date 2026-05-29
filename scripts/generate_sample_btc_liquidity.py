@@ -1,8 +1,8 @@
 """
 Offline / partial fallback for Bitcoin Liquidity Model.
 
-Uses real M2 from data/m2-yoy.json (same FRED series as Phase 2 tile),
-real BTC from Yahoo, real stables from Defillama, and FRED for Fed net when available.
+Uses global M2 (US+EA+JP+CN+UK) from FRED, real BTC from Yahoo,
+real stables from Defillama, and FRED for Fed net when available.
 """
 from __future__ import annotations
 
@@ -27,62 +27,45 @@ from fetch_btc_liquidity_model import (  # noqa: E402
     fit_ols,
     halving_cycle_pos,
 )
-from fred_utils import fetch_fred_series_or_csv, load_fred_api_key  # noqa: E402
+from fred_utils import (  # noqa: E402
+    GLOBAL_M2_SOURCES,
+    fetch_fred_series_or_csv,
+    global_m2_yoy_on_index,
+    load_fred_api_key,
+)
 
 OUT = ROOT / "data" / "btc-liquidity-model.json"
-M2_JSON = ROOT / "data" / "m2-yoy.json"
 
 
-def load_m2_yoy_series() -> pd.Series:
-    if not M2_JSON.exists():
-        raise RuntimeError(f"Missing {M2_JSON} — run fetch_m2_yoy.py first")
-    raw = json.loads(M2_JSON.read_text(encoding="utf-8"))
-    return pd.Series(
-        {pd.Timestamp(p["date"]): float(p["m2yoy"]) for p in raw["points"]},
-        dtype=float,
-    ).sort_index()
-
-
-def load_m2_yoy_from_chart(weekly_index: pd.DatetimeIndex) -> pd.Series:
-    """Reuse Phase 2 m2-yoy.json so headline numbers match that tile."""
-    return load_m2_yoy_series().reindex(weekly_index, method="ffill")
-
-
-def sync_m2_into_payload(payload: dict) -> dict:
-    """Replace every weekly M2 point + card with Phase 2 m2-yoy.json values."""
-    m2 = load_m2_yoy_series()
-    for point in payload.get("points", []):
+def sync_global_m2_into_payload(payload: dict, api_key: str | None) -> dict:
+    """Refresh global M2 series from FRED without full rebuild."""
+    points = payload.get("points", [])
+    if not points:
+        return payload
+    idx = pd.DatetimeIndex([pd.Timestamp(p["date"]) for p in points])
+    m2_yoy = global_m2_yoy_on_index(api_key, idx, start=START)
+    for point in points:
         ts = pd.Timestamp(point["date"])
-        val = m2.asof(ts)
-        if pd.notna(val):
+        val = m2_yoy.get(ts)
+        if val is not None and pd.notna(val):
             point["globalM2Yoy"] = round(float(val), 2)
-
-    raw = json.loads(M2_JSON.read_text(encoding="utf-8"))
-    headline_val = raw.get("headline", {}).get("value", "")
-    try:
-        target = float(str(headline_val).replace("%", "").strip())
-        payload.setdefault("cards", {})["globalM2Yoy"] = round(target, 2)
-        if payload.get("points"):
-            payload["points"][-1]["globalM2Yoy"] = round(target, 2)
-    except ValueError:
-        pass
-
+    if points:
+        payload.setdefault("cards", {})["globalM2Yoy"] = points[-1]["globalM2Yoy"]
     payload["updatedAt"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return payload
 
 
-def sync_m2_only() -> None:
-    """Lightweight fix when live rebuild fails — still aligns M2 to Phase 2 tile."""
+def sync_global_m2_only(api_key: str | None) -> None:
     if not OUT.exists():
         raise RuntimeError(f"Missing {OUT}")
     payload = json.loads(OUT.read_text(encoding="utf-8"))
-    payload = sync_m2_into_payload(payload)
+    payload = sync_global_m2_into_payload(payload, api_key)
     payload["methodology"] = (
-        "M2 YoY synced to Phase 2 m2-yoy.json (FRED M2SL, 12-month). "
-        "Other series from last successful build — run fetch_btc_liquidity_model.py on GitHub Actions for full refresh."
+        "Global M2 YoY refreshed from FRED (US + EA + JP + CN + UK, USD-converted). "
+        "Other series from last successful build."
     )
     OUT.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    print(f"Synced M2 only -> {OUT} - card M2 {payload['cards']['globalM2Yoy']}%")
+    print(f"Synced global M2 only -> {OUT} - card M2 {payload['cards']['globalM2Yoy']}%")
 
 
 def build_hybrid_panel(api_key: str | None) -> pd.DataFrame:
@@ -100,7 +83,7 @@ def build_hybrid_panel(api_key: str | None) -> pd.DataFrame:
     stables_w = stables.reindex(idx, method="ffill")
 
     fed_net_t = (walcl_w - tga_w - rrp_w * 1000) / 1e6
-    m2_yoy = load_m2_yoy_from_chart(idx)
+    m2_yoy = global_m2_yoy_on_index(api_key, idx, start=START)
     stable_30d = stables_w.pct_change(4) * 100.0
 
     t0 = idx[0]
@@ -126,7 +109,7 @@ def main() -> None:
     try:
         api_key = load_fred_api_key()
     except RuntimeError:
-        print("  No FRED API key — using public FRED CSV + m2-yoy.json")
+        print("  No FRED API key — using public FRED CSV exports")
 
     try:
         if api_key:
@@ -136,10 +119,9 @@ def main() -> None:
             raise RuntimeError("skip to hybrid")
         beta, sigma, r2, n = fit_ols(df)
         payload = build_payload(df, beta, sigma, r2, n)
-        payload = sync_m2_into_payload(payload)
         OUT.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         print(
-            f"Wrote {OUT} (live) — M2 {payload['cards']['globalM2Yoy']}%, "
+            f"Wrote {OUT} (live) — global M2 {payload['cards']['globalM2Yoy']}%, "
             f"BTC ${payload['headline']['btcActual']:,.0f}"
         )
         return
@@ -147,33 +129,32 @@ def main() -> None:
         print(f"  Full fetch unavailable ({exc}), using hybrid builder...")
 
     try:
-        print("Building hybrid panel (M2 synced to m2-yoy.json)...")
+        print("Building hybrid panel (global M2 from FRED)...")
         df = build_hybrid_panel(api_key)
         if len(df) < 60:
             raise RuntimeError("Not enough overlapping data for hybrid build")
         beta, sigma, r2, n = fit_ols(df)
         payload = build_payload(df, beta, sigma, r2, n)
-        payload = sync_m2_into_payload(payload)
         payload["methodology"] = (
-            "Hybrid build: M2 YoY synced to Phase 2 m2-yoy.json (FRED M2SL), "
-            "BTC from Yahoo, stables from Defillama, Fed net from FRED. Weekly OLS fair-value model."
+            "Hybrid build: global M2 YoY (US + EA + JP + CN + UK, USD via FRED), "
+            "BTC from Yahoo, stables from Defillama, Fed net from FRED."
         )
         payload["sources"] = [
-            "FRED WALCL, WTREGEN, RRPONTSYD, M2SL",
-            "Phase 2 m2-yoy.json (M2 sync)",
+            "FRED WALCL, WTREGEN, RRPONTSYD",
+            *GLOBAL_M2_SOURCES,
             "Defillama USDT + USDC",
             "Yahoo Finance BTC-USD",
         ]
         OUT.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         print(
-            f"Wrote {OUT} (hybrid) — M2 {payload['cards']['globalM2Yoy']}%, "
+            f"Wrote {OUT} (hybrid) — global M2 {payload['cards']['globalM2Yoy']}%, "
             f"BTC ${payload['headline']['btcActual']:,.0f}"
         )
         return
     except Exception as exc:
-        print(f"  Hybrid build failed ({exc}), syncing M2 only...")
+        print(f"  Hybrid build failed ({exc}), syncing global M2 only...")
 
-    sync_m2_only()
+    sync_global_m2_only(api_key)
 
 
 if __name__ == "__main__":

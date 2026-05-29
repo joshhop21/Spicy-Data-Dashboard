@@ -17,7 +17,7 @@ import yfinance as yf
 
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
-from fred_utils import fetch_fred_series, load_fred_api_key, m2_yoy_on_index  # noqa: E402
+from fred_utils import fetch_fred_series, load_fred_api_key, global_m2_yoy_on_index, GLOBAL_M2_SOURCES  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "btc-liquidity-model.json"
@@ -33,7 +33,8 @@ HALVINGS = [
 METHODOLOGY = (
     "OLS regression of log(BTC) on Fed net liquidity ($T), global M2 YoY (%), "
     "stablecoin supply ($B), stablecoin 30-day change (%), halving-cycle position, "
-    "and a time trend. Weekly data from Jan 2015. ±1σ / ±2σ bands in log space."
+    "and a time trend. Global M2 = US + Euro Area + Japan + China + UK, FX-converted to USD. "
+    "Weekly data from Jan 2015. ±1σ / ±2σ bands in log space."
 )
 
 
@@ -82,7 +83,6 @@ def build_weekly_panel(api_key: str) -> pd.DataFrame:
     walcl = fetch_fred_series("WALCL", api_key, start=START)  # millions USD
     tga = fetch_fred_series("WTREGEN", api_key, start=START)
     rrp = fetch_fred_series("RRPONTSYD", api_key, start=START)
-    m2 = fetch_fred_series("M2SL", api_key, start=START)
 
     btc = fetch_btc_weekly()
     stables = fetch_stablecoin_supply()
@@ -91,13 +91,11 @@ def build_weekly_panel(api_key: str) -> pd.DataFrame:
     walcl_w = walcl.reindex(idx, method="ffill")
     tga_w = tga.reindex(idx, method="ffill")
     rrp_w = rrp.reindex(idx, method="ffill")
-    m2_w = m2.reindex(idx, method="ffill")
     stables_w = stables.reindex(idx, method="ffill")
 
     # WALCL & WTREGEN are millions USD; RRPONTSYD is billions USD
     fed_net_t = (walcl_w - tga_w - rrp_w * 1000) / 1e6  # trillions
-    # 12-month YoY on monthly M2SL, forward-filled to weekly BTC dates (same as m2-yoy tile)
-    m2_yoy = m2_yoy_on_index(m2, idx)
+    m2_yoy = global_m2_yoy_on_index(api_key, idx, start=START)
     stable_30d = stables_w.pct_change(4) * 100.0  # ~4 weeks
 
     t0 = idx[0]
@@ -240,7 +238,8 @@ def build_payload(df: pd.DataFrame, beta: np.ndarray, sigma: float, r2: float, n
         ],
         "methodology": METHODOLOGY,
         "sources": [
-            "FRED WALCL, WTREGEN (millions USD), RRPONTSYD (billions USD), M2SL",
+            "FRED WALCL, WTREGEN (millions USD), RRPONTSYD (billions USD)",
+            *GLOBAL_M2_SOURCES,
             "Defillama USDT + USDC",
             "Yahoo Finance BTC-USD",
         ],
