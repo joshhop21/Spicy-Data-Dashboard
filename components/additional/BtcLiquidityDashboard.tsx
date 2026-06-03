@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -14,6 +14,11 @@ import {
 } from "recharts";
 import type { TooltipProps } from "recharts";
 import { BtcLivePriceCard } from "@/components/additional/BtcLivePriceCard";
+import {
+  ChartHoverState,
+  ChartHoverStrip,
+  ChartHoverSync,
+} from "@/components/ChartHoverStrip";
 import { InfoTip } from "@/components/InfoTip";
 import { BTC_LIQUIDITY_TERMS } from "@/lib/glossary";
 import type { BtcLiquidityModelData, BtcLiquidityPoint } from "@/lib/btc-liquidity-types";
@@ -189,9 +194,6 @@ export function BtcLiquidityDashboard({ data }: Props) {
             { y: -1.5, label: "Cheap (−1.5)" },
             { y: 0, label: "Fair" },
           ]}
-          seriesDescriptions={{
-            zScore: BTC_LIQUIDITY_TERMS["Z-Score"]!,
-          }}
         />
       </ChartPanel>
 
@@ -207,9 +209,6 @@ export function BtcLiquidityDashboard({ data }: Props) {
             data={filtered}
             series={[{ key: "fedNetLiqT", label: "Fed net liquidity" }]}
             yFormatter={(v) => `$${v.toFixed(2)}T`}
-            seriesDescriptions={{
-              fedNetLiqT: BTC_LIQUIDITY_TERMS["Fed Net Liquidity"]!,
-            }}
           />
         </ChartPanel>
         <ChartPanel
@@ -223,9 +222,6 @@ export function BtcLiquidityDashboard({ data }: Props) {
             data={filtered}
             series={[{ key: "globalM2Yoy", label: "Global M2 YoY" }]}
             yFormatter={(v) => `${v.toFixed(1)}%`}
-            seriesDescriptions={{
-              globalM2Yoy: BTC_LIQUIDITY_TERMS["Global M2 (USD) YoY"]!,
-            }}
           />
         </ChartPanel>
         <ChartPanel
@@ -239,9 +235,6 @@ export function BtcLiquidityDashboard({ data }: Props) {
             data={filtered}
             series={[{ key: "stableSupplyB", label: "Stablecoin supply" }]}
             yFormatter={(v) => `$${v.toFixed(0)}B`}
-            seriesDescriptions={{
-              stableSupplyB: BTC_LIQUIDITY_TERMS["Stablecoin Supply"]!,
-            }}
           />
         </ChartPanel>
       </div>
@@ -257,7 +250,6 @@ function LiquidityAreaChart({
   logScale = false,
   yFormatter,
   referenceLines,
-  seriesDescriptions,
 }: {
   data: BtcLiquidityPoint[] | FairValuePoint[];
   series: SeriesConfig[];
@@ -265,8 +257,13 @@ function LiquidityAreaChart({
   logScale?: boolean;
   yFormatter?: (v: number) => string;
   referenceLines?: { y: number; label?: string }[];
-  seriesDescriptions?: Record<string, string>;
 }) {
+  const [hover, setHover] = useState<ChartHoverState>(null);
+  const labelMap = useMemo(
+    () => Object.fromEntries(series.map((s) => [String(s.key), s.label ?? String(s.key)])),
+    [series],
+  );
+
   const chartData = data.filter((p) => {
     const v = p[series[0].key as keyof typeof p];
     return typeof v === "number" && Number.isFinite(v);
@@ -282,9 +279,11 @@ function LiquidityAreaChart({
   };
 
   return (
-    <div className={`${heightClass} w-full`}>
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
+    <div className={`flex w-full flex-col ${heightClass}`}>
+      <ChartHoverStrip hover={hover} compact />
+      <div className="min-h-0 flex-1">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_STYLE.gridStroke} />
           <XAxis
             dataKey="date"
@@ -305,10 +304,11 @@ function LiquidityAreaChart({
               : {})}
           />
           <Tooltip
+            cursor={{ stroke: CHART_STYLE.stone, strokeWidth: 1, strokeDasharray: "4 4" }}
             content={
-              <LiquidityTooltip
-                series={series}
-                descriptions={seriesDescriptions}
+              <ChartHoverSync
+                onHover={setHover}
+                labelMap={labelMap}
                 formatValue={tickFormatter}
               />
             }
@@ -342,20 +342,25 @@ function LiquidityAreaChart({
             />
           ))}
         </AreaChart>
-      </ResponsiveContainer>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
 
 function FairValueChart({ data }: { data: FairValuePoint[] }) {
+  const [hover, setHover] = useState<ChartHoverState>(null);
+
   if (data.length === 0) {
     return <ChartEmpty heightClass="h-80" />;
   }
 
   return (
-    <div className="h-80 w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
+    <div className="flex h-80 w-full flex-col">
+      <ChartHoverStrip hover={hover} compact={false} />
+      <div className="min-h-0 flex-1">
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_STYLE.gridStroke} />
           <XAxis
             dataKey="date"
@@ -375,7 +380,10 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip content={<FairValueTooltip />} />
+          <Tooltip
+            cursor={{ stroke: CHART_STYLE.stone, strokeWidth: 1, strokeDasharray: "4 4" }}
+            content={<FairValueHoverSync onHover={setHover} />}
+          />
           <Area
             type={CHART_STYLE.lineType}
             dataKey="band2Range"
@@ -421,71 +429,50 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             isAnimationActive={false}
           />
         </ComposedChart>
-      </ResponsiveContainer>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
 
-function LiquidityTooltip({
+function FairValueHoverSync({
   active,
   payload,
   label,
-  series,
-  descriptions,
-  formatValue,
-}: TooltipProps<number, string> & {
-  series: SeriesConfig[];
-  descriptions?: Record<string, string>;
-  formatValue: (v: number) => string;
-}) {
-  if (!active || !payload?.length) return null;
-  const entry = payload[0];
-  const key = entry?.dataKey as string;
-  const meta = series.find((s) => String(s.key) === key);
-  const num = typeof entry?.value === "number" ? entry.value : Number(entry?.value);
-  const desc = descriptions?.[key];
+  onHover,
+}: TooltipProps<number, string> & { onHover: (state: ChartHoverState) => void }) {
+  useEffect(() => {
+    if (!active || !payload?.length) {
+      onHover(null);
+      return;
+    }
+    const row = payload[0]?.payload as BtcLiquidityPoint | undefined;
+    if (!row) {
+      onHover(null);
+      return;
+    }
+    onHover({
+      date: String(label),
+      rows: [
+        {
+          label: "BTC price",
+          value: `$${row.btcActual.toLocaleString()}`,
+          color: CHART_STYLE.color,
+        },
+        {
+          label: "Model fair",
+          value: `$${row.modelFair.toLocaleString()}`,
+          color: CHART_STYLE.modelColor,
+        },
+        {
+          label: "Likely range",
+          value: `$${row.band1Low.toLocaleString()} – $${row.band1High.toLocaleString()}`,
+        },
+      ],
+    });
+  }, [active, payload, label, onHover]);
 
-  return (
-    <div className="max-w-xs rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-md">
-      <p className="font-medium text-stone-800">{formatChartDate(String(label))}</p>
-      <p className="mt-1 font-medium text-stone-700">
-        {meta?.label ?? key}: {formatValue(num)}
-      </p>
-      {desc && <p className="mt-1 leading-snug text-stone-500">{desc}</p>}
-    </div>
-  );
-}
-
-function FairValueTooltip({ active, payload, label }: TooltipProps<number, string>) {
-  if (!active || !payload?.length) return null;
-  const row = payload[0]?.payload as BtcLiquidityPoint | undefined;
-  if (!row) return null;
-
-  return (
-    <div className="max-w-xs rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-md">
-      <p className="mb-2 font-medium text-stone-800">{formatChartDate(String(label))}</p>
-      <p className="text-stone-700">
-        <span className="font-medium">BTC price:</span>{" "}
-        <span className="font-mono tabular-nums">${row.btcActual.toLocaleString()}</span>
-      </p>
-      <p className="mt-1 text-stone-600">{BTC_LIQUIDITY_TERMS["BTC actual"]}</p>
-      <p className="mt-2 text-stone-700">
-        <span className="font-medium">Model fair value:</span>{" "}
-        <span className="font-mono tabular-nums">${row.modelFair.toLocaleString()}</span>
-      </p>
-      <p className="mt-1 text-stone-600">{BTC_LIQUIDITY_TERMS["Model fair value"]}</p>
-      <p className="mt-2 text-stone-700">
-        <span className="font-medium">Likely range:</span> ${row.band1Low.toLocaleString()} – $
-        {row.band1High.toLocaleString()}
-      </p>
-      <p className="mt-0.5 text-stone-500">{BTC_LIQUIDITY_TERMS["Likely range"]}</p>
-      <p className="mt-2 text-stone-700">
-        <span className="font-medium">Extreme range:</span> ${row.band2Low.toLocaleString()} – $
-        {row.band2High.toLocaleString()}
-      </p>
-      <p className="mt-0.5 text-stone-500">{BTC_LIQUIDITY_TERMS["Extreme range"]}</p>
-    </div>
-  );
+  return null;
 }
 
 function RangeSelector({
