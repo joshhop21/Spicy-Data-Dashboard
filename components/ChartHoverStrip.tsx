@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
-import type { RefObject } from "react";
+import { useEffect } from "react";
 import type { TooltipProps } from "recharts";
 
 export type HoverRow = { label: string; value: string; color?: string };
@@ -51,21 +50,17 @@ export function ChartHoverSync({
   return null;
 }
 
-const ACTIVE_DOT = { r: 4, stroke: "#fff", strokeWidth: 2 };
+/** Hide Recharts' positioned tooltip shell so it never covers active dots. */
+export const hiddenTooltipWrapper = {
+  visibility: "hidden" as const,
+  pointerEvents: "none" as const,
+};
+
+const ACTIVE_DOT = { r: 5, stroke: "#fff", strokeWidth: 2.5 };
 
 export const chartActiveDot = ACTIVE_DOT;
 
-const VIEWPORT_MARGIN = 10;
 const CHART_GAP = 10;
-
-type CalloutLayout = {
-  boxLeft: number;
-  boxTop: number;
-  boxWidth: number;
-  boxHeight: number;
-  lineEndX: number;
-  lineEndY: number;
-};
 
 function getCalloutDimensions(compact: boolean, rowCount: number) {
   const boxWidth = compact ? 172 : 216;
@@ -76,139 +71,61 @@ function getCalloutDimensions(compact: boolean, rowCount: number) {
   return { boxWidth, boxHeight };
 }
 
-function boxEdgeTowardPoint(
-  box: { left: number; top: number; width: number; height: number },
-  point: { x: number; y: number },
-) {
-  const cx = box.left + box.width / 2;
-  const cy = box.top + box.height / 2;
-  const dx = point.x - cx;
-  const dy = point.y - cy;
-
-  if (Math.abs(dx) * box.height > Math.abs(dy) * box.width) {
-    const x = dx > 0 ? box.left : box.left + box.width;
-    const y = Math.max(box.top, Math.min(box.top + box.height, point.y));
-    return { x, y };
-  }
-
-  const y = dy > 0 ? box.top : box.top + box.height;
-  const x = Math.max(box.left, Math.min(box.left + box.width, point.x));
-  return { x, y };
-}
-
-function computeCalloutLayout(
-  anchor: { x: number; y: number },
-  plotWidth: number,
-  plotHeight: number,
-  containerRect: DOMRect,
-  compact: boolean,
-  rowCount: number,
-): CalloutLayout {
-  const { boxWidth, boxHeight } = getCalloutDimensions(compact, rowCount);
-
-  const placeRight = anchor.x < plotWidth * 0.55;
-  let boxLeft = placeRight ? plotWidth + CHART_GAP : -boxWidth - CHART_GAP;
-  let boxTop = Math.max(
-    CHART_GAP,
-    Math.min(plotHeight - boxHeight - CHART_GAP, anchor.y - boxHeight / 2),
-  );
-
-  let vpLeft = containerRect.left + boxLeft;
-  let vpTop = containerRect.top + boxTop;
-
-  vpLeft = Math.max(
-    VIEWPORT_MARGIN,
-    Math.min(window.innerWidth - boxWidth - VIEWPORT_MARGIN, vpLeft),
-  );
-  vpTop = Math.max(
-    VIEWPORT_MARGIN,
-    Math.min(window.innerHeight - boxHeight - VIEWPORT_MARGIN, vpTop),
-  );
-
-  boxLeft = vpLeft - containerRect.left;
-  boxTop = vpTop - containerRect.top;
-
-  const edge = boxEdgeTowardPoint(
-    { left: boxLeft, top: boxTop, width: boxWidth, height: boxHeight },
-    anchor,
-  );
-
-  return {
-    boxLeft,
-    boxTop,
-    boxWidth,
-    boxHeight,
-    lineEndX: edge.x,
-    lineEndY: edge.y,
-  };
-}
-
 export function ChartSideCallout({
   hover,
   width,
   height,
   compact = true,
-  containerRef,
 }: {
   hover: ChartHoverState;
   width: number;
   height: number;
   compact?: boolean;
-  containerRef: RefObject<HTMLElement | null>;
 }) {
-  const [layout, setLayout] = useState<CalloutLayout | null>(null);
+  if (!hover) return null;
 
-  useLayoutEffect(() => {
-    if (!hover || !containerRef.current) {
-      setLayout(null);
-      return;
-    }
+  const { boxWidth, boxHeight } = getCalloutDimensions(compact, hover.rows.length);
+  const { anchor } = hover;
 
-    const update = () => {
-      if (!containerRef.current || !hover) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      setLayout(
-        computeCalloutLayout(hover.anchor, width, height, rect, compact, hover.rows.length),
-      );
-    };
+  const placeRight = anchor.x < width * 0.55;
+  const boxLeft = placeRight ? width + CHART_GAP : -boxWidth - CHART_GAP;
+  const boxTop = Math.max(
+    CHART_GAP,
+    Math.min(height - boxHeight - CHART_GAP, anchor.y - boxHeight / 2),
+  );
+  const boxMidY = boxTop + boxHeight / 2;
+  const lineEndX = placeRight ? boxLeft : boxLeft + boxWidth;
 
-    update();
-    window.addEventListener("resize", update);
-    window.addEventListener("scroll", update, true);
-    return () => {
-      window.removeEventListener("resize", update);
-      window.removeEventListener("scroll", update, true);
-    };
-  }, [hover, width, height, compact, containerRef]);
-
-  if (!hover || !layout) return null;
+  const svgLeft = Math.min(0, boxLeft);
+  const svgWidth = Math.max(width, boxLeft + boxWidth) - svgLeft;
+  const anchorX = anchor.x - svgLeft;
+  const lineX = lineEndX - svgLeft;
 
   const boxPad = compact ? "p-2.5 text-[11px]" : "p-3 text-xs";
 
   return (
-    <>
+    <div className="pointer-events-none absolute inset-0 z-50 overflow-visible">
       <svg
-        className="pointer-events-none absolute left-0 top-0 overflow-visible"
-        width={width}
-        height={height}
+        className="absolute top-0 overflow-visible"
+        style={{ left: svgLeft, width: svgWidth, height }}
         aria-hidden
       >
         <line
-          x1={hover.anchor.x}
-          y1={hover.anchor.y}
-          x2={layout.lineEndX}
-          y2={layout.lineEndY}
+          x1={anchorX}
+          y1={anchor.y}
+          x2={lineX}
+          y2={boxMidY}
           stroke="#d6d3d1"
           strokeWidth={1}
         />
       </svg>
       <div
-        className={`absolute z-30 rounded-lg border border-stone-200 bg-white shadow-lg ${boxPad}`}
+        className={`absolute rounded-lg border border-stone-200 bg-white shadow-lg ${boxPad}`}
         style={{
-          left: layout.boxLeft,
-          top: layout.boxTop,
-          width: layout.boxWidth,
-          minHeight: layout.boxHeight,
+          left: boxLeft,
+          top: boxTop,
+          width: boxWidth,
+          minHeight: boxHeight,
         }}
         aria-live="polite"
       >
@@ -223,7 +140,7 @@ export function ChartSideCallout({
           </p>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

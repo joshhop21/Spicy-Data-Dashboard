@@ -19,6 +19,7 @@ import {
   ChartHoverSync,
   ChartSideCallout,
   chartActiveDot,
+  hiddenTooltipWrapper,
 } from "@/components/ChartHoverStrip";
 import { InfoTip } from "@/components/InfoTip";
 import { BTC_LIQUIDITY_TERMS } from "@/lib/glossary";
@@ -262,7 +263,6 @@ function LiquidityAreaChart({
   const [hover, setHover] = useState<ChartHoverState>(null);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const labelMap = useMemo(
     () => Object.fromEntries(series.map((s) => [String(s.key), s.label ?? String(s.key)])),
     [series],
@@ -293,7 +293,7 @@ function LiquidityAreaChart({
   };
 
   return (
-    <div ref={containerRef} className={`relative w-full overflow-visible ${heightClass}`}>
+    <div className={`relative w-full overflow-visible ${heightClass}`}>
       <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
@@ -318,6 +318,7 @@ function LiquidityAreaChart({
           />
           <Tooltip
             cursor={false}
+            wrapperStyle={hiddenTooltipWrapper}
             content={
               <ChartHoverSync
                 onHover={setHover}
@@ -359,13 +360,7 @@ function LiquidityAreaChart({
         </ResponsiveContainer>
       </div>
       {hover && plotSize.w > 0 && (
-        <ChartSideCallout
-          hover={hover}
-          width={plotSize.w}
-          height={plotSize.h}
-          compact
-          containerRef={containerRef}
-        />
+        <ChartSideCallout hover={hover} width={plotSize.w} height={plotSize.h} compact />
       )}
     </div>
   );
@@ -375,7 +370,6 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
   const [hover, setHover] = useState<ChartHoverState>(null);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = plotRef.current;
@@ -392,7 +386,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
   }
 
   return (
-    <div ref={containerRef} className="relative h-80 w-full overflow-visible">
+    <div className="relative h-80 w-full overflow-visible">
       <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
@@ -415,7 +409,11 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip cursor={false} content={<FairValueHoverSync onHover={setHover} />} />
+          <Tooltip
+            cursor={false}
+            wrapperStyle={hiddenTooltipWrapper}
+            content={<FairValueHoverSync onHover={setHover} />}
+          />
           <Area
             type={CHART_STYLE.lineType}
             dataKey="band2Range"
@@ -466,13 +464,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
         </ResponsiveContainer>
       </div>
       {hover && plotSize.w > 0 && (
-        <ChartSideCallout
-          hover={hover}
-          width={plotSize.w}
-          height={plotSize.h}
-          compact={false}
-          containerRef={containerRef}
-        />
+        <ChartSideCallout hover={hover} width={plotSize.w} height={plotSize.h} compact={false} />
       )}
     </div>
   );

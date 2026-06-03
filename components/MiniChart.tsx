@@ -18,6 +18,7 @@ import {
   ChartHoverSync,
   ChartSideCallout,
   chartActiveDot,
+  hiddenTooltipWrapper,
 } from "@/components/ChartHoverStrip";
 import { formatChartAxisValue } from "@/lib/format-chart-axis";
 import type { ChartDataFile } from "@/lib/types";
@@ -32,7 +33,6 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
   const [hover, setHover] = useState<ChartHoverState>(null);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const hasDualAxis = series.some((s) => s.yAxisId === "right");
   const useArea = series.some((s) => s.type === "area");
   const ChartWrapper = useArea ? AreaChart : LineChart;
@@ -57,10 +57,7 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className={`relative w-full overflow-visible ${compact ? "h-36" : "h-80"}`}
-    >
+    <div className={`relative w-full overflow-visible ${compact ? "h-36" : "h-80"}`}>
       <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <ChartWrapper data={points} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
@@ -95,6 +92,7 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
             <Tooltip
               cursor={false}
               isAnimationActive={false}
+              wrapperStyle={hiddenTooltipWrapper}
               content={
                 <ChartHoverSync
                   onHover={setHover}
@@ -152,7 +150,6 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
           width={plotSize.w}
           height={plotSize.h}
           compact={compact}
-          containerRef={containerRef}
         />
       )}
     </div>

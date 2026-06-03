@@ -13,7 +13,7 @@ export function ChartTile({ tile, data }: ChartTileProps) {
   const placeholder = !data?.points?.length;
 
   return (
-    <article className="flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-card shadow-sm transition hover:shadow-md">
+    <article className="relative flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-card shadow-sm transition hover:z-40 hover:shadow-md">
       <div className="relative border-b border-stone-100 px-4 pb-3 pt-4">
         <Link
           href={`/charts/${tile.slug}`}

@@ -68,7 +68,7 @@ export function LiveChartTile({ symbol, metric }: Props) {
   const headline = data?.headline;
 
   return (
-    <article className="flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-card shadow-sm">
+    <article className="relative flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-card shadow-sm hover:z-40">
       <div className="border-b border-stone-100 px-4 pb-3 pt-4">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div className="flex gap-3">
