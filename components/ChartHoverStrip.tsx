@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
 import type { TooltipProps } from "recharts";
 
@@ -28,6 +28,20 @@ function hoverStateKey(state: ChartHoverState): string {
   return `${state.date}|${state.anchor.x}|${state.anchor.y}|${state.rows
     .map((r) => `${r.label}:${r.value}:${r.description ?? ""}`)
     .join(";")}`;
+}
+
+/** Deduped hover setter for custom Recharts tooltip sync components. */
+export function useHoverSync(onHover: (state: ChartHoverState) => void) {
+  const lastKeyRef = useRef("");
+  const onHoverRef = useRef(onHover);
+  onHoverRef.current = onHover;
+
+  return useCallback((next: ChartHoverState) => {
+    const key = hoverStateKey(next);
+    if (key === lastKeyRef.current) return;
+    lastKeyRef.current = key;
+    onHoverRef.current(next);
+  }, []);
 }
 
 /** Captures hover data + plot coordinates; renders nothing in the SVG. */

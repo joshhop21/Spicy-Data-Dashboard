@@ -20,6 +20,7 @@ import {
   ChartSideCallout,
   chartActiveDot,
   hiddenTooltipWrapper,
+  useHoverSync,
 } from "@/components/ChartHoverStrip";
 import { InfoTip } from "@/components/InfoTip";
 import { BTC_LIQUIDITY_TERMS } from "@/lib/glossary";
@@ -61,6 +62,24 @@ type SeriesConfig = {
   label?: string;
   infoKey?: string;
 };
+
+const Z_SCORE_SERIES: SeriesConfig[] = [
+  { key: "zScore", label: "Z-score", infoKey: "Cheap / Dear Indicator" },
+];
+const FED_NET_SERIES: SeriesConfig[] = [
+  { key: "fedNetLiqT", label: "Fed net liquidity", infoKey: "Fed Net Liquidity" },
+];
+const GLOBAL_M2_SERIES: SeriesConfig[] = [
+  { key: "globalM2Yoy", label: "Global M2 YoY", infoKey: "Global M2 (USD) YoY" },
+];
+const STABLECOIN_SERIES: SeriesConfig[] = [
+  { key: "stableSupplyB", label: "Stablecoin supply", infoKey: "Stablecoin Supply" },
+];
+
+const fmtZScore = (v: number) => v.toFixed(1);
+const fmtFedNet = (v: number) => `$${v.toFixed(2)}T`;
+const fmtGlobalM2 = (v: number) => `${v.toFixed(1)}%`;
+const fmtStablecoin = (v: number) => `$${v.toFixed(0)}B`;
 
 export function BtcLiquidityDashboard({ data }: Props) {
   const { headline, cards, points, updatedAt } = data;
@@ -190,8 +209,8 @@ export function BtcLiquidityDashboard({ data }: Props) {
       >
         <LiquidityAreaChart
           data={filtered}
-          series={[{ key: "zScore", label: "Z-score", infoKey: "Cheap / Dear Indicator" }]}
-          yFormatter={(v) => v.toFixed(1)}
+          series={Z_SCORE_SERIES}
+          yFormatter={fmtZScore}
           referenceLines={[
             { y: 1.5, label: "Dear (+1.5)" },
             { y: -1.5, label: "Cheap (−1.5)" },
@@ -210,8 +229,8 @@ export function BtcLiquidityDashboard({ data }: Props) {
         >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "fedNetLiqT", label: "Fed net liquidity", infoKey: "Fed Net Liquidity" }]}
-            yFormatter={(v) => `$${v.toFixed(2)}T`}
+            series={FED_NET_SERIES}
+            yFormatter={fmtFedNet}
           />
         </ChartPanel>
         <ChartPanel
@@ -223,8 +242,8 @@ export function BtcLiquidityDashboard({ data }: Props) {
         >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "globalM2Yoy", label: "Global M2 YoY", infoKey: "Global M2 (USD) YoY" }]}
-            yFormatter={(v) => `${v.toFixed(1)}%`}
+            series={GLOBAL_M2_SERIES}
+            yFormatter={fmtGlobalM2}
           />
         </ChartPanel>
         <ChartPanel
@@ -236,8 +255,8 @@ export function BtcLiquidityDashboard({ data }: Props) {
         >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "stableSupplyB", label: "Stablecoin supply", infoKey: "Stablecoin Supply" }]}
-            yFormatter={(v) => `$${v.toFixed(0)}B`}
+            series={STABLECOIN_SERIES}
+            yFormatter={fmtStablecoin}
           />
         </ChartPanel>
       </div>
@@ -262,6 +281,7 @@ function LiquidityAreaChart({
   referenceLines?: { y: number; label?: string }[];
 }) {
   const [hover, setHover] = useState<ChartHoverState>(null);
+  const syncHover = useHoverSync(setHover);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -336,7 +356,7 @@ function LiquidityAreaChart({
             wrapperStyle={hiddenTooltipWrapper}
             content={
               <ChartHoverSync
-                onHover={setHover}
+                onHover={syncHover}
                 labelMap={labelMap}
                 descriptionMap={descriptionMap}
                 formatValue={tickFormatter}
@@ -390,6 +410,7 @@ function LiquidityAreaChart({
 
 function FairValueChart({ data }: { data: FairValuePoint[] }) {
   const [hover, setHover] = useState<ChartHoverState>(null);
+  const syncHover = useHoverSync(setHover);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -435,7 +456,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
           <Tooltip
             cursor={false}
             wrapperStyle={hiddenTooltipWrapper}
-            content={<FairValueHoverSync onHover={setHover} />}
+            content={<FairValueHoverSync onHover={syncHover} />}
           />
           <Area
             type={CHART_STYLE.lineType}
@@ -511,11 +532,16 @@ function FairValueHoverSync({
       onHover(null);
       return;
     }
-    const row = payload[0]?.payload as BtcLiquidityPoint | undefined;
+
+    const row = payload
+      .map((item) => item.payload as BtcLiquidityPoint | undefined)
+      .find((p) => p && Number.isFinite(p.btcActual) && Number.isFinite(p.modelFair));
+
     if (!row) {
       onHover(null);
       return;
     }
+
     onHover({
       date: String(label),
       anchor: { x: coordinate.x, y: coordinate.y },
@@ -590,7 +616,7 @@ function ChartPanel({
 }) {
   const tip = infoKey ? BTC_LIQUIDITY_TERMS[infoKey] : undefined;
   return (
-    <div className="rounded-xl border border-stone-200/80 bg-white p-4 shadow-sm">
+    <div className="relative overflow-visible rounded-xl border border-stone-200/80 bg-white p-4 shadow-sm hover:z-40">
       <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
           <h4 className="inline-flex items-center font-serif text-base font-semibold text-ink">
