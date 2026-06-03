@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -290,6 +290,14 @@ function LiquidityAreaChart({
     return () => ro.disconnect();
   }, []);
 
+  const tickFormatter = useCallback(
+    (v: number) => {
+      if (!Number.isFinite(v)) return "";
+      return yFormatter ? yFormatter(v) : String(v);
+    },
+    [yFormatter],
+  );
+
   const chartData = data.filter((p) => {
     const v = p[series[0].key as keyof typeof p];
     return typeof v === "number" && Number.isFinite(v);
@@ -298,11 +306,6 @@ function LiquidityAreaChart({
   if (chartData.length === 0) {
     return <ChartEmpty heightClass={heightClass} />;
   }
-
-  const tickFormatter = (v: number) => {
-    if (!Number.isFinite(v)) return "";
-    return yFormatter ? yFormatter(v) : String(v);
-  };
 
   return (
     <div ref={containerRef} className={`relative w-full overflow-visible ${heightClass}`}>

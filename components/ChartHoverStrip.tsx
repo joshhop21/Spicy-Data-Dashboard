@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
 import type { TooltipProps } from "recharts";
 
@@ -23,6 +23,13 @@ type SyncProps = TooltipProps<number, string> & {
   formatValue: (v: number) => string;
 };
 
+function hoverStateKey(state: ChartHoverState): string {
+  if (!state) return "";
+  return `${state.date}|${state.anchor.x}|${state.anchor.y}|${state.rows
+    .map((r) => `${r.label}:${r.value}:${r.description ?? ""}`)
+    .join(";")}`;
+}
+
 /** Captures hover data + plot coordinates; renders nothing in the SVG. */
 export function ChartHoverSync({
   active,
@@ -34,12 +41,20 @@ export function ChartHoverSync({
   descriptionMap,
   formatValue,
 }: SyncProps) {
+  const formatRef = useRef(formatValue);
+  formatRef.current = formatValue;
+  const lastKeyRef = useRef("");
+
   useEffect(() => {
     if (!active || !payload?.length || !coordinate || coordinate.x == null || coordinate.y == null) {
-      onHover(null);
+      if (lastKeyRef.current !== "") {
+        lastKeyRef.current = "";
+        onHover(null);
+      }
       return;
     }
-    onHover({
+
+    const next: ChartHoverState = {
       date: String(label),
       anchor: { x: coordinate.x, y: coordinate.y },
       rows: payload
@@ -48,13 +63,18 @@ export function ChartHoverSync({
           const key = String(e.dataKey);
           return {
             label: labelMap[key] ?? key,
-            value: formatValue(Number(e.value)),
+            value: formatRef.current(Number(e.value)),
             color: e.color,
             description: descriptionMap?.[key],
           };
         }),
-    });
-  }, [active, payload, label, coordinate, onHover, labelMap, descriptionMap, formatValue]);
+    };
+
+    const key = hoverStateKey(next);
+    if (key === lastKeyRef.current) return;
+    lastKeyRef.current = key;
+    onHover(next);
+  }, [active, payload, label, coordinate, onHover, labelMap, descriptionMap]);
 
   return null;
 }
@@ -132,6 +152,10 @@ function computeCalloutLayout(
   rows: HoverRow[],
 ): CalloutLayout {
   const { boxWidth, boxHeight } = getCalloutDimensions(compact, rows);
+  const viewportWidth =
+    typeof window !== "undefined" ? window.innerWidth : containerRect.width + 200;
+  const viewportHeight =
+    typeof window !== "undefined" ? window.innerHeight : containerRect.height + 200;
 
   let placeRight = anchor.x < plotWidth * 0.55;
   let boxLeft = placeRight ? plotWidth + CHART_GAP : -boxWidth - CHART_GAP;
@@ -148,7 +172,7 @@ function computeCalloutLayout(
     boxLeft = plotWidth + CHART_GAP;
     vpLeft = containerRect.left + boxLeft;
   }
-  if (vpLeft + boxWidth > window.innerWidth - VIEWPORT_MARGIN) {
+  if (vpLeft + boxWidth > viewportWidth - VIEWPORT_MARGIN) {
     placeRight = false;
     boxLeft = -boxWidth - CHART_GAP;
     vpLeft = containerRect.left + boxLeft;
@@ -156,11 +180,11 @@ function computeCalloutLayout(
 
   vpLeft = Math.max(
     VIEWPORT_MARGIN,
-    Math.min(window.innerWidth - boxWidth - VIEWPORT_MARGIN, vpLeft),
+    Math.min(viewportWidth - boxWidth - VIEWPORT_MARGIN, vpLeft),
   );
   vpTop = Math.max(
     VIEWPORT_MARGIN,
-    Math.min(window.innerHeight - boxHeight - VIEWPORT_MARGIN, vpTop),
+    Math.min(viewportHeight - boxHeight - VIEWPORT_MARGIN, vpTop),
   );
 
   boxLeft = vpLeft - containerRect.left;
@@ -172,7 +196,7 @@ function computeCalloutLayout(
   );
 
   const svgLeft = Math.min(0, boxLeft, edge.x);
-  const svgWidth = Math.max(plotWidth, boxLeft + boxWidth, edge.x) - svgLeft;
+  const svgWidth = Math.max(1, Math.max(plotWidth, boxLeft + boxWidth, edge.x) - svgLeft);
 
   return {
     boxLeft,
@@ -201,18 +225,21 @@ export function ChartSideCallout({
   containerRef: RefObject<HTMLElement | null>;
 }) {
   const [layout, setLayout] = useState<CalloutLayout | null>(null);
+  const hoverRef = useRef(hover);
+  hoverRef.current = hover;
 
   useLayoutEffect(() => {
-    if (!hover || !containerRef.current) {
+    if (!hover || !containerRef.current || width <= 0 || height <= 0) {
       setLayout(null);
       return;
     }
 
     const update = () => {
-      if (!containerRef.current || !hover) return;
+      const current = hoverRef.current;
+      if (!containerRef.current || !current) return;
       const rect = containerRef.current.getBoundingClientRect();
       setLayout(
-        computeCalloutLayout(hover.anchor, width, height, rect, compact, hover.rows),
+        computeCalloutLayout(current.anchor, width, height, rect, compact, current.rows),
       );
     };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -37,7 +37,10 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
   const hasDualAxis = series.some((s) => s.yAxisId === "right");
   const useArea = series.some((s) => s.type === "area");
   const ChartWrapper = useArea ? AreaChart : LineChart;
-  const formatTick = (v: number) => formatChartAxisValue(v, axisFormat);
+  const formatTick = useCallback(
+    (v: number) => formatChartAxisValue(v, axisFormat),
+    [axisFormat],
+  );
   const yAxisWidth = compact ? 44 : 52;
 
   const labelMap = useMemo(
