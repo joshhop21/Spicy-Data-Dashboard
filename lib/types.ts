@@ -10,6 +10,8 @@ export type ChartSeries = {
   type?: "line" | "area";
   yAxisId?: "left" | "right";
   strokeDasharray?: string;
+  /** Shown in chart hover tooltip */
+  description?: string;
 };
 
 export type Constituent = {
@@ -51,6 +53,8 @@ export type TileConfig = {
   icon: string;
   accentColor: string;
   status?: "DETERIORATING" | "WEAKENING" | "CRITICAL";
+  /** Plain-language explanation for the (?) tooltip */
+  description?: string;
 };
 
 export type QuoteResponse = {

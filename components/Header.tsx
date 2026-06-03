@@ -9,7 +9,9 @@ export function Header({ lastUpdated }: HeaderProps) {
         <p className="font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           P&amp;C Research Visuals
         </p>
-        <p className="mt-1 text-sm text-muted">Spicy Data Dashboard — Phase 1</p>
+        <p className="mt-1 text-sm text-muted">
+          Macro credit &amp; liquidity research — live ticker lookup and nightly chart refresh
+        </p>
       </div>
       {lastUpdated && (
         <p className="text-xs text-muted sm:text-right">

@@ -13,6 +13,9 @@ import {
   YAxis,
 } from "recharts";
 import type { TooltipProps } from "recharts";
+import { BtcLivePriceCard } from "@/components/additional/BtcLivePriceCard";
+import { InfoTip } from "@/components/InfoTip";
+import { BTC_LIQUIDITY_TERMS } from "@/lib/glossary";
 import type { BtcLiquidityModelData, BtcLiquidityPoint } from "@/lib/btc-liquidity-types";
 
 type Props = { data: BtcLiquidityModelData };
@@ -52,7 +55,7 @@ type SeriesConfig = {
 };
 
 export function BtcLiquidityDashboard({ data }: Props) {
-  const { headline, cards, points, modelStats, methodology, sources, updatedAt } = data;
+  const { headline, cards, points, updatedAt } = data;
   const [range, setRange] = useState<RangeKey>("ALL");
 
   const filtered = useMemo(() => filterByRange(points, range), [points, range]);
@@ -84,86 +87,95 @@ export function BtcLiquidityDashboard({ data }: Props) {
     <div className="space-y-6">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h3 className="font-serif text-2xl font-semibold text-ink">Bitcoin Liquidity Model</h3>
-          <p className="mt-1 text-sm text-muted">
-            Fair-value bands from Fed Net Liquidity, Global M2, and stablecoin supply · weekly · 2015
-            to present
+          <h2 className="font-serif text-2xl font-semibold text-ink">Bitcoin Liquidity Model</h2>
+          <p className="mt-1 max-w-2xl text-sm text-muted">
+            Compares Bitcoin to a fair-value estimate built from Fed net liquidity, global M2
+            growth, and stablecoin supply. Hover any{" "}
+            <span className="font-medium text-stone-600">?</span> for definitions.
           </p>
         </div>
         <p className="text-xs text-muted">
-          Updated{" "}
+          Model data updated{" "}
           <time dateTime={updatedAt}>{formatDisplayDate(updatedAt)}</time>
         </p>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-4">
-        <div className="rounded-xl border border-emerald-200/80 bg-emerald-50/60 p-4 lg:col-span-1">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted">Current Reading</p>
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        <BtcLivePriceCard />
+
+        <div className="rounded-xl border border-emerald-200/80 bg-emerald-50/60 p-4">
+          <p className="inline-flex items-center text-[10px] font-semibold uppercase tracking-widest text-muted">
+            Model Signal
+            <InfoTip text={BTC_LIQUIDITY_TERMS["Model Signal"]!} label="About model signal" />
+          </p>
           <p className="mt-2 font-mono text-2xl font-semibold tabular-nums">
-            ${headline.btcActual.toLocaleString()}{" "}
-            <span className="text-base font-normal text-muted">BTC actual</span>
+            {headline.signal}
           </p>
           <p className="mt-1 text-xs text-muted">
-            Fair value ${headline.fairValue.toLocaleString()} · likely range $
+            Fair value ${headline.fairValue.toLocaleString()} · range $
             {headline.rangeLow.toLocaleString()} – ${headline.rangeHigh.toLocaleString()}
           </p>
-          <div className="mt-4 grid grid-cols-3 gap-2 border-t border-emerald-200/60 pt-3 text-center text-[10px]">
+          <div className="mt-4 grid grid-cols-2 gap-2 border-t border-emerald-200/60 pt-3 text-center text-[10px]">
             <div>
-              <p className="uppercase text-muted">Signal</p>
-              <p className={`mt-0.5 font-semibold ${signalColor}`}>{headline.signal}</p>
-            </div>
-            <div>
-              <p className="uppercase text-muted">Vs Fair</p>
+              <p className="inline-flex items-center justify-center uppercase text-muted">
+                Vs fair
+                <InfoTip text={BTC_LIQUIDITY_TERMS["Vs Fair"]!} />
+              </p>
               <p className={`mt-0.5 font-semibold tabular-nums ${signalColor}`}>
                 {headline.vsFairPct >= 0 ? "+" : ""}
                 {headline.vsFairPct.toFixed(2)}%
               </p>
             </div>
             <div>
-              <p className="uppercase text-muted">Z-Score</p>
+              <p className="inline-flex items-center justify-center uppercase text-muted">
+                Z-score
+                <InfoTip text={BTC_LIQUIDITY_TERMS["Z-Score"]!} />
+              </p>
               <p className="mt-0.5 font-semibold tabular-nums">{headline.zScore.toFixed(2)}</p>
             </div>
           </div>
         </div>
 
         <MetricCard
+          termKey="Fed Net Liquidity"
           label="Fed Net Liquidity"
           value={`$${cards.fedNetLiqT.toFixed(1)}T`}
-          sub="Assets – TGA – RRP"
-          hint="See trend below"
+          sub="Assets − TGA − RRP"
         />
         <MetricCard
-          label="Global M2 (USD) YoY"
+          termKey="Global M2 (USD) YoY"
+          label="Global M2 YoY"
           value={`${cards.globalM2Yoy >= 0 ? "+" : ""}${cards.globalM2Yoy.toFixed(2)}%`}
           sub="US + EA + JP + CN + UK"
-          hint={cards.globalM2Yoy > 0 ? "Expansionary" : "Contracting"}
         />
         <MetricCard
+          termKey="Stablecoin Supply"
           label="Stablecoin Supply"
           value={`$${cards.stableSupplyB.toFixed(1)}B`}
-          sub="USDT + USDC"
-          hint={`30-day: ${cards.stable30dPct >= 0 ? "+" : ""}${cards.stable30dPct.toFixed(2)}%`}
+          sub={`USDT + USDC · 30d ${cards.stable30dPct >= 0 ? "+" : ""}${cards.stable30dPct.toFixed(2)}%`}
         />
       </div>
 
       <ChartPanel
         title="Bitcoin vs. Liquidity-Model Fair Value"
-        subtitle="Log scale · ±1σ shaded as the likely range, ±2σ as the extreme range"
+        infoKey="Model fair value"
+        subtitle="Log scale · shaded bands show typical and extreme deviations from the model"
         range={range}
         onRangeChange={setRange}
       >
         <FairValueChart data={fairValuePoints} />
-        <div className="mt-2 flex flex-wrap gap-4 text-xs text-muted">
-          <LegendDot color={CHART_STYLE.color} label="BTC actual" />
-          <LegendDot color={CHART_STYLE.modelColor} label="Model fair value" />
-          <LegendDot color={CHART_STYLE.bandInner} label="±1σ range" />
-          <LegendDot color={CHART_STYLE.bandOuter} label="±2σ range" />
+        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted">
+          <LegendItem color={CHART_STYLE.color} label="BTC price" infoKey="BTC actual" />
+          <LegendItem color={CHART_STYLE.modelColor} label="Model fair value" infoKey="Model fair value" />
+          <LegendItem color={CHART_STYLE.bandInner} label="Likely range" infoKey="Likely range" />
+          <LegendItem color={CHART_STYLE.bandOuter} label="Extreme range" infoKey="Extreme range" />
         </div>
       </ChartPanel>
 
       <ChartPanel
         title="Cheap / Dear Indicator"
-        subtitle="Z-score of the regression residual · below -1.5 = Strong Cheap, above +1.5 = Strong Dear"
+        infoKey="Cheap / Dear Indicator"
+        subtitle="How far price sits from the model vs history · dashed lines at cheap/dear thresholds"
         right={`Current z = ${headline.zScore.toFixed(2)}`}
         range={range}
         onRangeChange={setRange}
@@ -173,49 +185,65 @@ export function BtcLiquidityDashboard({ data }: Props) {
           series={[{ key: "zScore", label: "Z-score" }]}
           yFormatter={(v) => v.toFixed(1)}
           referenceLines={[
-            { y: 1.5, label: "+1.5" },
-            { y: -1.5, label: "-1.5" },
-            { y: 0 },
+            { y: 1.5, label: "Dear (+1.5)" },
+            { y: -1.5, label: "Cheap (−1.5)" },
+            { y: 0, label: "Fair" },
           ]}
+          seriesDescriptions={{
+            zScore: BTC_LIQUIDITY_TERMS["Z-Score"]!,
+          }}
         />
       </ChartPanel>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <ChartPanel title="Fed Net Liquidity" subtitle="WALCL - TGA - RRP, $T" range={range} onRangeChange={setRange}>
+        <ChartPanel
+          title="Fed Net Liquidity"
+          infoKey="Fed Net Liquidity"
+          subtitle="WALCL − TGA − RRP, trillions USD"
+          range={range}
+          onRangeChange={setRange}
+        >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "fedNetLiqT", label: "Fed net liq" }]}
+            series={[{ key: "fedNetLiqT", label: "Fed net liquidity" }]}
             yFormatter={(v) => `$${v.toFixed(2)}T`}
+            seriesDescriptions={{
+              fedNetLiqT: BTC_LIQUIDITY_TERMS["Fed Net Liquidity"]!,
+            }}
           />
         </ChartPanel>
-        <ChartPanel title="Global M2 YoY" subtitle="USD-converted, US + EA + JP + CN + UK" range={range} onRangeChange={setRange}>
+        <ChartPanel
+          title="Global M2 YoY"
+          infoKey="Global M2 (USD) YoY"
+          subtitle="USD-converted broad money, five major economies"
+          range={range}
+          onRangeChange={setRange}
+        >
           <LiquidityAreaChart
             data={filtered}
             series={[{ key: "globalM2Yoy", label: "Global M2 YoY" }]}
             yFormatter={(v) => `${v.toFixed(1)}%`}
+            seriesDescriptions={{
+              globalM2Yoy: BTC_LIQUIDITY_TERMS["Global M2 (USD) YoY"]!,
+            }}
           />
         </ChartPanel>
-        <ChartPanel title="Stablecoin Supply" subtitle="USDT + USDC, $B" range={range} onRangeChange={setRange}>
+        <ChartPanel
+          title="Stablecoin Supply"
+          infoKey="Stablecoin Supply"
+          subtitle="USDT + USDC outstanding, billions USD"
+          range={range}
+          onRangeChange={setRange}
+        >
           <LiquidityAreaChart
             data={filtered}
             series={[{ key: "stableSupplyB", label: "Stablecoin supply" }]}
             yFormatter={(v) => `$${v.toFixed(0)}B`}
+            seriesDescriptions={{
+              stableSupplyB: BTC_LIQUIDITY_TERMS["Stablecoin Supply"]!,
+            }}
           />
         </ChartPanel>
-      </div>
-
-      <div className="rounded-xl border border-stone-200/80 bg-card p-5 text-sm leading-relaxed text-stone-700">
-        <h4 className="font-serif text-lg font-semibold text-ink">Methodology</h4>
-        <p className="mt-2">{methodology}</p>
-        <p className="mt-3 text-xs text-muted">
-          R² = {modelStats.r2} · {modelStats.observations} observations · residual σ (log) ={" "}
-          {modelStats.residualSigma}
-        </p>
-        <ul className="mt-3 list-inside list-disc text-xs text-muted">
-          {sources.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ul>
       </div>
     </div>
   );
@@ -229,7 +257,7 @@ function LiquidityAreaChart({
   logScale = false,
   yFormatter,
   referenceLines,
-  tooltipContent,
+  seriesDescriptions,
 }: {
   data: BtcLiquidityPoint[] | FairValuePoint[];
   series: SeriesConfig[];
@@ -237,7 +265,7 @@ function LiquidityAreaChart({
   logScale?: boolean;
   yFormatter?: (v: number) => string;
   referenceLines?: { y: number; label?: string }[];
-  tooltipContent?: React.ReactNode;
+  seriesDescriptions?: Record<string, string>;
 }) {
   const chartData = data.filter((p) => {
     const v = p[series[0].key as keyof typeof p];
@@ -276,23 +304,15 @@ function LiquidityAreaChart({
               ? { scale: "log" as const, domain: ["auto", "auto"] as [string, string], allowDataOverflow: true }
               : {})}
           />
-          {tooltipContent ?? (
-            <Tooltip
-              contentStyle={{
-                fontSize: 12,
-                borderRadius: 8,
-                border: "1px solid #e7e5e4",
-              }}
-              labelFormatter={(l) => String(l)}
-              formatter={(value: number, name: string) => {
-                const num = typeof value === "number" ? value : Number(value);
-                return [
-                  tickFormatter(num),
-                  series.find((s) => String(s.key) === name)?.label ?? name,
-                ];
-              }}
-            />
-          )}
+          <Tooltip
+            content={
+              <LiquidityTooltip
+                series={series}
+                descriptions={seriesDescriptions}
+                formatValue={tickFormatter}
+              />
+            }
+          />
           {referenceLines?.map((r) => (
             <ReferenceLine
               key={r.y}
@@ -311,7 +331,7 @@ function LiquidityAreaChart({
               key={String(s.key)}
               type={CHART_STYLE.lineType}
               dataKey={String(s.key)}
-              name={String(s.key)}
+              name={s.label ?? String(s.key)}
               stroke={s.color ?? CHART_STYLE.color}
               fill={s.color ?? CHART_STYLE.color}
               fillOpacity={CHART_STYLE.fillOpacity}
@@ -406,27 +426,64 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
   );
 }
 
+function LiquidityTooltip({
+  active,
+  payload,
+  label,
+  series,
+  descriptions,
+  formatValue,
+}: TooltipProps<number, string> & {
+  series: SeriesConfig[];
+  descriptions?: Record<string, string>;
+  formatValue: (v: number) => string;
+}) {
+  if (!active || !payload?.length) return null;
+  const entry = payload[0];
+  const key = entry?.dataKey as string;
+  const meta = series.find((s) => String(s.key) === key);
+  const num = typeof entry?.value === "number" ? entry.value : Number(entry?.value);
+  const desc = descriptions?.[key];
+
+  return (
+    <div className="max-w-xs rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-md">
+      <p className="font-medium text-stone-800">{formatChartDate(String(label))}</p>
+      <p className="mt-1 font-medium text-stone-700">
+        {meta?.label ?? key}: {formatValue(num)}
+      </p>
+      {desc && <p className="mt-1 leading-snug text-stone-500">{desc}</p>}
+    </div>
+  );
+}
+
 function FairValueTooltip({ active, payload, label }: TooltipProps<number, string>) {
   if (!active || !payload?.length) return null;
   const row = payload[0]?.payload as BtcLiquidityPoint | undefined;
   if (!row) return null;
 
   return (
-    <div className="rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-sm">
-      <p className="mb-1 font-medium text-stone-800">{String(label)}</p>
-      <p className="text-stone-600">
-        BTC actual: <span className="font-mono tabular-nums">${row.btcActual.toLocaleString()}</span>
+    <div className="max-w-xs rounded-lg border border-stone-200 bg-white px-3 py-2 text-xs shadow-md">
+      <p className="mb-2 font-medium text-stone-800">{formatChartDate(String(label))}</p>
+      <p className="text-stone-700">
+        <span className="font-medium">BTC price:</span>{" "}
+        <span className="font-mono tabular-nums">${row.btcActual.toLocaleString()}</span>
       </p>
-      <p className="text-stone-600">
-        Model fair value:{" "}
+      <p className="mt-1 text-stone-600">{BTC_LIQUIDITY_TERMS["BTC actual"]}</p>
+      <p className="mt-2 text-stone-700">
+        <span className="font-medium">Model fair value:</span>{" "}
         <span className="font-mono tabular-nums">${row.modelFair.toLocaleString()}</span>
       </p>
-      <p className="text-stone-500">
-        ±1σ: ${row.band1Low.toLocaleString()} – ${row.band1High.toLocaleString()}
+      <p className="mt-1 text-stone-600">{BTC_LIQUIDITY_TERMS["Model fair value"]}</p>
+      <p className="mt-2 text-stone-700">
+        <span className="font-medium">Likely range:</span> ${row.band1Low.toLocaleString()} – $
+        {row.band1High.toLocaleString()}
       </p>
-      <p className="text-stone-500">
-        ±2σ: ${row.band2Low.toLocaleString()} – ${row.band2High.toLocaleString()}
+      <p className="mt-0.5 text-stone-500">{BTC_LIQUIDITY_TERMS["Likely range"]}</p>
+      <p className="mt-2 text-stone-700">
+        <span className="font-medium">Extreme range:</span> ${row.band2Low.toLocaleString()} – $
+        {row.band2High.toLocaleString()}
       </p>
+      <p className="mt-0.5 text-stone-500">{BTC_LIQUIDITY_TERMS["Extreme range"]}</p>
     </div>
   );
 }
@@ -461,6 +518,7 @@ function RangeSelector({
 function ChartPanel({
   title,
   subtitle,
+  infoKey,
   right,
   range,
   onRangeChange,
@@ -468,16 +526,21 @@ function ChartPanel({
 }: {
   title: string;
   subtitle: string;
+  infoKey?: string;
   right?: string;
   range?: RangeKey;
   onRangeChange?: (r: RangeKey) => void;
   children: React.ReactNode;
 }) {
+  const tip = infoKey ? BTC_LIQUIDITY_TERMS[infoKey] : undefined;
   return (
     <div className="rounded-xl border border-stone-200/80 bg-white p-4 shadow-sm">
       <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
-          <h4 className="font-serif text-base font-semibold text-ink">{title}</h4>
+          <h4 className="inline-flex items-center font-serif text-base font-semibold text-ink">
+            {title}
+            {tip && <InfoTip text={tip} label={`About ${title}`} />}
+          </h4>
           <p className="text-xs text-muted">{subtitle}</p>
         </div>
         <div className="flex flex-col items-end gap-2">
@@ -499,31 +562,44 @@ function ChartEmpty({ heightClass = "h-48" }: { heightClass?: string }) {
 }
 
 function MetricCard({
+  termKey,
   label,
   value,
   sub,
-  hint,
 }: {
+  termKey: string;
   label: string;
   value: string;
   sub: string;
-  hint: string;
 }) {
+  const tip = BTC_LIQUIDITY_TERMS[termKey];
   return (
     <div className="rounded-xl border border-stone-200/80 bg-white p-4">
-      <p className="text-[10px] font-semibold uppercase tracking-widest text-muted">{label}</p>
+      <p className="inline-flex items-center text-[10px] font-semibold uppercase tracking-widest text-muted">
+        {label}
+        {tip && <InfoTip text={tip} label={`About ${label}`} />}
+      </p>
       <p className="mt-2 font-mono text-2xl font-semibold tabular-nums">{value}</p>
       <p className="mt-2 text-xs text-muted">{sub}</p>
-      <p className="text-xs text-muted">{hint}</p>
     </div>
   );
 }
 
-function LegendDot({ color, label }: { color: string; label: string }) {
+function LegendItem({
+  color,
+  label,
+  infoKey,
+}: {
+  color: string;
+  label: string;
+  infoKey: string;
+}) {
+  const tip = BTC_LIQUIDITY_TERMS[infoKey];
   return (
     <span className="inline-flex items-center gap-1.5">
-      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
-      {label}
+      <span className="h-2.5 w-4 shrink-0 rounded-sm" style={{ backgroundColor: color }} aria-hidden />
+      <span>{label}</span>
+      {tip && <InfoTip text={tip} label={`About ${label}`} />}
     </span>
   );
 }
@@ -547,6 +623,12 @@ function formatLogUsd(v: number) {
   if (v >= 100_000) return `$${Math.round(v / 1000)}k`;
   if (v >= 1000) return `$${(v / 1000).toFixed(0)}k`;
   return `$${Math.round(v)}`;
+}
+
+function formatChartDate(value: string) {
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return value;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 function formatDisplayDate(iso: string) {

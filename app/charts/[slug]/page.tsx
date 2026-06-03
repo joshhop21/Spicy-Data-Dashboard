@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { InfoTip } from "@/components/InfoTip";
 import { MiniChart } from "@/components/MiniChart";
 import { getChartData } from "@/lib/loadChartData";
 import { TILES } from "@/lib/tiles";
@@ -32,7 +33,12 @@ export default async function ChartDetailPage({ params }: PageProps) {
         <p className="text-2xl" aria-hidden>
           {tile.icon}
         </p>
-        <h1 className="mt-2 font-serif text-3xl font-semibold text-ink">{tile.title}</h1>
+        <h1 className="mt-2 font-serif text-3xl font-semibold text-ink">
+          {tile.title}
+          {tile.description && (
+            <InfoTip text={tile.description} label={`About ${tile.title}`} />
+          )}
+        </h1>
         <p className="mt-1 text-muted">{tile.subtitle}</p>
         {data?.headline && (
           <p className="mt-3 text-lg font-semibold tabular-nums">
@@ -114,13 +120,6 @@ export default async function ChartDetailPage({ params }: PageProps) {
           <p className="mt-2">
             {data?.thesis ??
               "Thesis copy will be added when Jared shares chart notes. This placeholder keeps the layout ready."}
-          </p>
-        </div>
-        <div>
-          <h2 className="font-serif text-lg font-semibold text-ink">Methodology</h2>
-          <p className="mt-2">
-            {data?.methodology ??
-              "Methodology will document series IDs, formulas, and rebalance rules for this chart."}
           </p>
         </div>
         {data?.sources && data.sources.length > 0 && (

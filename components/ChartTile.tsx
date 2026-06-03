@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InfoTip } from "./InfoTip";
 import { MiniChart } from "./MiniChart";
 import type { ChartDataFile, TileConfig } from "@/lib/types";
 
@@ -33,6 +34,9 @@ export function ChartTile({ tile, data }: ChartTileProps) {
           <div className="min-w-0 flex-1">
             <h3 className="font-serif text-sm font-semibold leading-snug text-ink sm:text-base">
               {tile.title}
+              {tile.description && (
+                <InfoTip text={tile.description} label={`About ${tile.title}`} />
+              )}
             </h3>
             <p className="text-xs text-muted">{tile.subtitle}</p>
           </div>
