@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import type { RefObject } from "react";
 import type { TooltipProps } from "recharts";
 
 export type HoverRow = {
@@ -69,6 +70,19 @@ const ACTIVE_DOT = { r: 5, stroke: "#fff", strokeWidth: 2.5 };
 export const chartActiveDot = ACTIVE_DOT;
 
 const CHART_GAP = 10;
+const VIEWPORT_MARGIN = 8;
+
+type CalloutLayout = {
+  boxLeft: number;
+  boxTop: number;
+  boxWidth: number;
+  boxHeight: number;
+  lineEndX: number;
+  lineEndY: number;
+  svgLeft: number;
+  svgWidth: number;
+  anchorX: number;
+};
 
 function rowBlockHeight(compact: boolean, hasDescription: boolean) {
   const valueLine = compact ? 18 : 20;
@@ -89,35 +103,129 @@ function getCalloutDimensions(compact: boolean, rows: HoverRow[]) {
   return { boxWidth, boxHeight };
 }
 
+function boxEdgeTowardPoint(
+  box: { left: number; top: number; width: number; height: number },
+  point: { x: number; y: number },
+) {
+  const cx = box.left + box.width / 2;
+  const cy = box.top + box.height / 2;
+  const dx = point.x - cx;
+  const dy = point.y - cy;
+
+  if (Math.abs(dx) * box.height > Math.abs(dy) * box.width) {
+    const x = dx > 0 ? box.left : box.left + box.width;
+    const y = Math.max(box.top, Math.min(box.top + box.height, point.y));
+    return { x, y };
+  }
+
+  const y = dy > 0 ? box.top : box.top + box.height;
+  const x = Math.max(box.left, Math.min(box.left + box.width, point.x));
+  return { x, y };
+}
+
+function computeCalloutLayout(
+  anchor: { x: number; y: number },
+  plotWidth: number,
+  plotHeight: number,
+  containerRect: DOMRect,
+  compact: boolean,
+  rows: HoverRow[],
+): CalloutLayout {
+  const { boxWidth, boxHeight } = getCalloutDimensions(compact, rows);
+
+  let placeRight = anchor.x < plotWidth * 0.55;
+  let boxLeft = placeRight ? plotWidth + CHART_GAP : -boxWidth - CHART_GAP;
+  let boxTop = Math.max(
+    CHART_GAP,
+    Math.min(plotHeight - boxHeight - CHART_GAP, anchor.y - boxHeight / 2),
+  );
+
+  let vpLeft = containerRect.left + boxLeft;
+  let vpTop = containerRect.top + boxTop;
+
+  if (vpLeft < VIEWPORT_MARGIN) {
+    placeRight = true;
+    boxLeft = plotWidth + CHART_GAP;
+    vpLeft = containerRect.left + boxLeft;
+  }
+  if (vpLeft + boxWidth > window.innerWidth - VIEWPORT_MARGIN) {
+    placeRight = false;
+    boxLeft = -boxWidth - CHART_GAP;
+    vpLeft = containerRect.left + boxLeft;
+  }
+
+  vpLeft = Math.max(
+    VIEWPORT_MARGIN,
+    Math.min(window.innerWidth - boxWidth - VIEWPORT_MARGIN, vpLeft),
+  );
+  vpTop = Math.max(
+    VIEWPORT_MARGIN,
+    Math.min(window.innerHeight - boxHeight - VIEWPORT_MARGIN, vpTop),
+  );
+
+  boxLeft = vpLeft - containerRect.left;
+  boxTop = vpTop - containerRect.top;
+
+  const edge = boxEdgeTowardPoint(
+    { left: boxLeft, top: boxTop, width: boxWidth, height: boxHeight },
+    anchor,
+  );
+
+  const svgLeft = Math.min(0, boxLeft, edge.x);
+  const svgWidth = Math.max(plotWidth, boxLeft + boxWidth, edge.x) - svgLeft;
+
+  return {
+    boxLeft,
+    boxTop,
+    boxWidth,
+    boxHeight,
+    lineEndX: edge.x,
+    lineEndY: edge.y,
+    svgLeft,
+    svgWidth,
+    anchorX: anchor.x - svgLeft,
+  };
+}
+
 export function ChartSideCallout({
   hover,
   width,
   height,
   compact = true,
+  containerRef,
 }: {
   hover: ChartHoverState;
   width: number;
   height: number;
   compact?: boolean;
+  containerRef: RefObject<HTMLElement | null>;
 }) {
-  if (!hover) return null;
+  const [layout, setLayout] = useState<CalloutLayout | null>(null);
 
-  const { boxWidth, boxHeight } = getCalloutDimensions(compact, hover.rows);
-  const { anchor } = hover;
+  useLayoutEffect(() => {
+    if (!hover || !containerRef.current) {
+      setLayout(null);
+      return;
+    }
 
-  const placeRight = anchor.x < width * 0.55;
-  const boxLeft = placeRight ? width + CHART_GAP : -boxWidth - CHART_GAP;
-  const boxTop = Math.max(
-    CHART_GAP,
-    Math.min(height - boxHeight - CHART_GAP, anchor.y - boxHeight / 2),
-  );
-  const boxMidY = boxTop + boxHeight / 2;
-  const lineEndX = placeRight ? boxLeft : boxLeft + boxWidth;
+    const update = () => {
+      if (!containerRef.current || !hover) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      setLayout(
+        computeCalloutLayout(hover.anchor, width, height, rect, compact, hover.rows),
+      );
+    };
 
-  const svgLeft = Math.min(0, boxLeft);
-  const svgWidth = Math.max(width, boxLeft + boxWidth) - svgLeft;
-  const anchorX = anchor.x - svgLeft;
-  const lineX = lineEndX - svgLeft;
+    update();
+    window.addEventListener("resize", update);
+    window.addEventListener("scroll", update, true);
+    return () => {
+      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", update, true);
+    };
+  }, [hover, width, height, compact, containerRef]);
+
+  if (!hover || !layout) return null;
 
   const boxPad = compact ? "p-2.5 text-[11px]" : "p-3 text-xs";
   const descClass = compact ? "text-[10px] leading-snug" : "text-[11px] leading-snug";
@@ -126,14 +234,14 @@ export function ChartSideCallout({
     <div className="pointer-events-none absolute inset-0 z-50 overflow-visible">
       <svg
         className="absolute top-0 overflow-visible"
-        style={{ left: svgLeft, width: svgWidth, height }}
+        style={{ left: layout.svgLeft, width: layout.svgWidth, height }}
         aria-hidden
       >
         <line
-          x1={anchorX}
-          y1={anchor.y}
-          x2={lineX}
-          y2={boxMidY}
+          x1={layout.anchorX}
+          y1={hover.anchor.y}
+          x2={layout.lineEndX - layout.svgLeft}
+          y2={layout.lineEndY}
           stroke="#d6d3d1"
           strokeWidth={1}
         />
@@ -141,10 +249,10 @@ export function ChartSideCallout({
       <div
         className={`absolute rounded-lg border border-stone-200 bg-white shadow-lg ${boxPad}`}
         style={{
-          left: boxLeft,
-          top: boxTop,
-          width: boxWidth,
-          minHeight: boxHeight,
+          left: layout.boxLeft,
+          top: layout.boxTop,
+          width: layout.boxWidth,
+          minHeight: layout.boxHeight,
         }}
         aria-live="polite"
       >
