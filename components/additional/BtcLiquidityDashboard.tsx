@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -16,8 +16,9 @@ import type { TooltipProps } from "recharts";
 import { BtcLivePriceCard } from "@/components/additional/BtcLivePriceCard";
 import {
   ChartHoverState,
-  ChartHoverStrip,
   ChartHoverSync,
+  ChartSideCallout,
+  chartActiveDot,
 } from "@/components/ChartHoverStrip";
 import { InfoTip } from "@/components/InfoTip";
 import { BTC_LIQUIDITY_TERMS } from "@/lib/glossary";
@@ -259,10 +260,22 @@ function LiquidityAreaChart({
   referenceLines?: { y: number; label?: string }[];
 }) {
   const [hover, setHover] = useState<ChartHoverState>(null);
+  const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
+  const plotRef = useRef<HTMLDivElement>(null);
   const labelMap = useMemo(
     () => Object.fromEntries(series.map((s) => [String(s.key), s.label ?? String(s.key)])),
     [series],
   );
+
+  useEffect(() => {
+    const el = plotRef.current;
+    if (!el) return;
+    const measure = () => setPlotSize({ w: el.clientWidth, h: el.clientHeight });
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const chartData = data.filter((p) => {
     const v = p[series[0].key as keyof typeof p];
@@ -279,9 +292,8 @@ function LiquidityAreaChart({
   };
 
   return (
-    <div className={`flex w-full flex-col ${heightClass}`}>
-      <ChartHoverStrip hover={hover} compact />
-      <div className="min-h-0 flex-1">
+    <div className={`relative w-full overflow-visible ${heightClass}`}>
+      <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_STYLE.gridStroke} />
@@ -304,7 +316,7 @@ function LiquidityAreaChart({
               : {})}
           />
           <Tooltip
-            cursor={{ stroke: CHART_STYLE.stone, strokeWidth: 1, strokeDasharray: "4 4" }}
+            cursor={false}
             content={
               <ChartHoverSync
                 onHover={setHover}
@@ -337,6 +349,7 @@ function LiquidityAreaChart({
               fillOpacity={CHART_STYLE.fillOpacity}
               strokeWidth={CHART_STYLE.strokeWidth}
               dot={false}
+              activeDot={{ ...chartActiveDot, fill: s.color ?? CHART_STYLE.color }}
               connectNulls
               isAnimationActive={false}
             />
@@ -344,21 +357,35 @@ function LiquidityAreaChart({
         </AreaChart>
         </ResponsiveContainer>
       </div>
+      {hover && plotSize.w > 0 && (
+        <ChartSideCallout hover={hover} width={plotSize.w} height={plotSize.h} compact />
+      )}
     </div>
   );
 }
 
 function FairValueChart({ data }: { data: FairValuePoint[] }) {
   const [hover, setHover] = useState<ChartHoverState>(null);
+  const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
+  const plotRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = plotRef.current;
+    if (!el) return;
+    const measure = () => setPlotSize({ w: el.clientWidth, h: el.clientHeight });
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   if (data.length === 0) {
     return <ChartEmpty heightClass="h-80" />;
   }
 
   return (
-    <div className="flex h-80 w-full flex-col">
-      <ChartHoverStrip hover={hover} compact={false} />
-      <div className="min-h-0 flex-1">
+    <div className="relative h-80 w-full overflow-visible">
+      <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_STYLE.gridStroke} />
@@ -380,10 +407,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip
-            cursor={{ stroke: CHART_STYLE.stone, strokeWidth: 1, strokeDasharray: "4 4" }}
-            content={<FairValueHoverSync onHover={setHover} />}
-          />
+          <Tooltip cursor={false} content={<FairValueHoverSync onHover={setHover} />} />
           <Area
             type={CHART_STYLE.lineType}
             dataKey="band2Range"
@@ -413,6 +437,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             fillOpacity={CHART_STYLE.fillOpacity}
             strokeWidth={CHART_STYLE.strokeWidth}
             dot={false}
+            activeDot={{ ...chartActiveDot, fill: CHART_STYLE.modelColor }}
             connectNulls
             isAnimationActive={false}
           />
@@ -425,12 +450,16 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
             fillOpacity={CHART_STYLE.fillOpacity}
             strokeWidth={CHART_STYLE.strokeWidth}
             dot={false}
+            activeDot={{ ...chartActiveDot, fill: CHART_STYLE.color }}
             connectNulls
             isAnimationActive={false}
           />
         </ComposedChart>
         </ResponsiveContainer>
       </div>
+      {hover && plotSize.w > 0 && (
+        <ChartSideCallout hover={hover} width={plotSize.w} height={plotSize.h} compact={false} />
+      )}
     </div>
   );
 }
@@ -439,10 +468,11 @@ function FairValueHoverSync({
   active,
   payload,
   label,
+  coordinate,
   onHover,
 }: TooltipProps<number, string> & { onHover: (state: ChartHoverState) => void }) {
   useEffect(() => {
-    if (!active || !payload?.length) {
+    if (!active || !payload?.length || !coordinate || coordinate.x == null || coordinate.y == null) {
       onHover(null);
       return;
     }
@@ -453,6 +483,7 @@ function FairValueHoverSync({
     }
     onHover({
       date: String(label),
+      anchor: { x: coordinate.x, y: coordinate.y },
       rows: [
         {
           label: "BTC price",
@@ -470,7 +501,7 @@ function FairValueHoverSync({
         },
       ],
     });
-  }, [active, payload, label, onHover]);
+  }, [active, payload, label, coordinate, onHover]);
 
   return null;
 }

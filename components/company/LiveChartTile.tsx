@@ -68,7 +68,7 @@ export function LiveChartTile({ symbol, metric }: Props) {
   const headline = data?.headline;
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-stone-200/80 bg-card shadow-sm">
+    <article className="flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-card shadow-sm">
       <div className="border-b border-stone-100 px-4 pb-3 pt-4">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div className="flex gap-3">
@@ -126,7 +126,7 @@ export function LiveChartTile({ symbol, metric }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 px-2 pb-3 pt-1">
+      <div className="relative flex-1 overflow-visible px-2 pb-3 pt-1">
         {error && (
           <div className="flex h-36 flex-col items-center justify-center gap-1 px-4 text-center">
             <p className="text-sm font-medium text-muted">Could not load</p>

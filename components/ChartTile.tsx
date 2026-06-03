@@ -67,7 +67,7 @@ export function ChartTile({ tile, data }: ChartTileProps) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-hidden rounded-b-xl px-2 pb-3 pt-1">
+      <div className="relative flex-1 overflow-visible rounded-b-xl px-2 pb-3 pt-1">
         {placeholder ? (
           <div className="flex h-36 items-center justify-center text-xs text-muted">
             Data pending — nightly refresh

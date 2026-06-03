@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -15,8 +15,9 @@ import {
 } from "recharts";
 import {
   ChartHoverState,
-  ChartHoverStrip,
   ChartHoverSync,
+  ChartSideCallout,
+  chartActiveDot,
 } from "@/components/ChartHoverStrip";
 import { formatChartAxisValue } from "@/lib/format-chart-axis";
 import type { ChartDataFile } from "@/lib/types";
@@ -29,6 +30,8 @@ type MiniChartProps = {
 export function MiniChart({ data, compact = true }: MiniChartProps) {
   const { series, points, referenceLine, axisFormat = "compact" } = data;
   const [hover, setHover] = useState<ChartHoverState>(null);
+  const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
+  const plotRef = useRef<HTMLDivElement>(null);
   const hasDualAxis = series.some((s) => s.yAxisId === "right");
   const useArea = series.some((s) => s.type === "area");
   const ChartWrapper = useArea ? AreaChart : LineChart;
@@ -40,10 +43,21 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
     [series],
   );
 
+  useEffect(() => {
+    const el = plotRef.current;
+    if (!el) return;
+    const measure = () => {
+      setPlotSize({ w: el.clientWidth, h: el.clientHeight });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div className={`flex w-full flex-col ${compact ? "h-36" : "h-80"}`}>
-      <ChartHoverStrip hover={hover} compact={compact} />
-      <div className="min-h-0 flex-1">
+    <div className={`relative w-full overflow-visible ${compact ? "h-36" : "h-80"}`}>
+      <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <ChartWrapper data={points} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -75,7 +89,8 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
               />
             )}
             <Tooltip
-              cursor={{ stroke: "#d6d3d1", strokeWidth: 1, strokeDasharray: "4 4" }}
+              cursor={false}
+              isAnimationActive={false}
               content={
                 <ChartHoverSync
                   onHover={setHover}
@@ -105,6 +120,7 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
                   fillOpacity={0.2}
                   strokeWidth={2}
                   dot={false}
+                  activeDot={{ ...chartActiveDot, fill: s.color }}
                   isAnimationActive={false}
                 />
               ) : (
@@ -118,6 +134,7 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
                   strokeWidth={2}
                   strokeDasharray={s.strokeDasharray}
                   dot={false}
+                  activeDot={{ ...chartActiveDot, fill: s.color }}
                   isAnimationActive={false}
                 />
               ),
@@ -125,6 +142,14 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
           </ChartWrapper>
         </ResponsiveContainer>
       </div>
+      {hover && plotSize.w > 0 && (
+        <ChartSideCallout
+          hover={hover}
+          width={plotSize.w}
+          height={plotSize.h}
+          compact={compact}
+        />
+      )}
     </div>
   );
 }
