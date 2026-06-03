@@ -13,6 +13,16 @@ function rangeToYahoo(range: string): string {
   return found?.yahoo ?? "1y";
 }
 
+function buildSeries(metric: NonNullable<ReturnType<typeof getMetricById>>, key = "value") {
+  return {
+    key,
+    label: metric.label,
+    color: metric.accentColor,
+    type: "area" as const,
+    description: metric.subtitle,
+  };
+}
+
 export async function GET(request: NextRequest) {
   const symbol = request.nextUrl.searchParams.get("symbol")?.trim().toUpperCase();
   const metricId = request.nextUrl.searchParams.get("metric")?.trim().toLowerCase();
@@ -59,14 +69,7 @@ export async function GET(request: NextRequest) {
           deltaDate: latest?.date ?? "",
           deltaPositive,
         },
-        series: [
-          {
-            key: "value",
-            label: metric.label,
-            color: metric.accentColor,
-            type: "area",
-          },
-        ],
+        series: [buildSeries(metric)],
         points: [],
       };
       return NextResponse.json(payload);
@@ -90,14 +93,7 @@ export async function GET(request: NextRequest) {
           delta: "—",
           deltaDate: "",
         },
-        series: [
-          {
-            key: seriesKey,
-            label: metric.label,
-            color: metric.accentColor,
-            type: "area",
-          },
-        ],
+        series: [buildSeries(metric, seriesKey)],
         points: [],
       };
       return NextResponse.json(payload);
@@ -115,14 +111,7 @@ export async function GET(request: NextRequest) {
           delta: "—",
           deltaDate: latest?.date ?? "",
         },
-        series: [
-          {
-            key: seriesKey,
-            label: metric.label,
-            color: metric.accentColor,
-            type: "area",
-          },
-        ],
+        series: [buildSeries(metric, seriesKey)],
         points: [],
       };
       return NextResponse.json(payload);
@@ -144,14 +133,7 @@ export async function GET(request: NextRequest) {
         deltaDate: latest.date,
         deltaPositive: delta >= 0,
       },
-      series: [
-        {
-          key: seriesKey,
-          label: metric.label,
-          color: metric.accentColor,
-          type: "area",
-        },
-      ],
+      series: [buildSeries(metric, seriesKey)],
       points: chartPoints,
     };
 
@@ -166,14 +148,7 @@ export async function GET(request: NextRequest) {
       unavailable:
         "We could not reach Yahoo Finance right now. Try again in a moment or pick a different metric.",
       headline: { value: "—", delta: "—", deltaDate: "" },
-      series: [
-        {
-          key: "value",
-          label: metric?.label ?? metricId,
-          color: metric?.accentColor ?? "#78716c",
-          type: "area",
-        },
-      ],
+      series: metric ? [buildSeries(metric)] : [],
       points: [],
     };
     return NextResponse.json(payload);

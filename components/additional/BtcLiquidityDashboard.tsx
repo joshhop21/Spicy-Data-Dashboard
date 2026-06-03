@@ -59,6 +59,7 @@ type SeriesConfig = {
   key: keyof BtcLiquidityPoint | string;
   color?: string;
   label?: string;
+  infoKey?: string;
 };
 
 export function BtcLiquidityDashboard({ data }: Props) {
@@ -189,7 +190,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
       >
         <LiquidityAreaChart
           data={filtered}
-          series={[{ key: "zScore", label: "Z-score" }]}
+          series={[{ key: "zScore", label: "Z-score", infoKey: "Cheap / Dear Indicator" }]}
           yFormatter={(v) => v.toFixed(1)}
           referenceLines={[
             { y: 1.5, label: "Dear (+1.5)" },
@@ -209,7 +210,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
         >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "fedNetLiqT", label: "Fed net liquidity" }]}
+            series={[{ key: "fedNetLiqT", label: "Fed net liquidity", infoKey: "Fed Net Liquidity" }]}
             yFormatter={(v) => `$${v.toFixed(2)}T`}
           />
         </ChartPanel>
@@ -222,7 +223,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
         >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "globalM2Yoy", label: "Global M2 YoY" }]}
+            series={[{ key: "globalM2Yoy", label: "Global M2 YoY", infoKey: "Global M2 (USD) YoY" }]}
             yFormatter={(v) => `${v.toFixed(1)}%`}
           />
         </ChartPanel>
@@ -235,7 +236,7 @@ export function BtcLiquidityDashboard({ data }: Props) {
         >
           <LiquidityAreaChart
             data={filtered}
-            series={[{ key: "stableSupplyB", label: "Stablecoin supply" }]}
+            series={[{ key: "stableSupplyB", label: "Stablecoin supply", infoKey: "Stablecoin Supply" }]}
             yFormatter={(v) => `$${v.toFixed(0)}B`}
           />
         </ChartPanel>
@@ -265,6 +266,16 @@ function LiquidityAreaChart({
   const plotRef = useRef<HTMLDivElement>(null);
   const labelMap = useMemo(
     () => Object.fromEntries(series.map((s) => [String(s.key), s.label ?? String(s.key)])),
+    [series],
+  );
+  const descriptionMap = useMemo(
+    () =>
+      Object.fromEntries(
+        series.flatMap((s) => {
+          const desc = s.infoKey ? BTC_LIQUIDITY_TERMS[s.infoKey] : undefined;
+          return desc ? [[String(s.key), desc]] : [];
+        }),
+      ),
     [series],
   );
 
@@ -323,6 +334,7 @@ function LiquidityAreaChart({
               <ChartHoverSync
                 onHover={setHover}
                 labelMap={labelMap}
+                descriptionMap={descriptionMap}
                 formatValue={tickFormatter}
               />
             }
@@ -495,15 +507,18 @@ function FairValueHoverSync({
           label: "BTC price",
           value: `$${row.btcActual.toLocaleString()}`,
           color: CHART_STYLE.color,
+          description: BTC_LIQUIDITY_TERMS["BTC actual"],
         },
         {
           label: "Model fair",
           value: `$${row.modelFair.toLocaleString()}`,
           color: CHART_STYLE.modelColor,
+          description: BTC_LIQUIDITY_TERMS["Model fair value"],
         },
         {
           label: "Likely range",
           value: `$${row.band1Low.toLocaleString()} – $${row.band1High.toLocaleString()}`,
+          description: BTC_LIQUIDITY_TERMS["Likely range"],
         },
       ],
     });

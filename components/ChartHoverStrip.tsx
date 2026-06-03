@@ -3,7 +3,12 @@
 import { useEffect } from "react";
 import type { TooltipProps } from "recharts";
 
-export type HoverRow = { label: string; value: string; color?: string };
+export type HoverRow = {
+  label: string;
+  value: string;
+  color?: string;
+  description?: string;
+};
 export type ChartHoverState = {
   date: string;
   rows: HoverRow[];
@@ -13,6 +18,7 @@ export type ChartHoverState = {
 type SyncProps = TooltipProps<number, string> & {
   onHover: (state: ChartHoverState) => void;
   labelMap: Record<string, string>;
+  descriptionMap?: Record<string, string>;
   formatValue: (v: number) => string;
 };
 
@@ -24,6 +30,7 @@ export function ChartHoverSync({
   coordinate,
   onHover,
   labelMap,
+  descriptionMap,
   formatValue,
 }: SyncProps) {
   useEffect(() => {
@@ -42,10 +49,11 @@ export function ChartHoverSync({
             label: labelMap[key] ?? key,
             value: formatValue(Number(e.value)),
             color: e.color,
+            description: descriptionMap?.[key],
           };
         }),
     });
-  }, [active, payload, label, coordinate, onHover, labelMap, formatValue]);
+  }, [active, payload, label, coordinate, onHover, labelMap, descriptionMap, formatValue]);
 
   return null;
 }
@@ -62,12 +70,22 @@ export const chartActiveDot = ACTIVE_DOT;
 
 const CHART_GAP = 10;
 
-function getCalloutDimensions(compact: boolean, rowCount: number) {
-  const boxWidth = compact ? 172 : 216;
+function rowBlockHeight(compact: boolean, hasDescription: boolean) {
+  const valueLine = compact ? 18 : 20;
+  const descBlock = hasDescription ? (compact ? 28 : 32) : 0;
+  return valueLine + descBlock;
+}
+
+function getCalloutDimensions(compact: boolean, rows: HoverRow[]) {
+  const boxWidth = compact ? 200 : 248;
   const headerH = compact ? 18 : 20;
-  const rowH = compact ? 17 : 19;
   const padV = compact ? 22 : 26;
-  const boxHeight = padV + headerH + rowCount * rowH;
+  const gap = compact ? 8 : 10;
+  const rowsH = rows.reduce(
+    (sum, row) => sum + rowBlockHeight(compact, Boolean(row.description)) + gap,
+    0,
+  );
+  const boxHeight = padV + headerH + rowsH;
   return { boxWidth, boxHeight };
 }
 
@@ -84,7 +102,7 @@ export function ChartSideCallout({
 }) {
   if (!hover) return null;
 
-  const { boxWidth, boxHeight } = getCalloutDimensions(compact, hover.rows.length);
+  const { boxWidth, boxHeight } = getCalloutDimensions(compact, hover.rows);
   const { anchor } = hover;
 
   const placeRight = anchor.x < width * 0.55;
@@ -102,6 +120,7 @@ export function ChartSideCallout({
   const lineX = lineEndX - svgLeft;
 
   const boxPad = compact ? "p-2.5 text-[11px]" : "p-3 text-xs";
+  const descClass = compact ? "text-[10px] leading-snug" : "text-[11px] leading-snug";
 
   return (
     <div className="pointer-events-none absolute inset-0 z-50 overflow-visible">
@@ -131,13 +150,17 @@ export function ChartSideCallout({
       >
         <p className="font-medium leading-snug text-stone-800">{formatHoverDate(hover.date)}</p>
         {hover.rows.map((row) => (
-          <p
-            key={row.label}
-            className="mt-1 tabular-nums leading-snug"
-            style={{ color: row.color ?? "#57534e" }}
-          >
-            {row.label}: {row.value}
-          </p>
+          <div key={row.label} className="mt-2">
+            <p
+              className="font-medium tabular-nums leading-snug"
+              style={{ color: row.color ?? "#57534e" }}
+            >
+              {row.label}: {row.value}
+            </p>
+            {row.description && (
+              <p className={`mt-0.5 text-stone-500 ${descClass}`}>{row.description}</p>
+            )}
+          </div>
         ))}
       </div>
     </div>

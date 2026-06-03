@@ -44,6 +44,14 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
     [series],
   );
 
+  const descriptionMap = useMemo(
+    () =>
+      Object.fromEntries(
+        series.filter((s) => s.description).map((s) => [s.key, s.description!]),
+      ),
+    [series],
+  );
+
   useEffect(() => {
     const el = plotRef.current;
     if (!el) return;
@@ -97,6 +105,7 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
                 <ChartHoverSync
                   onHover={setHover}
                   labelMap={labelMap}
+                  descriptionMap={descriptionMap}
                   formatValue={formatTick}
                 />
               }

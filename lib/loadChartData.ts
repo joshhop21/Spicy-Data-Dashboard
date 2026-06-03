@@ -1,4 +1,5 @@
 import type { ChartDataFile } from "./types";
+import { seriesDescription } from "./glossary";
 
 import martyDistressed from "@/data/marty-distressed.json";
 import cdci from "@/data/cdci.json";
@@ -15,6 +16,11 @@ function parseChartData(raw: ChartDataFile): ChartDataFile {
   const { referenceLine, ...rest } = raw;
   return {
     ...rest,
+    series: raw.series.map((s) => ({
+      ...s,
+      description:
+        s.description ?? seriesDescription(raw.slug, s.key, s.label),
+    })),
     ...(referenceLine != null ? { referenceLine } : {}),
   };
 }
