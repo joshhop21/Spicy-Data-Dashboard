@@ -262,6 +262,7 @@ function LiquidityAreaChart({
   const [hover, setHover] = useState<ChartHoverState>(null);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const labelMap = useMemo(
     () => Object.fromEntries(series.map((s) => [String(s.key), s.label ?? String(s.key)])),
     [series],
@@ -292,7 +293,7 @@ function LiquidityAreaChart({
   };
 
   return (
-    <div className={`relative w-full overflow-visible ${heightClass}`}>
+    <div ref={containerRef} className={`relative w-full overflow-visible ${heightClass}`}>
       <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
@@ -358,7 +359,13 @@ function LiquidityAreaChart({
         </ResponsiveContainer>
       </div>
       {hover && plotSize.w > 0 && (
-        <ChartSideCallout hover={hover} width={plotSize.w} height={plotSize.h} compact />
+        <ChartSideCallout
+          hover={hover}
+          width={plotSize.w}
+          height={plotSize.h}
+          compact
+          containerRef={containerRef}
+        />
       )}
     </div>
   );
@@ -368,6 +375,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
   const [hover, setHover] = useState<ChartHoverState>(null);
   const [plotSize, setPlotSize] = useState({ w: 0, h: 0 });
   const plotRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = plotRef.current;
@@ -384,7 +392,7 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
   }
 
   return (
-    <div className="relative h-80 w-full overflow-visible">
+    <div ref={containerRef} className="relative h-80 w-full overflow-visible">
       <div ref={plotRef} className="absolute inset-0">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
@@ -458,7 +466,13 @@ function FairValueChart({ data }: { data: FairValuePoint[] }) {
         </ResponsiveContainer>
       </div>
       {hover && plotSize.w > 0 && (
-        <ChartSideCallout hover={hover} width={plotSize.w} height={plotSize.h} compact={false} />
+        <ChartSideCallout
+          hover={hover}
+          width={plotSize.w}
+          height={plotSize.h}
+          compact={false}
+          containerRef={containerRef}
+        />
       )}
     </div>
   );
