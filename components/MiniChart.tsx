@@ -33,7 +33,9 @@ export function MiniChart({ data, compact = true }: MiniChartProps) {
   const enrichedSeries = series.map((s) => ({
     ...s,
     description:
-      s.description ?? seriesDescription(slug, s.key, s.label) ?? `${s.label} on ${slug.replace(/-/g, " ")}.`,
+      s.description ??
+      seriesDescription(slug, s.key, s.label) ??
+      `${s.label} for this chart.`,
   }));
 
   return (

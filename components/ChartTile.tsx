@@ -13,7 +13,7 @@ export function ChartTile({ tile, data }: ChartTileProps) {
   const placeholder = !data?.points?.length;
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-stone-200/80 bg-card shadow-sm transition hover:shadow-md">
+    <article className="flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-card shadow-sm transition hover:shadow-md">
       <div className="relative border-b border-stone-100 px-4 pb-3 pt-4">
         <Link
           href={`/charts/${tile.slug}`}
@@ -67,7 +67,7 @@ export function ChartTile({ tile, data }: ChartTileProps) {
         </div>
       </div>
 
-      <div className="flex-1 px-2 pb-3 pt-1">
+      <div className="flex-1 overflow-hidden rounded-b-xl px-2 pb-3 pt-1">
         {placeholder ? (
           <div className="flex h-36 items-center justify-center text-xs text-muted">
             Data pending — nightly refresh

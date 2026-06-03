@@ -2,77 +2,99 @@
 
 export const TILE_DESCRIPTIONS: Record<string, string> = {
   "marty-distressed":
-    "Share of U.S. high-yield bonds trading at distressed spreads (typically 1,000+ bps over Treasuries). Rises when credit stress is building.",
-  cdci: "Equal-weight basket of consumer-credit-related stocks divided by gold. Tracks whether consumer credit is outperforming a hard-money benchmark.",
+    "What % of U.S. high-yield (junk) bonds trade at distressed spreads. Rises when the bond market is worried about defaults.",
+  cdci: "Compares consumer-lender stocks to gold. When this falls, credit stocks are losing ground vs. a hard-asset benchmark.",
   "berkshire-roe":
-    "Rolling 10-year annualized change in Berkshire Hathaway book value per share — a long-run compounding yardstick.",
+    "How fast Berkshire Hathaway book value per share has compounded over the past 10 years — Warren Buffett’s long-run scorecard.",
   "btc-hash-rate":
-    "Bitcoin spot price (USD) overlaid with network hash rate (EH/s). Hash rate reflects mining security and long-run network investment.",
+    "Bitcoin price in dollars vs. network hash rate (mining power). Hash rate shows how much computing power secures the network.",
   "inflation-70s":
-    "Current U.S. CPI year-over-year inflation compared with the 1970s path — context for whether inflation is re-accelerating.",
+    "Today’s U.S. inflation (CPI) plotted against the 1970s path — helps see if we’re repeating an old inflation cycle.",
   "gold-fair-value":
-    "Model-implied fair value for gold versus the actual spot price, based on macro inputs in the Porter algorithm.",
+    "Where our model says gold should trade vs. where it actually trades. Above the line = gold looks rich; below = cheap.",
   "hy-oas":
-    "Option-adjusted spread on the ICE BofA U.S. High Yield Index — the premium investors demand to hold junk bonds over Treasuries.",
+    "Extra yield on risky corporate bonds vs. Treasuries (ICE BofA High Yield Index). A wider spread means investors want more pay for taking credit risk.",
   "m2-yoy":
-    "Year-over-year growth in U.S. M2 money supply. Faster growth often coincides with easier financial conditions.",
+    "How fast U.S. M2 money supply is growing year-over-year. Faster growth usually means more liquidity in the system.",
   "yield-2s10s":
-    "10-year minus 2-year Treasury yield spread. Inversions (negative) often precede recessions; steepening can signal recovery expectations.",
+    "10-year Treasury yield minus 2-year yield. When negative (inverted), short rates are above long rates — often seen before recessions.",
   "private-credit-stress":
-    "Combines BDC discount-to-NAV with high-yield spreads to gauge stress in private / direct lending markets.",
+    "Blends BDC discount-to-NAV with high-yield spreads. Tracks stress in private / direct lending outside traditional banks.",
 };
 
 export const LEGEND_DESCRIPTIONS: Record<string, string> = {
-  "Distressed / CDCI / HY": "Credit-risk and distressed-debt themed charts (red family).",
-  "Gold / Berkshire / BTC": "Hard-asset, compounding, and Bitcoin-related charts (gold family).",
-  "Hash rate / Curve": "Network / yield-curve macro signals (olive family).",
-  "CPI / M2": "Inflation and liquidity growth charts (blue family).",
+  "Distressed / CDCI / HY": "Red charts — credit risk, distressed debt, and high-yield spreads.",
+  "Gold / Berkshire / BTC": "Gold charts — hard assets, Berkshire compounding, and Bitcoin.",
+  "Hash rate / Curve": "Olive charts — Bitcoin hash rate and the Treasury yield curve.",
+  "CPI / M2": "Blue charts — inflation (CPI) and money-supply growth (M2).",
 };
 
 export const BTC_LIQUIDITY_TERMS: Record<string, string> = {
   "Bitcoin Price":
-    "Live BTC-USD spot price from Yahoo Finance — the same ticker you would search on Google Finance.",
+    "Live Bitcoin price in U.S. dollars (BTC-USD), same as Google Finance or Yahoo — updates every 30 seconds.",
   "Model Signal":
-    "Where Bitcoin trades versus the liquidity-model fair value, plus whether the model reads cheap, fair, or dear.",
+    "Summary of whether Bitcoin looks cheap or expensive vs. our liquidity model, based on the latest fair-value estimate.",
   Signal:
-    "Cheap = well below fair value; Dear = well above. Based on how far price sits from the model relative to history.",
+    "Cheap = trading well below model fair value. Dear = well above. Neutral = in the middle of the normal range.",
   "Vs Fair":
-    "Percent difference between actual Bitcoin price and the model’s fair-value estimate on the latest date.",
+    "How far today’s Bitcoin price is above or below the model’s fair-value estimate, in percent.",
   "Z-Score":
-    "How many standard deviations the log-price residual is from zero. Below −1.5 = unusually cheap vs the model; above +1.5 = unusually dear.",
+    "How unusual the current price is vs. the model. Below −1.5 = historically cheap. Above +1.5 = historically expensive.",
   "Fed Net Liquidity":
-    "Fed balance sheet assets minus Treasury General Account and reverse-repo (RRP) — a proxy for net liquidity injected into the banking system.",
+    "Fed assets minus cash in the Treasury account and reverse-repo — rough measure of liquidity the Fed has added to markets.",
   "Global M2 (USD) YoY":
-    "Combined broad money supply for the U.S., euro area, Japan, China, and UK, converted to USD and shown as year-over-year growth.",
+    "Broad money supply growth for the U.S., Europe, Japan, China, and UK (in USD). Shows global liquidity expansion or contraction.",
   "Stablecoin Supply":
-    "Total circulating USDT + USDC — crypto-native dollar liquidity often used as dry powder on exchanges.",
+    "Total USDT + USDC in circulation — dollar-pegged tokens often sitting on crypto exchanges as ready-to-deploy cash.",
   "BTC actual":
-    "Weekly Bitcoin closing price in U.S. dollars from the model dataset.",
+    "Bitcoin’s weekly closing price used in this model.",
   "Model fair value":
-    "Regression estimate of fair BTC price from Fed net liquidity, global M2 growth, and stablecoin supply.",
+    "Where the model thinks Bitcoin should trade, based on Fed liquidity, global M2 growth, and stablecoin supply.",
   "Likely range":
-    "Band where price has historically traded about 68% of the time (one standard deviation above/below the model).",
+    "Shaded band where Bitcoin has usually traded relative to the model — about two-thirds of history falls inside this zone.",
   "Extreme range":
-    "Wider band capturing roughly 95% of historical deviations (two standard deviations). Not a hard floor/ceiling.",
+    "Wider shaded band for unusual moves — most of history stays inside, but big rallies or selloffs can pierce it.",
   "Cheap / Dear Indicator":
-    "Z-score of the model residual. Values below −1.5 suggest Bitcoin is cheap vs liquidity conditions; above +1.5 suggests expensive.",
+    "Z-score chart: how far price is from the model over time. Readings below −1.5 = cheap signal; above +1.5 = dear signal.",
 };
 
-export function seriesDescription(slug: string, seriesKey: string, label: string): string | undefined {
+export function seriesDescription(slug: string, seriesKey: string, _label: string): string | undefined {
   const bySlug: Record<string, Record<string, string>> = {
     "marty-distressed": {
-      value: "Percent of the HY index trading at distressed yield levels.",
+      ratio: "Percent of high-yield bonds trading at distressed yield levels.",
     },
     cdci: {
-      value: "Indexed level of the consumer credit basket relative to gold.",
+      cdci: "Consumer credit stock basket divided by gold — indexed over time.",
+      gold: "Gold price component of the ratio.",
+    },
+    "berkshire-roe": {
+      roe: "Rolling 10-year annualized change in Berkshire book value per share.",
     },
     "btc-hash-rate": {
-      price: "Bitcoin USD price.",
-      hashRate: "Estimated network hash rate in exahashes per second.",
+      btc: "Bitcoin spot price in U.S. dollars.",
+      hashRate: "Network hash rate — total mining power securing Bitcoin (EH/s).",
+    },
+    "inflation-70s": {
+      cpiNow: "Current U.S. CPI inflation, year-over-year.",
+      cpi70s: "1970s CPI path shown for comparison.",
+    },
+    "gold-fair-value": {
+      actual: "Actual gold spot price ($/oz).",
+      model: "Model fair value for gold.",
+    },
+    "hy-oas": {
+      oas: "High-yield bond spread over Treasuries (OAS), in percent.",
     },
     "m2-yoy": {
-      value: "Year-over-year percent change in U.S. M2.",
+      m2yoy: "U.S. M2 money supply, year-over-year % change.",
+    },
+    "yield-2s10s": {
+      spread: "10-year minus 2-year Treasury yield spread.",
+    },
+    "private-credit-stress": {
+      bdcDiscount: "Average BDC discount to net asset value — how cheap private credit funds trade.",
+      hyOas: "High-yield bond spread (OAS) — the public credit stress component.",
     },
   };
-  return bySlug[slug]?.[seriesKey] ?? bySlug[slug]?.value;
+  return bySlug[slug]?.[seriesKey];
 }
